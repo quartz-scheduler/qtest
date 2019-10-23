@@ -40,28 +40,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-import org.quartz.Calendar;
-import org.quartz.InterruptableJob;
-import org.quartz.Job;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.quartz.JobKey;
-import org.quartz.JobListener;
-import org.quartz.ListenerManager;
-import org.quartz.Matcher;
-import org.quartz.ObjectAlreadyExistsException;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerContext;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerListener;
-import org.quartz.SchedulerMetaData;
-import org.quartz.Trigger;
+import org.quartz.*;
+
 import static org.quartz.TriggerBuilder.*;
-import org.quartz.TriggerKey;
-import org.quartz.TriggerListener;
-import org.quartz.UnableToInterruptJobException;
+
 import org.quartz.Trigger.CompletedExecutionInstruction;
 import org.quartz.Trigger.TriggerState;
 import org.quartz.core.jmx.QuartzSchedulerMBean;
@@ -992,35 +974,7 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
         validateState();
 
         // make sure all triggers refer to their associated job
-        for(Entry<JobDetail, Set<? extends Trigger>> e: triggersAndJobs.entrySet()) {
-            JobDetail job = e.getKey();
-            if(job == null) // there can be one of these (for adding a bulk set of triggers for pre-existing jobs)
-                continue;
-            Set<? extends Trigger> triggers = e.getValue();
-            if(triggers == null) // this is possible because the job may be durable, and not yet be having triggers
-                continue;
-            for(Trigger trigger: triggers) {
-                OperableTrigger opt = (OperableTrigger)trigger;
-                opt.setJobKey(job.getKey());
-
-                opt.validate();
-
-                Calendar cal = null;
-                if (trigger.getCalendarName() != null) {
-                    cal = resources.getJobStore().retrieveCalendar(trigger.getCalendarName());
-                    if(cal == null) {
-                        throw new SchedulerException(
-                            "Calendar '" + trigger.getCalendarName() + "' not found for trigger: " + trigger.getKey());
-                    }
-                }
-                Date ft = opt.computeFirstFireTime(cal);
-
-                if (ft == null) {
-                    throw new SchedulerException(
-                            "Based on configured schedule, the given trigger will never fire.");
-                }                
-            }
-        }
+        TriggerUtils.associateTriggersAndJobs(triggersAndJobs,resources.getJobStore());
 
         resources.getJobStore().storeJobsAndTriggers(triggersAndJobs, replace);
         notifySchedulerThread(0L);
