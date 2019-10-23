@@ -2,10 +2,21 @@ A summary of each issue fixed should be documented here along with the code chan
 
 For a details of release notes see https://github.com/quartz-scheduler/quartz/releases[GitHub Release]
 
+== quartz-2.3.3
+
+This release is still work in progress under `quartz-2.3.x` branch!
 
 == quartz-2.3.2
 
-This release is still work in progress under `quartz-2.3.x` branch!
+Released on 23-Oct-2019
+
+* #508 bugfix: Error with H2 1.4.200
+* #505 bugfix: CronTrigger.getTriggerBuilder() changes misfire instruction from "ignore misfire" to "smart"
+* #491 bugfix: StdJDBCDelegate.selectTriggerToAcquire may not respect maxCount
+* #490 bugfix: Return at most maxCount triggers
+* #482 depen: Update C3P0 version to 0.9.5.4 (CVE-2019-5427)
+* #474 bugfix: StdSchedulerFactory ConcurrentModificationException reading system properties
+* #467 bugfix: Security: XXE in initDocumentParser
 
 == quartz-2.3.1
 
