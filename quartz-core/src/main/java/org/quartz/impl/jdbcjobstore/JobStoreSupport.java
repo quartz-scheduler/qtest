@@ -2871,8 +2871,11 @@ public abstract class JobStoreSupport implements JobStore, Constants {
                         }
                         continue;
                     }
-                    
-                    if (job.isConcurrentExectionDisallowed()) {
+
+                    if (job == null) {
+                        log.warn("Trigger {} with a jobkey {} returned null on job!",
+                            nextTrigger.getKey(), jobKey);
+                    } else if (job.isConcurrentExectionDisallowed()) {
                         if (acquiredJobKeysForNoConcurrentExec.contains(jobKey)) {
                             continue; // next trigger
                         } else {
