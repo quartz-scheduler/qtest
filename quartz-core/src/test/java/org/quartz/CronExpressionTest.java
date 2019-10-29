@@ -478,6 +478,19 @@ public class CronExpressionTest extends SerializationTestSupport {
         }
     }
     
+    public void testGetTimeBefore() throws Exception {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(2019, 02, 29, 13, 32, 05);
+        final Date now = calendar.getTime();
+
+        calendar.set(2019, 02, 29, 13, 30, 00);
+        assertEquals(calendar.getTime(), new CronExpression("0 */5 * * * ? *").getTimeBefore(now));
+
+        calendar.set(2018, 00, 01, 00, 00, 00);
+        assertEquals(calendar.getTime(), new CronExpression("0 0 0 1 1 ? */2").getTimeBefore(now));
+    }
+
     // execute with version number to generate a new version's serialized form
     public static void main(String[] args) throws Exception {
         new CronExpressionTest().writeJobDataFile("1.5.2");

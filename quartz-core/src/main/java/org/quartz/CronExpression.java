@@ -29,6 +29,7 @@ import java.util.SortedSet;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Provides a parser and evaluator for unix-like cron expressions. Cron 
@@ -199,6 +200,10 @@ import java.util.TreeSet;
 public final class CronExpression implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 12423409423L;
+    private static final long[] GET_TIME_BEFORE_INTERVALS = new long[] {
+            TimeUnit.MINUTES.toMillis(1), TimeUnit.HOURS.toMillis(1), TimeUnit.DAYS.toMillis(1),
+            TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(31), TimeUnit.DAYS.toMillis(366),
+            TimeUnit.DAYS.toMillis(3653), TimeUnit.DAYS.toMillis(36525) };
     
     protected static final int SECOND = 0;
     protected static final int MINUTE = 1;
@@ -1586,11 +1591,22 @@ public final class CronExpression implements Serializable, Cloneable {
     }
 
     /**
-     * NOT YET IMPLEMENTED: Returns the time before the given time
+     * Returns the time before the given time
      * that the <code>CronExpression</code> matches.
      */ 
     public Date getTimeBefore(Date endTime) { 
-        // FUTURE_TODO: implement QUARTZ-423
+        final Date fireTimeAfterOrigin = getTimeAfter(endTime);
+        if (fireTimeAfterOrigin == null) return null;
+        for (final long interval : GET_TIME_BEFORE_INTERVALS) {
+            Date curCandidate = getTimeAfter(new Date(fireTimeAfterOrigin.getTime() - interval));
+            assert curCandidate != null;
+            if (curCandidate.getTime() == fireTimeAfterOrigin.getTime()) continue;
+            for (;;) {
+                final Date nextCandidate = getTimeAfter(curCandidate);
+                if (nextCandidate.getTime() == fireTimeAfterOrigin.getTime()) return curCandidate;
+                curCandidate = nextCandidate;
+            }
+        }
         return null;
     }
 
