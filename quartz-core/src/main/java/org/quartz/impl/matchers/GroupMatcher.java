@@ -118,21 +118,21 @@ public class GroupMatcher<T extends Key<?>> extends StringMatcher<T> {
     }
 
     /**
-     * Create a GroupMatcher that matches groups starting with the given string.
+     * Create a GroupMatcher that matches all groups.
      */
     public static <T extends Key<T>> GroupMatcher<T> anyGroup() {
         return new GroupMatcher<T>("", StringOperatorName.ANYTHING);
     }
 
     /**
-     * Create a GroupMatcher that matches job groups starting with the given string.
+     * Create a GroupMatcher that matches all job groups.
      */
     public static GroupMatcher<JobKey> anyJobGroup() {
         return GroupMatcher.anyGroup();
     }
 
     /**
-     * Create a GroupMatcher that matches trigger groups starting with the given string.
+     * Create a GroupMatcher that matches all trigger groups.
      */
     public static GroupMatcher<TriggerKey> anyTriggerGroup() {
         return GroupMatcher.anyGroup();
