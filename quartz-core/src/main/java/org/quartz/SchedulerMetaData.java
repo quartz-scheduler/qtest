@@ -110,6 +110,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * <p>
      * Returns the name of the <code>Scheduler</code>.
      * </p>
+     *
+     * @return the scheduler's name
      */
     public String getSchedulerName() {
         return schedName;
@@ -119,6 +121,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * <p>
      * Returns the instance Id of the <code>Scheduler</code>.
      * </p>
+     *
+     * @return the scheduler's instance id
      */
     public String getSchedulerInstanceId() {
         return schedInst;
@@ -128,6 +132,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * <p>
      * Returns the class-name of the <code>Scheduler</code> instance.
      * </p>
+     *
+     * @return the scheduler's class
      */
     public Class<?> getSchedulerClass() {
         return schedClass;
@@ -149,6 +155,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns the number of jobs executed since the <code>Scheduler</code>
      * started..
      * </p>
+     *
+     * @return number of executed jobs since start
      */
     public int getNumberOfJobsExecuted() {
         return numJobsExec;
@@ -159,6 +167,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns whether the <code>Scheduler</code> is being used remotely (via
      * RMI).
      * </p>
+     *
+     * @return is scheduler remote
      */
     public boolean isSchedulerRemote() {
         return isRemote;
@@ -173,6 +183,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Note: <code>isStarted()</code> may return <code>true</code> even if
      * <code>isInStandbyMode()</code> returns <code>true</code>.
      * </p>
+     *
+     * @return is scheduler started
      */
     public boolean isStarted() {
         return started;
@@ -180,6 +192,8 @@ public class SchedulerMetaData implements java.io.Serializable {
 
     /**
      * Reports whether the <code>Scheduler</code> is in standby mode.
+     *
+     * @return is scheduler standing by
      */
     public boolean isInStandbyMode() {
         return isInStandbyMode;
@@ -189,6 +203,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * <p>
      * Reports whether the <code>Scheduler</code> has been shutdown.
      * </p>
+     *
+     * @return is scheduler shutdown
      */
     public boolean isShutdown() {
         return shutdown;
@@ -199,6 +215,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns the class-name of the <code>JobStore</code> instance that is
      * being used by the <code>Scheduler</code>.
      * </p>
+     *
+     * @return the job store class
      */
     public Class<?> getJobStoreClass() {
         return jsClass;
@@ -209,6 +227,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns whether or not the <code>Scheduler</code>'s<code>JobStore</code>
      * instance supports persistence.
      * </p>
+     *
+     * @return is job store persistent
      */
     public boolean isJobStoreSupportsPersistence() {
         return jsPersistent;
@@ -219,6 +239,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns whether or not the <code>Scheduler</code>'s<code>JobStore</code>
      * is clustered.
      * </p>
+     *
+     * @return is job store clustered
      */
     public boolean isJobStoreClustered() {
         return jsClustered;
@@ -229,6 +251,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns the class-name of the <code>ThreadPool</code> instance that is
      * being used by the <code>Scheduler</code>.
      * </p>
+     *
+     * @return scheduler's thread pool class
      */
     public Class<?> getThreadPoolClass() {
         return tpClass;
@@ -239,6 +263,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * Returns the number of threads currently in the <code>Scheduler</code>'s
      * <code>ThreadPool</code>.
      * </p>
+     *
+     * @return scheduler's thread pool thread count
      */
     public int getThreadPoolSize() {
         return tpSize;
@@ -248,6 +274,8 @@ public class SchedulerMetaData implements java.io.Serializable {
      * <p>
      * Returns the version of Quartz that is running.
      * </p>
+     *
+     * @return Quartz version
      */
     public String getVersion() {
         return version;
@@ -275,14 +303,14 @@ public class SchedulerMetaData implements java.io.Serializable {
      * 
      * <p>
      * The format of the String looks something like this:
-     * 
+     * </p>
+     *
      * <pre>
-     * 
-     * 
      *  Quartz Scheduler 'SchedulerName' with instanceId 'SchedulerInstanceId' Scheduler class: 'org.quartz.impl.StdScheduler' - running locally. Running since: '11:33am on Jul 19, 2002' Not currently paused. Number of Triggers fired: '123' Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with '8' threads Using job-store 'org.quartz.impl.JDBCJobStore' - which supports persistence.
      * </pre>
-     * 
-     * </p>
+     *
+     * @return scheduler summary text
+     * @throws SchedulerException internal scheduler error
      */
     public String getSummary() throws SchedulerException {
         StringBuilder str = new StringBuilder("Quartz Scheduler (v");

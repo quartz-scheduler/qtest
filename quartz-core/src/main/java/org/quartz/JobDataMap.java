@@ -85,6 +85,8 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Create a <code>JobDataMap</code> with the given data.
      * </p>
+     *
+     * @param map the initial data map
      */
     public JobDataMap(Map<?, ?> map) {
         this();
@@ -109,6 +111,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Adds the given <code>boolean</code> value as a string version to the
      * <code>Job</code>'s data map.
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>boolean</code> value
      * </p>
      */
     public void putAsString(String key, boolean value) {
@@ -122,6 +127,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Boolean</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Boolean</code> value
      */
     public void putAsString(String key, Boolean value) {
         String strValue = value.toString();
@@ -134,6 +142,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>char</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>char</code> value
      */
     public void putAsString(String key, char value) {
         String strValue = Character.valueOf(value).toString();
@@ -146,6 +157,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Character</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Character</code> value
      */
     public void putAsString(String key, Character value) {
         String strValue = value.toString();
@@ -158,6 +172,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>double</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>double</code> value
      */
     public void putAsString(String key, double value) {
         String strValue = Double.toString(value);
@@ -170,6 +187,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Double</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Double</code> value
      */
     public void putAsString(String key, Double value) {
         String strValue = value.toString();
@@ -182,6 +202,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>float</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>float</code> value
      */
     public void putAsString(String key, float value) {
         String strValue = Float.toString(value);
@@ -194,6 +217,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Float</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Float</code> value
      */
     public void putAsString(String key, Float value) {
         String strValue = value.toString();
@@ -206,6 +232,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>int</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>int</code> value
      */
     public void putAsString(String key, int value) {
         String strValue = Integer.valueOf(value).toString();
@@ -218,6 +247,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Integer</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Integer</code> value
      */
     public void putAsString(String key, Integer value) {
         String strValue = value.toString();
@@ -230,6 +262,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>long</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>long</code> value
      */
     public void putAsString(String key, long value) {
         String strValue = Long.valueOf(value).toString();
@@ -242,6 +277,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Adds the given <code>Long</code> value as a string version to the
      * <code>Job</code>'s data map.
      * </p>
+     *
+     * @param key the mapping's key
+     * @param value the mapping's <code>Long</code> value
      */
     public void putAsString(String key, Long value) {
         String strValue = value.toString();
@@ -253,7 +291,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>int</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>int</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -267,7 +307,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>int</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>int</code> value
      * @throws ClassCastException
      *           if the identified object is not a String or Integer.
      */
@@ -285,7 +327,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>int</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>Integer</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -299,7 +343,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>boolean</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>boolean</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -314,7 +360,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * Retrieve the identified <code>boolean</code> value from the 
      * <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>boolean</code> value
      * @throws ClassCastException
      *           if the identified object is not a String or Boolean.
      */
@@ -332,7 +380,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>Boolean</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>boolean</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -346,7 +396,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>char</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>char</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -360,7 +412,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>Character</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>Character</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -374,7 +428,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>double</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>double</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -388,7 +444,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>double</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>double</code> value
      * @throws ClassCastException
      *           if the identified object is not a String or Double.
      */
@@ -406,7 +464,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>Double</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>Double</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -420,7 +480,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>float</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>float</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -434,7 +496,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>float</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>float</code> value
      * @throws ClassCastException
      *           if the identified object is not a String or Float.
      */
@@ -452,7 +516,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>Float</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>Float</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -466,7 +532,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>long</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>long</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */
@@ -480,7 +548,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>long</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>long</code> value
      * @throws ClassCastException
      *           if the identified object is not a String or Long.
      */
@@ -498,7 +568,9 @@ public class JobDataMap extends StringKeyDirtyFlagMap implements Serializable {
      * <p>
      * Retrieve the identified <code>Long</code> value from the <code>JobDataMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>Long</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */

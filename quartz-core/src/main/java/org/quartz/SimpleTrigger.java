@@ -41,7 +41,7 @@ public interface SimpleTrigger extends Trigger {
      * <p>
      * <i>NOTE:</i> This instruction should typically only be used for
      * 'one-shot' (non-repeating) Triggers. If it is used on a trigger with a
-     * repeat count > 0 then it is equivalent to the instruction <code>{@link #MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_REMAINING_REPEAT_COUNT}
+     * repeat count &gt; 0 then it is equivalent to the instruction <code>{@link #MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_REMAINING_REPEAT_COUNT}
      * </code>.
      * </p>
      */
@@ -141,7 +141,8 @@ public interface SimpleTrigger extends Trigger {
      * Get the the number of times the <code>SimpleTrigger</code> should
      * repeat, after which it will be automatically deleted.
      * </p>
-     * 
+     *
+     * @return the repeat count
      * @see #REPEAT_INDEFINITELY
      */
     public int getRepeatCount();
@@ -150,6 +151,8 @@ public interface SimpleTrigger extends Trigger {
      * <p>
      * Get the the time interval (in milliseconds) at which the <code>SimpleTrigger</code> should repeat.
      * </p>
+     *
+     * @return the repeat interval
      */
     public long getRepeatInterval();
     
@@ -157,6 +160,8 @@ public interface SimpleTrigger extends Trigger {
      * <p>
      * Get the number of times the <code>SimpleTrigger</code> has already fired.
      * </p>
+     *
+     * @return the times triggered
      */
     public int getTimesTriggered();
 

@@ -26,7 +26,7 @@ import org.quartz.spi.TriggerFiredBundle;
 /**
  * <p>
  * Responsible for creating the instances of <code>{@link JobRunShell}</code>
- * to be used within the <class>{@link QuartzScheduler}</code> instance.
+ * to be used within the <code>{@link QuartzScheduler}</code> instance.
  * </p>
  * 
  * @author James House

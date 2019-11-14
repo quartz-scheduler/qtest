@@ -63,6 +63,8 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
     
     /**
      * Get a copy of the Map's String keys in an array of Strings.
+     *
+     * @return the keys as an array of Strings
      */
     public String[] getKeys() {
         return keySet().toArray(new String[size()]);
@@ -72,7 +74,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * Tell the <code>StringKeyDirtyFlagMap</code> that it should
      * allow non-<code>Serializable</code> values.  Enforces that the Map 
      * doesn't already include transient data.
-     * 
+     *
+     * @param allowsTransientData if non-serializable data is allowed
+     *
      * @deprecated JDBCJobStores no longer prune out transient data.  If you
      * include non-Serializable values in the Map, you will now get an 
      * exception when attempting to store it in a database.
@@ -91,7 +95,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
     /**
      * Whether the <code>StringKeyDirtyFlagMap</code> allows 
      * non-<code>Serializable</code> values.
-     * 
+     *
+     * @return non-serializable data is allowed
+     *
      * @deprecated JDBCJobStores no longer prune out transient data.  If you
      * include non-Serializable values in the Map, you will now get an 
      * exception when attempting to store it in a database.
@@ -104,7 +110,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * Determine whether any values in this Map do not implement 
      * <code>Serializable</code>.  Always returns false if this Map
      * is flagged to not allow transient data.
-     * 
+     *
+     * @return is non-serializable data included
+     *
      * @deprecated JDBCJobStores no longer prune out transient data.  If you
      * include non-Serializable values in the Map, you will now get an 
      * exception when attempting to store it in a database.
@@ -172,6 +180,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>int</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>int</code> value
      */
     public void put(String key, int value) {
         super.put(key, Integer.valueOf(value));
@@ -181,6 +192,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>long</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>long</code> value
      */
     public void put(String key, long value) {
         super.put(key, Long.valueOf(value));
@@ -190,6 +204,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>float</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>float</code> value
      */
     public void put(String key, float value) {
         super.put(key, Float.valueOf(value));
@@ -199,6 +216,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>double</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>double</code> value
      */
     public void put(String key, double value) {
         super.put(key, Double.valueOf(value));
@@ -208,6 +228,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>boolean</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>boolean</code> value
      */
     public void put(String key, boolean value) {
         super.put(key, Boolean.valueOf(value));
@@ -217,6 +240,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>char</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>char</code> value
      */
     public void put(String key, char value) {
         super.put(key, Character.valueOf(value));
@@ -226,6 +252,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>String</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>String</code> value
      */
     public void put(String key, String value) {
         super.put(key, value);
@@ -235,6 +264,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Adds the given <code>Object</code> value to the <code>StringKeyDirtyFlagMap</code>.
      * </p>
+     *
+     * @param key the mapping's <code>String</code>key
+     * @param value the mapping's <code>Object</code> value
      */
     @Override
     public Object put(String key, Object value) {
@@ -245,7 +277,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>int</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>int</code> value
      * @throws ClassCastException
      *           if the identified object is not an Integer.
      */
@@ -265,7 +299,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>long</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>long</code> value
      * @throws ClassCastException
      *           if the identified object is not a Long.
      */
@@ -285,7 +321,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>float</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>float</code> value
      * @throws ClassCastException
      *           if the identified object is not a Float.
      */
@@ -305,7 +343,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>double</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>double</code> value
      * @throws ClassCastException
      *           if the identified object is not a Double.
      */
@@ -325,7 +365,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>boolean</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>boolean</code> value
      * @throws ClassCastException
      *           if the identified object is not a Boolean.
      */
@@ -345,7 +387,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>char</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>char</code> value
      * @throws ClassCastException
      *           if the identified object is not a Character.
      */
@@ -365,7 +409,9 @@ public class StringKeyDirtyFlagMap extends DirtyFlagMap<String, Object> {
      * <p>
      * Retrieve the identified <code>String</code> value from the <code>StringKeyDirtyFlagMap</code>.
      * </p>
-     * 
+     *
+     * @param key the mapping's <code>String</code> key
+     * @return the mapping's <code>String</code> value
      * @throws ClassCastException
      *           if the identified object is not a String.
      */

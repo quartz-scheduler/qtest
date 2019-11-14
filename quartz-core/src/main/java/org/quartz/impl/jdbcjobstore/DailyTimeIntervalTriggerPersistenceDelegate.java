@@ -36,7 +36,7 @@ import org.quartz.spi.OperableTrigger;
  * 
  * @since 2.1.0
  * 
- * @author Zemian Deng <saltnlight5@gmail.com>
+ * @author Zemian Deng &lt;saltnlight5@gmail.com&gt;
  */
 public class DailyTimeIntervalTriggerPersistenceDelegate extends SimplePropertiesTriggerPersistenceDelegateSupport {
 

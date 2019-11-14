@@ -21,13 +21,13 @@
     <dependency>
       <groupId>org.terracotta.toolkit</groupId>
       <artifactId>terracotta-toolkit-api</artifactId>
-      <version>2.5</version>
+      <version>${terracotta-toolkit-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.terracotta.toolkit</groupId>
       <artifactId>terracotta-toolkit-api-internal</artifactId>
-      <version>1.12</version>
+      <version>${terracotta-toolkit-api-internal.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

@@ -31,7 +31,7 @@ import java.util.TimeZone;
  * @since 2.0.3
  * 
  * @author James House
- * @author Zemian Deng <saltnlight5@gmail.com>
+ * @author Zemian Deng &lt;saltnlight5@gmail.com&gt;
  */
 public class TimeOfDay implements Serializable {
 
@@ -85,6 +85,7 @@ public class TimeOfDay implements Serializable {
      * @param hour The hour of day, between 0 and 23.
      * @param minute The minute of the hour, between 0 and 59.
      * @param second The second of the minute, between 0 and 59.
+     * @return the time of day
      * @throws IllegalArgumentException if one or more of the input values is out of their valid range.
      */
     public static TimeOfDay hourMinuteAndSecondOfDay(int hour, int minute, int second) {
@@ -96,6 +97,7 @@ public class TimeOfDay implements Serializable {
      * 
      * @param hour The hour of day, between 0 and 23.
      * @param minute The minute of the hour, between 0 and 59.
+     * @return the time of day
      * @throws IllegalArgumentException if one or more of the input values is out of their valid range.
      */
     public static TimeOfDay hourAndMinuteOfDay(int hour, int minute) {
@@ -130,8 +132,9 @@ public class TimeOfDay implements Serializable {
     }
 
     /**
-     * Determine with this time of day is before the given time of day.
-     * 
+     * Determine if this time of day is before the given time of day.
+     *
+     * @param timeOfDay then time of day to test
      * @return true this time of day is before the given time of day.
      */
     public boolean before(TimeOfDay timeOfDay) {
@@ -169,7 +172,12 @@ public class TimeOfDay implements Serializable {
         return (hour + 1) ^ (minute + 1) ^ (second + 1);
     }
     
-    /** Return a date with time of day reset to this object values. The millisecond value will be zero. */
+    /**
+     * Return a date with time of day reset to this object values. The millisecond value will be zero.
+     *
+     * @param dateTime the time to modify using this instance's values
+     * @return the time modified by this instance's values
+     */
     public Date getTimeOfDayForDate(Date dateTime) {
         if (dateTime == null)
             return null;
@@ -186,6 +194,7 @@ public class TimeOfDay implements Serializable {
      * Create a TimeOfDay from the given date, in the system default TimeZone.
      * 
      * @param dateTime The java.util.Date from which to extract Hour, Minute and Second.
+     * @return time of day
      */
     public static TimeOfDay hourAndMinuteAndSecondFromDate(Date dateTime) {
         return hourAndMinuteAndSecondFromDate(dateTime, null);
@@ -197,6 +206,7 @@ public class TimeOfDay implements Serializable {
      * @param dateTime The java.util.Date from which to extract Hour, Minute and Second.
      * @param tz The TimeZone from which relate Hour, Minute and Second for the given date.  If null, system default
      * TimeZone will be used.
+     * @return time of day
      */
     public static TimeOfDay hourAndMinuteAndSecondFromDate(Date dateTime, TimeZone tz) {
         if (dateTime == null)
@@ -213,6 +223,7 @@ public class TimeOfDay implements Serializable {
      * Create a TimeOfDay from the given date (at the zero-second), in the system default TimeZone.
      * 
      * @param dateTime The java.util.Date from which to extract Hour and Minute.
+     * @return time of day
      */
     public static TimeOfDay hourAndMinuteFromDate(Date dateTime) {
         return hourAndMinuteFromDate(dateTime, null);
@@ -224,6 +235,7 @@ public class TimeOfDay implements Serializable {
      * @param dateTime The java.util.Date from which to extract Hour and Minute.
      * @param tz The TimeZone from which relate Hour and Minute for the given date.  If null, system default
      * TimeZone will be used.
+     * @return time of day
      */
     public static TimeOfDay hourAndMinuteFromDate(Date dateTime, TimeZone tz) {
         if (dateTime == null)

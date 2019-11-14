@@ -600,11 +600,11 @@ public class CronTriggerImpl extends AbstractTrigger<CronTrigger> implements Cro
      * 
      * <p>
      * If the misfire instruction is set to MISFIRE_INSTRUCTION_SMART_POLICY,
-     * then the following scheme will be used: <br>
+     * then the following scheme will be used:
+     *
      * <ul>
      * <li>The instruction will be interpreted as <code>MISFIRE_INSTRUCTION_FIRE_ONCE_NOW</code>
      * </ul>
-     * </p>
      */
     @Override
     public void updateAfterMisfire(org.quartz.Calendar cal) {
@@ -777,7 +777,6 @@ public class CronTriggerImpl extends AbstractTrigger<CronTrigger> implements Cro
      * @return the first time at which the <code>Trigger</code> will be fired
      *         by the scheduler, which is also the same value <code>getNextFireTime()</code>
      *         will return (until after the first firing of the <code>Trigger</code>).
-     *         </p>
      */
     @Override
     public Date computeFirstFireTime(org.quartz.Calendar calendar) {

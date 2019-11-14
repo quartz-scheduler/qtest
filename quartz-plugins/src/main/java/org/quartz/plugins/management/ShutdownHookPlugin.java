@@ -111,7 +111,7 @@ public class ShutdownHookPlugin implements SchedulerPlugin {
      * the <code>SchedulerPlugin</code> a chance to initialize.
      * </p>
      * 
-     * @throws SchedulerConfigException
+     * @throws org.quartz.SchedulerConfigException
      *           if there is an error initializing.
      */
     public void initialize(String name, final Scheduler scheduler, ClassLoadHelper classLoadHelper)

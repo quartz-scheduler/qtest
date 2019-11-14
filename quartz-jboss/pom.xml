@@ -27,23 +27,32 @@
     <dependency>
       <groupId>jboss</groupId>
       <artifactId>jboss-minimal</artifactId>
-      <version>4.0.2</version>
+      <version>${jboss-system.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>jboss</groupId>
       <artifactId>jboss-system</artifactId>
-      <version>4.0.2</version>
+      <version>${jboss-system.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>jboss</groupId>
       <artifactId>jboss-jmx</artifactId>
-      <version>4.0.2</version>
+      <version>${jboss-system.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
   <profiles>
     <profile>
       <id>deploy-sonatype</id>

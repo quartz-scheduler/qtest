@@ -16,6 +16,7 @@
  */
 package org.terracotta.quartz.tests;
 
+import ch.qos.logback.core.Layout;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -55,11 +56,11 @@ public abstract class AbstractStandaloneTest extends AbstractTestBase {
     String quartzJobs = TestBaseUtil.jarFor(MyJob.class);
     String logging = TestBaseUtil.jarFor(org.slf4j.LoggerFactory.class);
     String binder = TestBaseUtil.jarFor(org.slf4j.impl.StaticLoggerBinder.class);
-    String log4j = TestBaseUtil.jarFor(org.apache.log4j.Level.class);
+    String logback = TestBaseUtil.jarFor(Layout.class);
     String junit = TestBaseUtil.jarFor(org.junit.Assert.class);
     String mockito = TestBaseUtil.jarFor(org.hamcrest.core.Is.class);
 
-    return makeClasspath(toolkitRuntime, test, quartz, quartzJobs, logging, binder, log4j, junit, mockito);
+    return makeClasspath(toolkitRuntime, test, quartz, quartzJobs, logging, binder, logback, junit, mockito);
   }
   
   /** An empty job for testing purpose. */

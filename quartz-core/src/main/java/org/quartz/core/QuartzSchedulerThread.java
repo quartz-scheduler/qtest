@@ -173,7 +173,7 @@ public class QuartzSchedulerThread extends Thread {
                 signalSchedulingChange(0);
             }
         }
-        
+
         if (wait) {
             boolean interrupted = false;
             try {
@@ -181,7 +181,7 @@ public class QuartzSchedulerThread extends Thread {
                     try {
                         join();
                         break;
-                    } catch (InterruptedException _) {
+                    } catch (InterruptedException ie) {
                         interrupted = true;
                     }
                 }

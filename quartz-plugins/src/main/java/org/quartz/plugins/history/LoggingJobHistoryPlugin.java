@@ -41,7 +41,9 @@ import java.text.MessageFormat;
  * </p>
  * 
  * <p>
- * JobToBeFiredMessage - available message data are: <table>
+ * JobToBeFiredMessage - available message data are:
+ *
+ * <table summary="">
  * <tr>
  * <th>Element</th>
  * <th>Data Type</th>
@@ -88,75 +90,79 @@ import java.text.MessageFormat;
  * <td>The re-fire count from the JobExecutionContext.</td>
  * </tr>
  * </table>
- * 
+ *
+ * <p>
  * The default message text is <i>"Job {1}.{0} fired (by trigger {4}.{3}) at:
  * {2, date, HH:mm:ss MM/dd/yyyy}"</i>
  * </p>
  * 
- * 
  * <p>
- * JobSuccessMessage - available message data are: <table>
+ * JobSuccessMessage - available message data are:
+ *
+ * <table summary="">
  * <tr>
- * <th>Element</th>
- * <th>Data Type</th>
- * <th>Description</th>
+ *   <th>Element</th>
+ *   <th>Data Type</th>
+ *   <th>Description</th>
  * </tr>
  * <tr>
- * <td>0</td>
- * <td>String</td>
- * <td>The Job's Name.</td>
+ *   <td>0</td>
+ *   <td>String</td>
+ *   <td>The Job's Name.</td>
  * </tr>
  * <tr>
- * <td>1</td>
- * <td>String</td>
- * <td>The Job's Group.</td>
+ *   <td>1</td>
+ *   <td>String</td>
+ *   <td>The Job's Group.</td>
  * </tr>
  * <tr>
- * <td>2</td>
- * <td>Date</td>
- * <td>The current time.</td>
+ *   <td>2</td>
+ *   <td>Date</td>
+ *   <td>The current time.</td>
  * </tr>
  * <tr>
- * <td>3</td>
- * <td>String</td>
- * <td>The Trigger's name.</td>
+ *   <td>3</td>
+ *   <td>String</td>
+ *   <td>The Trigger's name.</td>
  * </tr>
  * <tr>
- * <td>4</td>
- * <td>String</td>
- * <td>The Triggers's group.</td>
+ *   <td>4</td>
+ *   <td>String</td>
+ *   <td>The Triggers's group.</td>
  * </tr>
  * <tr>
- * <td>5</td>
- * <td>Date</td>
- * <td>The scheduled fire time.</td>
+ *   <td>5</td>
+ *   <td>Date</td>
+ *   <td>The scheduled fire time.</td>
  * </tr>
  * <tr>
- * <td>6</td>
- * <td>Date</td>
- * <td>The next scheduled fire time.</td>
+ *   <td>6</td>
+ *   <td>Date</td>
+ *   <td>The next scheduled fire time.</td>
  * </tr>
  * <tr>
- * <td>7</td>
- * <td>Integer</td>
- * <td>The re-fire count from the JobExecutionContext.</td>
+ *   <td>7</td>
+ *   <td>Integer</td>
+ *   <td>The re-fire count from the JobExecutionContext.</td>
  * </tr>
  * <tr>
- * <td>8</td>
- * <td>Object</td>
- * <td>The string value (toString() having been called) of the result (if any) 
+ *   <td>8</td>
+ *   <td>Object</td>
+ *   <td>The string value (toString() having been called) of the result (if any)
  *      that the Job set on the JobExecutionContext, with on it.  "NULL" if no 
  *      result was set.</td>
- * </td>
  * </tr>
  * </table>
- * 
+ *
+ * <p>
  * The default message text is <i>"Job {1}.{0} execution complete at {2, date,
  * HH:mm:ss MM/dd/yyyy} and reports: {8}"</i>
  * </p>
  * 
  * <p>
- * JobFailedMessage - available message data are: <table>
+ * JobFailedMessage - available message data are:
+ *
+ * <table summary="">
  * <tr>
  * <th>Element</th>
  * <th>Data Type</th>
@@ -209,14 +215,17 @@ import java.text.MessageFormat;
  * </td>
  * </tr>
  * </table>
- * 
+ *
+ * <p>
  * The default message text is <i>"Job {1}.{0} execution failed at {2, date,
  * HH:mm:ss MM/dd/yyyy} and reports: {8}"</i>
  * </p>
  * 
  * 
  * <p>
- * JobWasVetoedMessage - available message data are: <table>
+ * JobWasVetoedMessage - available message data are:
+ *
+ * <table summary="">
  * <tr>
  * <th>Element</th>
  * <th>Data Type</th>
@@ -263,7 +272,8 @@ import java.text.MessageFormat;
  * <td>The re-fire count from the JobExecutionContext.</td>
  * </tr>
  * </table>
- * 
+ *
+ * <p>
  * The default message text is <i>"Job {1}.{0} was vetoed.  It was to be fired 
  * (by trigger {4}.{3}) at: {2, date, HH:mm:ss MM/dd/yyyy}"</i>
  * </p>
@@ -404,7 +414,7 @@ public class LoggingJobHistoryPlugin implements SchedulerPlugin, JobListener {
      * the <code>SchedulerPlugin</code> a chance to initialize.
      * </p>
      * 
-     * @throws SchedulerConfigException
+     * @throws SchedulerException
      *           if there is an error initializing.
      */
     public void initialize(String pname, Scheduler scheduler,ClassLoadHelper classLoadHelper)

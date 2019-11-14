@@ -47,6 +47,8 @@ public interface JobListener {
      * <p>
      * Get the name of the <code>JobListener</code>.
      * </p>
+     *
+     * @return the name of this <code>JobListener</code>
      */
     String getName();
 
@@ -61,7 +63,8 @@ public interface JobListener {
      * This method will not be invoked if the execution of the Job was vetoed
      * by a <code>{@link TriggerListener}</code>.
      * </p>
-     * 
+     *
+     * @param context the <code>JobExecutionContext</code> of the <code>Job</code> about to be executed
      * @see #jobExecutionVetoed(JobExecutionContext)
      */
     void jobToBeExecuted(JobExecutionContext context);
@@ -73,7 +76,8 @@ public interface JobListener {
      * has occurred), but a <code>{@link TriggerListener}</code> vetoed it's 
      * execution.
      * </p>
-     * 
+     *
+     * @param context the <code>JobExecutionContext</code> of the vetoed <code>Job</code>
      * @see #jobToBeExecuted(JobExecutionContext)
      */
     void jobExecutionVetoed(JobExecutionContext context);
@@ -85,6 +89,10 @@ public interface JobListener {
      * has been executed, and be for the associated <code>Trigger</code>'s
      * <code>triggered(xx)</code> method has been called.
      * </p>
+     *
+     * @param context the <code>JobExecutionContext</code> of the executed <code>Job</code>
+     * @param jobException the <code>JobExecutionException</code> raised by the executed <code>Job</code>, if any
+     *
      */
     void jobWasExecuted(JobExecutionContext context,
             JobExecutionException jobException);

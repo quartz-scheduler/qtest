@@ -43,7 +43,8 @@ public interface SchedulerFactory {
      * <p>
      * Returns a client-usable handle to a <code>Scheduler</code>.
      * </p>
-     * 
+     *
+     * @return a new scheduler
      * @throws SchedulerException
      *           if there is a problem with the underlying <code>Scheduler</code>.
      */
@@ -53,6 +54,11 @@ public interface SchedulerFactory {
      * <p>
      * Returns a handle to the Scheduler with the given name, if it exists.
      * </p>
+     *
+     * @param schedName the name of the scheduler to return
+     * @return the named scheduler
+     * @throws SchedulerException
+     *           if there is a problem with the underlying <code>Scheduler</code>.
      */
     Scheduler getScheduler(String schedName) throws SchedulerException;
 
@@ -61,6 +67,10 @@ public interface SchedulerFactory {
      * Returns handles to all known Schedulers (made by any SchedulerFactory
      * within this jvm.).
      * </p>
+     *
+     * @return the set of all schedulers created by this factory
+     * @throws SchedulerException
+     *           if there is a problem with the underlying <code>Scheduler</code>.
      */
     Collection<Scheduler> getAllSchedulers() throws SchedulerException;
 

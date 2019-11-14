@@ -71,6 +71,8 @@ public interface CalendarIntervalTrigger extends Trigger {
 
     /**
      * <p>Get the interval unit - the time unit on with the interval applies.</p>
+     *
+     * @return the repeat interval unit
      */
     public IntervalUnit getRepeatIntervalUnit();
 
@@ -80,6 +82,8 @@ public interface CalendarIntervalTrigger extends Trigger {
      * fire time (in the set repeat interval unit) in order to calculate the time of the 
      * next trigger repeat.
      * </p>
+     *
+     * @return the repeat interval
      */
     public int getRepeatInterval();
 
@@ -88,6 +92,8 @@ public interface CalendarIntervalTrigger extends Trigger {
      * Get the number of times the <code>DateIntervalTrigger</code> has already
      * fired.
      * </p>
+     *
+     * @return the times triggered
      */
     public int getTimesTriggered();
 
@@ -100,6 +106,8 @@ public interface CalendarIntervalTrigger extends Trigger {
      * <p>
      * If null, the system default TimeZone will be used.
      * </p>
+     *
+     * @return the time zone
      */
     public TimeZone getTimeZone();
     
@@ -125,7 +133,9 @@ public interface CalendarIntervalTrigger extends Trigger {
      * you wish for the trigger to never fire at the "wrong" hour, then
      * you should set the property skipDayIfHourDoesNotExist.
      * </p>
-     * 
+     *
+     * @return if hour is preserved across daylight savings
+     *
      * @see #isSkipDayIfHourDoesNotExist()
      * @see #getStartTime()
      * @see #getTimeZone()
@@ -149,7 +159,9 @@ public interface CalendarIntervalTrigger extends Trigger {
      * the interval is 2 days, then a span of 4 days between firings will 
      * occur).
      * </p>
-     * 
+     *
+     * @return if day is skipped if hour does not exist
+     *
      * @see #isPreserveHourOfDayAcrossDaylightSavings()
      */
     public boolean isSkipDayIfHourDoesNotExist();

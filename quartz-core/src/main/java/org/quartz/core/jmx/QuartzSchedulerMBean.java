@@ -136,7 +136,7 @@ public interface QuartzSchedulerMBean {
      *
      * If the Trigger and JobDetail can be successfully instantiated, the remaining attributes will be
      * reflectively applied to those instances. The remaining attributes are limited to the types:
-     *   Integer, Double, Float, String, Boolean, Date, Character, Map<String, Object>.
+     *   Integer, Double, Float, String, Boolean, Date, Character, Map&lt;String, Object&gt;.
      * Maps are further limited to containing values from the same set of types, less Map itself.
      * 
      * @throws Exception 
@@ -149,7 +149,7 @@ public interface QuartzSchedulerMBean {
      * fully-qualified trigger class name under the key "triggerClass."  That trigger type must contain a
      * no-arg constructor and have public access. Other attributes are applied reflectively and are limited
      * to the types:
-     *   Integer, Double, Float, String, Boolean, Date, Character, Map<String, Object>.
+     *   Integer, Double, Float, String, Boolean, Date, Character, Map&lt;String, Object&gt;.
      * Maps are limited to containing values from the same set of types, less Map itself.
      * 
      * @param jobName
@@ -179,7 +179,7 @@ public interface QuartzSchedulerMBean {
      * class name under the key "jobDetailClass."  That JobDetail type must contain a no-arg constructor
      * and have public access. Other attributes are applied reflectively and are limited
      * to the types:
-     *   Integer, Double, Float, String, Boolean, Date, Character, Map<String, Object>.
+     *   Integer, Double, Float, String, Boolean, Date, Character, Map&lt;String, Object&gt;.
      * Maps are limited to containing values from the same set of types, less Map itself.
      * 
      * @param abstractJobInfo map of attributes defining job

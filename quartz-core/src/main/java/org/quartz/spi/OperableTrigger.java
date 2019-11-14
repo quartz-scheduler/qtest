@@ -45,7 +45,6 @@ public interface OperableTrigger extends MutableTrigger {
      * @return the first time at which the <code>Trigger</code> will be fired
      *         by the scheduler, which is also the same value <code>getNextFireTime()</code>
      *         will return (until after the first firing of the <code>Trigger</code>).
-     *         </p>
      */
     public Date computeFirstFireTime(Calendar calendar);
 

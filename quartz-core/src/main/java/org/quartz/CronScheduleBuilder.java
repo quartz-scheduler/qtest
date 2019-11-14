@@ -50,7 +50,7 @@ import org.quartz.spi.MutableTrigger;
  * 
  * scheduler.scheduleJob(job, trigger);
  * 
- * <pre>
+ * </pre>
  * 
  * @see CronExpression
  * @see CronTrigger

@@ -98,7 +98,7 @@ public interface MutableTrigger extends Trigger {
      * repeat settings). 
      * </p>
      * 
-     * @see TriggerUtils#computeEndTimeToAllowParticularNumberOfFirings(Trigger, Calendar, int)
+     * @see TriggerUtils#computeEndTimeToAllowParticularNumberOfFirings(org.quartz.spi.OperableTrigger, Calendar, int)
      */
     public void setEndTime(Date endTime);
 
@@ -116,7 +116,7 @@ public interface MutableTrigger extends Trigger {
      * </p>
      * 
      * @see #MISFIRE_INSTRUCTION_SMART_POLICY
-     * @see #updateAfterMisfire(Calendar)
+     * @see OperableTrigger#updateAfterMisfire(Calendar)
      * @see SimpleTrigger
      * @see CronTrigger
      */

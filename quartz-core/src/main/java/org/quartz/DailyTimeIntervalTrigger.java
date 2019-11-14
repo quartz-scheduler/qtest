@@ -48,7 +48,7 @@ import org.quartz.DateBuilder.IntervalUnit;
  * @since 2.1.0
  * 
  * @author James House
- * @author Zemian Deng <saltnlight5@gmail.com>
+ * @author Zemian Deng &lt;saltnlight5@gmail.com&gt;
  */
 public interface DailyTimeIntervalTrigger extends Trigger {
 
@@ -86,6 +86,8 @@ public interface DailyTimeIntervalTrigger extends Trigger {
      * 
      * <p>The only intervals that are valid for this type of trigger are {@link IntervalUnit#SECOND},
      * {@link IntervalUnit#MINUTE}, and {@link IntervalUnit#HOUR}.</p>
+     *
+     * @return the repeat interval unit
      */
     public IntervalUnit getRepeatIntervalUnit();
     
@@ -94,7 +96,9 @@ public interface DailyTimeIntervalTrigger extends Trigger {
      * Get the the number of times for interval this trigger should
      * repeat, after which it will be automatically deleted.
      * </p>
-     * 
+     *
+     * @return the interval repeat count
+     *
      * @see #REPEAT_INDEFINITELY
      */
     public int getRepeatCount();
@@ -105,16 +109,22 @@ public interface DailyTimeIntervalTrigger extends Trigger {
      * fire time (in the set repeat interval unit) in order to calculate the time of the 
      * next trigger repeat.
      * </p>
+     *
+     * @return the repeat interval in milliseconds
      */
     public int getRepeatInterval();
     
     /**
      * The time of day to start firing at the given interval.
+     *
+     * @return the start time
      */
     public TimeOfDay getStartTimeOfDay();
     
     /**
      * The time of day to complete firing at the given interval.
+     *
+     * @return the end time
      */
     public TimeOfDay getEndTimeOfDay();
 
@@ -122,7 +132,9 @@ public interface DailyTimeIntervalTrigger extends Trigger {
      * The days of the week upon which to fire.
      * 
      * @return a Set containing the integers representing the days of the week, per the values 1-7 as defined by 
-     * {@link java.util.Calendar#SUNDAY} - {@link java.util.Calendar#SATURDAY}. 
+     * {@link java.util.Calendar#SUNDAY} - {@link java.util.Calendar#SATURDAY}.
+     *
+     * @return the set of day indexes upon which the trigger should fire
      */
     public Set<Integer> getDaysOfWeek();
     
@@ -131,6 +143,8 @@ public interface DailyTimeIntervalTrigger extends Trigger {
      * Get the number of times the <code>DateIntervalTrigger</code> has already
      * fired.
      * </p>
+     *
+     * @return the number of times the trigger has fired
      */
     public int getTimesTriggered();
 

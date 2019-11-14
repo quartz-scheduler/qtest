@@ -14,7 +14,6 @@ import org.quartz.JobExecutionException;
  * A <code>Job</code> that invokes a method on an EJB3.
  * </p>
  * 
- * <p>
  * Expects the properties corresponding to the following keys to be in the
  * <code>JobDataMap</code> when it executes:
  * <ul>
@@ -28,7 +27,7 @@ import org.quartz.JobExecutionException;
  * pass to the method (optional, if left out, the types will be derived by
  * calling getClass() on each of the arguments).</li>
  * </ul>
- * <br/>
+ * <br>
  * The following keys can also be used at need:
  * <ul>
  * <li><code>INITIAL_CONTEXT_FACTORY</code> - the context factory used to build
@@ -36,7 +35,6 @@ import org.quartz.JobExecutionException;
  * <li><code>PROVIDER_URL</code> - the name of the environment property for
  * specifying configuration information for the service provider to use.</li>
  * </ul>
- * </p>
  * 
  * <p>
  * The result of the EJB method invocation will be available to
@@ -45,7 +43,7 @@ import org.quartz.JobExecutionException;
  * </p>
  * 
  * @author hhuynh
- * @see {@link org.quartz.jobs.ee.ejb.EJBInvokerJob}
+ * {@link EJBInvokerJob}
  */
 public class EJB3InvokerJob extends EJBInvokerJob {
 

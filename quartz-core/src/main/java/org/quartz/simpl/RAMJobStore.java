@@ -261,7 +261,7 @@ public class RAMJobStore implements JobStore {
      *          The <code>Job</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Job</code> existing in the
-     *          <code>JobStore</code> with the same name & group should be
+     *          <code>JobStore</code> with the same name and group should be
      *          over-written.
      * @throws ObjectAlreadyExistsException
      *           if a <code>Job</code> with the same name/group already
@@ -307,7 +307,7 @@ public class RAMJobStore implements JobStore {
      * it.
      * </p>
      *
-     * @return <code>true</code> if a <code>Job</code> with the given name &
+     * @return <code>true</code> if a <code>Job</code> with the given name and
      *         group was found and removed from the store.
      */
     public boolean removeJob(JobKey jobKey) {
@@ -397,7 +397,7 @@ public class RAMJobStore implements JobStore {
      *          The <code>Trigger</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Trigger</code> existing in
-     *          the <code>JobStore</code> with the same name & group should
+     *          the <code>JobStore</code> with the same name and group should
      *          be over-written.
      * @throws ObjectAlreadyExistsException
      *           if a <code>Trigger</code> with the same name/group already
@@ -463,7 +463,7 @@ public class RAMJobStore implements JobStore {
      * </p>
      *
      * @return <code>true</code> if a <code>Trigger</code> with the given
-     *         name & group was found and removed from the store.
+     *         name and group was found and removed from the store.
      */
     public boolean removeTrigger(TriggerKey triggerKey) {
         return removeTrigger(triggerKey, true);
@@ -714,7 +714,7 @@ public class RAMJobStore implements JobStore {
      *          The <code>Calendar</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Calendar</code> existing
-     *          in the <code>JobStore</code> with the same name & group
+     *          in the <code>JobStore</code> with the same name and group
      *          should be over-written.
      * @param updateTriggers
      *          If <code>true</code>, any <code>Trigger</code>s existing

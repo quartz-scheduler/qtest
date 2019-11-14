@@ -64,6 +64,8 @@ public interface JobDetail extends Serializable, Cloneable {
      * <p>
      * Get the instance of <code>Job</code> that will be executed.
      * </p>
+     *
+     * @return the job <code>Class</code>
      */
     public Class<? extends Job> getJobClass();
 
@@ -71,6 +73,8 @@ public interface JobDetail extends Serializable, Cloneable {
      * <p>
      * Get the <code>JobDataMap</code> that is associated with the <code>Job</code>.
      * </p>
+     *
+     * @return the job's data map
      */
     public JobDataMap getJobDataMap();
 
@@ -111,7 +115,9 @@ public interface JobDetail extends Serializable, Cloneable {
      * <p>
      * If not explicitly set, the default value is <code>false</code>.
      * </p>
-     * 
+     *
+     * @return does the job want to be re-executed on 'recovery' or 'fail-over'
+     *
      * @see JobExecutionContext#isRecovering()
      */
     public boolean requestsRecovery();
@@ -121,6 +127,8 @@ public interface JobDetail extends Serializable, Cloneable {
     /**
      * Get a {@link JobBuilder} that is configured to produce a 
      * <code>JobDetail</code> identical to this one.
+     *
+     * @return the job builder
      */
     public JobBuilder getJobBuilder();
 

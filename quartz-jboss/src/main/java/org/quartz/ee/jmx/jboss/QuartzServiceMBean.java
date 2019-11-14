@@ -26,7 +26,7 @@ import org.jboss.system.ServiceMBean;
  *  
  * <p> 
  * Sample MBean deployment descriptor: 
- * <a href="doc-files/quartz-service.xml" type="text/plain">quartz-service.xml</a>
+ * <a href="doc-files/quartz-service.xml">quartz-service.xml</a>
  * </p>
  * 
  * <p> 

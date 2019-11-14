@@ -22,10 +22,10 @@ import java.text.ParseException;
 import java.util.Comparator;
 import java.util.TimeZone;
 
+import org.hamcrest.collection.ArrayMatching;
 import org.junit.Test;
 import org.quartz.CronExpression;
 
-import static org.hamcrest.collection.IsArrayContaining.hasItemInArray;
 import static org.junit.Assume.assumeThat;
 import static org.terracotta.upgradability.serialization.SerializationUpgradabilityTesting.validateSerializedForm;
 
@@ -61,7 +61,7 @@ public class CronExpressionSerializationTest {
   
   @Test
   public void testCronWithTimeZone() throws ParseException, IOException, ClassNotFoundException {
-    assumeThat(TimeZone.getAvailableIDs(), hasItemInArray("Antarctica/South_Pole"));
+    assumeThat(TimeZone.getAvailableIDs(), ArrayMatching.hasItemInArray("Antarctica/South_Pole"));
     CronExpression expression = new CronExpression("0 0 12 * * ?");
     expression.setTimeZone(new SimplisticTimeZone("Terra Australis"));
     validateSerializedForm(expression, COMPARATOR, "serializedforms/CronExpressionSerializationTest.testCronWithTimeZone.ser");

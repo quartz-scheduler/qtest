@@ -12,6 +12,10 @@
   <artifactId>quartz-commonj</artifactId>
   <name>quartz-commonj</name>
 
+  <properties>
+    <skipCheckstyle>false</skipCheckstyle>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -21,10 +25,19 @@
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-commonj_1.1_spec</artifactId>
-      <version>1.0</version>
+      <version>${geronimo-commonj.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
   <profiles>
     <profile>

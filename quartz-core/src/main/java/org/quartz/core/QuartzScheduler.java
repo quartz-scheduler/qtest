@@ -1083,7 +1083,7 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
      *          The new <code>Trigger</code> to be stored.
      * 
      * @return <code>null</code> if a <code>Trigger</code> with the given
-     *         name & group was not found and removed from the store, otherwise
+     *         name &amp; group was not found and removed from the store, otherwise
      *         the first fire time of the newly scheduled trigger.
      */
     public Date rescheduleJob(TriggerKey triggerKey,
@@ -1368,7 +1368,7 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
 
     /**
      * <p>
-     * Pause all triggers - equivalent of calling <code>pauseTriggers(GroupMatcher<TriggerKey>)</code>
+     * Pause all triggers - equivalent of calling <code>pauseTriggers(GroupMatcher&lt;TriggerKey&gt;)</code>
      * with a matcher matching all known groups.
      * </p>
      * 

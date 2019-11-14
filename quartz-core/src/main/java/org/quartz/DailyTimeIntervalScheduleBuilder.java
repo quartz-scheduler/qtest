@@ -58,12 +58,12 @@ import org.quartz.spi.MutableTrigger;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *   
  * @since 2.1.0
  * 
  * @author James House
- * @author Zemian Deng <saltnlight5@gmail.com>
+ * @author Zemian Deng &lt;saltnlight5@gmail.com&gt;
  */
 public class DailyTimeIntervalScheduleBuilder extends ScheduleBuilder<DailyTimeIntervalTrigger> {
 
@@ -287,7 +287,8 @@ public class DailyTimeIntervalScheduleBuilder extends ScheduleBuilder<DailyTimeI
 
     /**
      * Set the trigger to begin firing each day at the given time.
-     * 
+     *
+     * @param timeOfDay the daily start time
      * @return the updated DailyTimeIntervalScheduleBuilder
      */
     public DailyTimeIntervalScheduleBuilder startingDailyAt(TimeOfDay timeOfDay) {
@@ -300,7 +301,8 @@ public class DailyTimeIntervalScheduleBuilder extends ScheduleBuilder<DailyTimeI
 
     /**
      * Set the startTimeOfDay for this trigger to end firing each day at the given time.
-     * 
+     *
+     * @param timeOfDay the daily end time
      * @return the updated DailyTimeIntervalScheduleBuilder
      */
     public DailyTimeIntervalScheduleBuilder endingDailyAt(TimeOfDay timeOfDay) {        
@@ -311,7 +313,8 @@ public class DailyTimeIntervalScheduleBuilder extends ScheduleBuilder<DailyTimeI
     /**
      * Calculate and set the endTimeOfDay using count, interval and starTimeOfDay. This means
      * that these must be set before this method is call.
-     * 
+     *
+     * @param count the daily number of times the trigger should be fired
      * @return the updated DailyTimeIntervalScheduleBuilder
      */
     public DailyTimeIntervalScheduleBuilder endingDailyAfterCount(int count) {
@@ -398,7 +401,8 @@ public class DailyTimeIntervalScheduleBuilder extends ScheduleBuilder<DailyTimeI
      * Set number of times for interval to repeat.
      * 
      * <p>Note: if you want total count = 1 (at start time) + repeatCount</p>
-     * 
+     *
+     * @param repeatCount the trigger daily repeat count
      * @return the new DailyTimeIntervalScheduleBuilder
      */
     public DailyTimeIntervalScheduleBuilder withRepeatCount(int repeatCount) {

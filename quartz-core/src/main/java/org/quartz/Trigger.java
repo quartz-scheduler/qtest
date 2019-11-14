@@ -92,7 +92,7 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
 
     /**
      * Instructs the <code>{@link Scheduler}</code> that upon a mis-fire
-     * situation, the <code>updateAfterMisfire()</code> method will be called
+     * situation, the <code>org.quartz.spi.MutableTrigger.updateAfterMisfire(org.quartz.Calendar)</code> method will be called
      * on the <code>Trigger</code> to determine the mis-fire instruction,
      * which logic will be trigger-implementation-dependent.
      * 
@@ -152,6 +152,8 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * Changes made to this map during job execution are not re-persisted, and
      * in fact typically result in an <code>IllegalStateException</code>.
      * </p>
+     *
+     * @return the trigger <code>JavaDataMap</code>
      */
     public JobDataMap getJobDataMap();
 
@@ -164,7 +166,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * <p>
      * If not explicitly set, the default value is <code>5</code>.
      * </p>
-     * 
+     *
+     * @return the trigger priority
+     *
      * @see #DEFAULT_PRIORITY
      */
     public int getPriority();
@@ -177,11 +181,15 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * If the returned value is <code>false</code> then the <code>Scheduler</code>
      * may remove the <code>Trigger</code> from the <code>{@link org.quartz.spi.JobStore}</code>.
      * </p>
+     *
+     * @return if the trigger may fire again
      */
     public boolean mayFireAgain();
 
     /**
      * Get the time at which the <code>Trigger</code> should occur.
+     *
+     * @return the trigger start time
      */
     public Date getStartTime();
 
@@ -189,7 +197,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * Get the time at which the <code>Trigger</code> should quit repeating -
      * regardless of any remaining repeats (based on the trigger's particular 
      * repeat settings). 
-     * 
+     *
+     * @return the trigger end time
+     *
      * @see #getFinalFireTime()
      */
     public Date getEndTime();
@@ -206,6 +216,8 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * has been added to the scheduler.
      * </p>
      *
+     * @return the trigger's next fire time
+     *
      * @see TriggerUtils#computeFireTimesBetween(org.quartz.spi.OperableTrigger, Calendar, java.util.Date, java.util.Date)
      */
     public Date getNextFireTime();
@@ -213,6 +225,8 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
     /**
      * Returns the previous time at which the <code>Trigger</code> fired.
      * If the trigger has not yet fired, <code>null</code> will be returned.
+     *
+     * @return the previous time the trigger fired
      */
     public Date getPreviousFireTime();
 
@@ -220,6 +234,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * Returns the next time at which the <code>Trigger</code> will fire,
      * after the given time. If the trigger will not fire after the given time,
      * <code>null</code> will be returned.
+     *
+     * @param afterTime the time to search for the next fire time
+     * @return the next time the trigger will fire after the specified time
      */
     public Date getFireTimeAfter(Date afterTime);
 
@@ -230,6 +247,8 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * <p>
      * Note that the return time *may* be in the past.
      * </p>
+     *
+     * @return the last time the trigger should/did fire
      */
     public Date getFinalFireTime();
 
@@ -243,7 +262,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * <p>
      * If not explicitly set, the default value is <code>MISFIRE_INSTRUCTION_SMART_POLICY</code>.
      * </p>
-     * 
+     *
+     * @return the misfire instruction
+     *
      * @see #MISFIRE_INSTRUCTION_SMART_POLICY
      * @see SimpleTrigger
      * @see CronTrigger
@@ -253,7 +274,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
     /**
      * Get a {@link TriggerBuilder} that is configured to produce a 
      * <code>Trigger</code> identical to this one.
-     * 
+     *
+     * @return the trigger builder
+     *
      * @see #getScheduleBuilder()
      */
     public TriggerBuilder<? extends Trigger> getTriggerBuilder();
@@ -261,14 +284,17 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
     /**
      * Get a {@link ScheduleBuilder} that is configured to produce a 
      * schedule identical to this trigger's schedule.
-     * 
+     *
+     * @return the schedule builder
+     *
      * @see #getTriggerBuilder()
      */
     public ScheduleBuilder<? extends Trigger> getScheduleBuilder();
 
     /**
      * Trigger equality is based upon the equality of the TriggerKey.
-     * 
+     *
+     * @param other the other trigger to compare
      * @return true if the key of this Trigger equals that of the given Trigger.
      */
     public boolean equals(Object other);
@@ -279,6 +305,9 @@ public interface Trigger extends Serializable, Cloneable, Comparable<Trigger> {
      * another by comparing their keys, or in other words, sorts them
      * according to the natural (i.e. alphabetical) order of their keys.
      * </p>
+     *
+     * @param other the other trigger to compare
+     * @return the sort order
      */
     public int compareTo(Trigger other);
 

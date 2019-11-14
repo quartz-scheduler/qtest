@@ -47,7 +47,7 @@ import org.quartz.spi.MutableTrigger;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *
  * @see SimpleTrigger
  * @see CalendarIntervalScheduleBuilder
@@ -88,7 +88,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
     /**
      * Create a SimpleScheduleBuilder set to repeat forever with an interval
      * of the given number of minutes.
-     * 
+     *
+     * @param minutes interval minutes
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatMinutelyForever(int minutes) {
@@ -113,7 +114,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
     /**
      * Create a SimpleScheduleBuilder set to repeat forever with an interval
      * of the given number of seconds.
-     * 
+     *
+     * @param seconds interval seconds
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatSecondlyForever(int seconds) {
@@ -138,7 +140,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
     /**
      * Create a SimpleScheduleBuilder set to repeat forever with an interval
      * of the given number of hours.
-     * 
+     *
+     * @param hours interval hours
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatHourlyForever(int hours) {
@@ -153,7 +156,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with a 1 minute interval.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatMinutelyForTotalCount(int count) {
@@ -170,7 +174,9 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with an interval of the given number of minutes.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
+     * @param minutes interval minutes
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatMinutelyForTotalCount(int count, int minutes) {
@@ -187,7 +193,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with a 1 second interval.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatSecondlyForTotalCount(int count) {
@@ -204,7 +211,9 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with an interval of the given number of seconds.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
+     * @param seconds interval seconds
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatSecondlyForTotalCount(int count, int seconds) {
@@ -221,7 +230,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with a 1 hour interval.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatHourlyForTotalCount(int count) {
@@ -238,7 +248,9 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * of times - 1  with an interval of the given number of hours.
      * 
      * <p>Note: Total count = 1 (at start time) + repeat count</p>
-     * 
+     *
+     * @param count repeat count
+     * @param hours interval hours
      * @return the new SimpleScheduleBuilder
      */
     public static SimpleScheduleBuilder repeatHourlyForTotalCount(int count, int hours) {
@@ -254,7 +266,8 @@ public class SimpleScheduleBuilder extends ScheduleBuilder<SimpleTrigger> {
      * Build the actual Trigger -- NOT intended to be invoked by end users,
      * but will rather be invoked by a TriggerBuilder which this 
      * ScheduleBuilder is given to.
-     * 
+     *
+     * @return the new trigger
      * @see TriggerBuilder#withSchedule(ScheduleBuilder)
      */
     @Override

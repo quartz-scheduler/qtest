@@ -41,9 +41,9 @@ import org.terracotta.toolkit.store.ToolkitStore;
 
 /**
  * How JOBS mappings will look? <br>
- * JobKey(name, groupname) -> JobWrapper <br>
- * groupName -> List<String> <br>
- * List -> allGroupNames<br>
+ * JobKey(name, groupname) &rarr; JobWrapper <br>
+ * groupName &rarr; List&lt;String&gt; <br>
+ * List &rarr; allGroupNames<br>
  */
 public class ToolkitDSHolder {
   private static final String                                                       JOBS_MAP_PREFIX                     = "_tc_quartz_jobs";

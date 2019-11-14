@@ -74,6 +74,8 @@ public class JobExecutionException extends SchedulerException {
      * <p>
      * Create a JobExcecutionException, with the given cause.
      * </p>
+     *
+     * @param cause the cause of the failed <code>Job</code>'s execution
      */
     public JobExecutionException(Throwable cause) {
         super(cause);
@@ -83,6 +85,8 @@ public class JobExecutionException extends SchedulerException {
      * <p>
      * Create a JobExcecutionException, with the given message.
      * </p>
+     *
+     * @param msg the textual description of the failed <code>Job</code>'s execution
      */
     public JobExecutionException(String msg) {
         super(msg);
@@ -93,6 +97,8 @@ public class JobExecutionException extends SchedulerException {
      * Create a JobExcecutionException with the 're-fire immediately' flag set
      * to the given value.
      * </p>
+     *
+     * @param refireImmediately should the failed <code>Job</code> be immediately re-fired
      */
     public JobExecutionException(boolean refireImmediately) {
         refire = refireImmediately;
@@ -103,6 +109,9 @@ public class JobExecutionException extends SchedulerException {
      * Create a JobExcecutionException with the given underlying exception, and
      * the 're-fire immediately' flag set to the given value.
      * </p>
+     *
+     * @param cause the cause of the failed <code>Job</code>'s execution
+     * @param refireImmediately should the failed <code>Job</code> be immediately re-fired
      */
     public JobExecutionException(Throwable cause, boolean refireImmediately) {
         super(cause);
@@ -115,6 +124,8 @@ public class JobExecutionException extends SchedulerException {
      * Create a JobExcecutionException with the given message, and underlying
      * exception.
      * </p>
+     * @param msg the textual description of the failed <code>Job</code>'s execution
+     * @param cause the cause of the failed <code>Job</code>'s execution
      */
     public JobExecutionException(String msg, Throwable cause) {
         super(msg, cause);
@@ -125,6 +136,10 @@ public class JobExecutionException extends SchedulerException {
      * Create a JobExcecutionException with the given message, and underlying
      * exception, and the 're-fire immediately' flag set to the given value.
      * </p>
+     *
+     * @param msg the textual description of the failed <code>Job</code>'s execution
+     * @param cause the cause of the failed <code>Job</code>'s execution
+     * @param refireImmediately should the failed <code>Job</code> be immediately re-fired
      */
     public JobExecutionException(String msg, Throwable cause,
             boolean refireImmediately) {
@@ -136,6 +151,9 @@ public class JobExecutionException extends SchedulerException {
     /**
      * Create a JobExcecutionException with the given message and the 're-fire 
      * immediately' flag set to the given value.
+     *
+     * @param msg the textual description of the failed <code>Job</code>'s execution
+     * @param refireImmediately should the failed <code>Job</code> be immediately re-fired
      */
     public JobExecutionException(String msg, boolean refireImmediately) {
         super(msg);
