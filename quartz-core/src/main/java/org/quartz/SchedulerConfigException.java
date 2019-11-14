@@ -40,6 +40,8 @@ public class SchedulerConfigException extends SchedulerException {
      * <p>
      * Create a <code>JobPersistenceException</code> with the given message.
      * </p>
+     *
+     * @param msg a textual description of the cause of this exception
      */
     public SchedulerConfigException(String msg) {
         super(msg);
@@ -50,6 +52,9 @@ public class SchedulerConfigException extends SchedulerException {
      * Create a <code>JobPersistenceException</code> with the given message
      * and cause.
      * </p>
+     *
+     * @param msg a textual description of the cause of this exception
+     * @param cause the underlying cause of this exception
      */
     public SchedulerConfigException(String msg, Throwable cause) {
         super(msg, cause);

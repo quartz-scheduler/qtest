@@ -40,7 +40,6 @@ import org.quartz.JobExecutionException;
  * A <code>Job</code> that invokes a method on an EJB.
  * </p>
  * 
- * <p>
  * Expects the properties corresponding to the following keys to be in the
  * <code>JobDataMap</code> when it executes:
  * <ul>
@@ -54,7 +53,7 @@ import org.quartz.JobExecutionException;
  * pass to the method (optional, if left out, the types will be derived by 
  * calling getClass() on each of the arguments).</li>
  * </ul>
- * <br/>
+ * <br>
  * The following keys can also be used at need:
  * <ul>
  * <li><code>INITIAL_CONTEXT_FACTORY</code> - the context factory used to 
@@ -63,7 +62,6 @@ import org.quartz.JobExecutionException;
  * for specifying configuration information for the service provider to use.
  * </li>
  * </ul>
- * </p>
  * 
  * <p>
  * The result of the EJB method invocation will be available to 

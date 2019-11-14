@@ -67,6 +67,8 @@ public interface JobExecutionContext {
      * Get a handle to the <code>Scheduler</code> instance that fired the
      * <code>Job</code>.
      * </p>
+     *
+     * @return the <code>Scheduler</code> instance that fired the <code>Job</code>
      */
     public Scheduler getScheduler();
 
@@ -75,6 +77,8 @@ public interface JobExecutionContext {
      * Get a handle to the <code>Trigger</code> instance that fired the
      * <code>Job</code>.
      * </p>
+     *
+     * @return the <code>Trigger</code> instance that fired the <code>Job</code>
      */
     public Trigger getTrigger();
 
@@ -83,6 +87,8 @@ public interface JobExecutionContext {
      * Get a handle to the <code>Calendar</code> referenced by the <code>Trigger</code>
      * instance that fired the <code>Job</code>.
      * </p>
+     *
+     * @return the <code>Calendar</code> associated with the fired <code>Job</code>
      */
     public Calendar getCalendar();
 
@@ -91,6 +97,8 @@ public interface JobExecutionContext {
      * If the <code>Job</code> is being re-executed because of a 'recovery'
      * situation, this method will return <code>true</code>.
      * </p>
+     *
+     * @return if the job is recovering from 'fail-over' or 'recovery'
      */
     public boolean isRecovering();
 
@@ -134,7 +142,8 @@ public interface JobExecutionContext {
      * Attempts to change the contents of this map typically result in an 
      * <code>IllegalStateException</code>.
      * </p>
-     * 
+     *
+     * @return the effective data map of the executed <code>Job</code>
      */
     public JobDataMap getMergedJobDataMap();
 
@@ -142,6 +151,8 @@ public interface JobExecutionContext {
      * <p>
      * Get the <code>JobDetail</code> associated with the <code>Job</code>.
      * </p>
+     *
+     * @return the <code>JobDetail</code> for the executed <code>Job</code>
      */
     public JobDetail getJobDetail();
 
@@ -155,6 +166,8 @@ public interface JobExecutionContext {
      * Note: The Job instance is not available through remote scheduler
      * interfaces.
      * </p>
+     *
+     * @return the executed <code>Job</code>
      */
     public Job getJobInstance();
 
@@ -217,7 +230,9 @@ public interface JobExecutionContext {
      * to <code>{@link JobListener}s</code> or 
      * <code>{@link TriggerListener}s</code> that are watching the job's 
      * execution.
-     * </p> 
+     * </p>
+     *
+     * @param result the user-specified, opaque <code>Job</code> execution result
      */
     public void setResult(Object result);
 
@@ -248,6 +263,7 @@ public interface JobExecutionContext {
      * Get the value with the given key from the context's data map.
      * 
      * @param key the key for the desired value
+     * @return the desired value
      */
     public Object get(Object key);
 

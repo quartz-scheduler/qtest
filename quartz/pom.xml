@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.quartz-scheduler</groupId>
     <artifactId>quartz-parent</artifactId>
-    <version>2.3.2-SNAPSHOT</version>
+    <version>${revision}</version>
   </parent>
 
   <artifactId>quartz</artifactId>
@@ -63,8 +63,38 @@
     <dependency>
       <groupId>org.terracotta</groupId>
       <artifactId>product-upgradability-testing-utils</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.3</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>2.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.0.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   
@@ -95,29 +125,99 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9</version>
+        <version>3.1.1</version>
         <configuration>
+          <source>8</source>
           <skip>${skipJavadoc}</skip>
+          <doclint>all,-missing</doclint>
           <quiet>true</quiet>
           <doctitle>Quartz Enterprise Job Scheduler ${project.version} API</doctitle>
           <windowtitle>Quartz Enterprise Job Scheduler ${project.version} API</windowtitle>
           <bottom>Copyright 2001-{currentYear}, Terracotta, Inc.</bottom>
           <includeDependencySources>true</includeDependencySources>      
           <dependencySourceIncludes>
+            <dependencySourceInclude>org.quartz-scheduler:quartz</dependencySourceInclude>
             <dependencySourceInclude>org.quartz-scheduler.internal:*</dependencySourceInclude>
             <dependencySourceInclude>org.quartz-scheduler:quartz-jobs</dependencySourceInclude>
           </dependencySourceIncludes>
+          <additionalDependencies>
+            <additionalDependency>
+              <groupId>org.terracotta.toolkit</groupId>
+              <artifactId>terracotta-toolkit-api</artifactId>
+              <version>${terracotta-toolkit-api.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>org.terracotta.toolkit</groupId>
+              <artifactId>terracotta-toolkit-api-internal</artifactId>
+              <version>${terracotta-toolkit-api-internal.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>gf-3122</groupId>
+              <artifactId>gf.javax.transaction</artifactId>
+              <version>${gf.javax.transaction.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId> org.eclipse.jetty.orbit</groupId>
+              <artifactId>javax.servlet</artifactId>
+              <version>${javax.servlet.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>com.zaxxer</groupId>
+              <artifactId>HikariCP</artifactId>
+              <version>${hikaricp.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>jboss</groupId>
+              <artifactId>jboss-system</artifactId>
+              <version>${jboss.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>javax.mail</groupId>
+              <artifactId>mail</artifactId>
+              <version>${javax.mail.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>org.apache.geronimo.specs</groupId>
+              <artifactId>geronimo-commonj_1.1_spec</artifactId>
+              <version>${geronimo-commonj.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>org.apache.openejb</groupId>
+              <artifactId>javaee-api</artifactId>
+              <version>${org.apache.openejb.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>jboss</groupId>
+              <artifactId>jboss-minimal</artifactId>
+              <version>${jboss.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>org.quartz-scheduler.internal</groupId>
+              <artifactId>quartz-stubs</artifactId>
+              <version>${project.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>jboss</groupId>
+              <artifactId>jboss-jmx</artifactId>
+              <version>${jboss.version}</version>
+            </additionalDependency>
+            <additionalDependency>
+              <groupId>org.quartz-scheduler.internal</groupId>
+              <artifactId>quartz-weblogic</artifactId>
+              <version>${project.version}</version>
+            </additionalDependency>
+          </additionalDependencies>
         </configuration>
         <executions>
           <execution>
             <id>create-javadoc</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>jar</goal>
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
       
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -188,11 +288,12 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.3.7</version>
+        <version>4.2.1</version>
         <configuration>
           <manifestLocation>${project.build.directory}</manifestLocation>
           <instructions>
             <Import-Package>
+            com.zaxxer.hikari;resolution:=optional,
             javax.servlet;resolution:=optional,
             javax.servlet.http;resolution:=optional,
             javax.sql;resolution:=optional,
@@ -211,7 +312,7 @@
             org.quartz.jobs;resolution:=optional,*</Import-Package>
             <Export-Package>org.quartz.*</Export-Package>
             <Private-Package>org.terracotta.quartz.*</Private-Package>
-            <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+            <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
           </instructions>
           <excludeDependencies>*;scope=provided|runtime</excludeDependencies>
         </configuration>
@@ -247,7 +348,20 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>       
+      </plugin>
+      <plugin>
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>depends-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <id>generate-depends-file</id>
+            <goals>
+              <goal>generate-depends-file</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   

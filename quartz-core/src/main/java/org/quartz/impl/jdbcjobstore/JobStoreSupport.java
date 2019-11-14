@@ -1080,7 +1080,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      *          The <code>JobDetail</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Job</code> existing in the
-     *          <code>JobStore</code> with the same name & group should be
+     *          <code>JobStore</code> with the same name and group should be
      *          over-written.
      * @throws ObjectAlreadyExistsException
      *           if a <code>Job</code> with the same name/group already
@@ -1149,7 +1149,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      *          The <code>Trigger</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Trigger</code> existing in
-     *          the <code>JobStore</code> with the same name & group should
+     *          the <code>JobStore</code> with the same name and group should
      *          be over-written.
      * @throws ObjectAlreadyExistsException
      *           if a <code>Trigger</code> with the same name/group already
@@ -1257,7 +1257,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      * known group names.
      * </p>
      * 
-     * @return <code>true</code> if a <code>Job</code> with the given name &
+     * @return <code>true</code> if a <code>Job</code> with the given name and
      *         group was found and removed from the store.
      */
     public boolean removeJob(final JobKey jobKey) throws JobPersistenceException {
@@ -1422,7 +1422,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      * </p>
      * 
      * @return <code>true</code> if a <code>Trigger</code> with the given
-     *         name & group was found and removed from the store.
+     *         name and group was found and removed from the store.
      */
     public boolean removeTrigger(final TriggerKey triggerKey) throws JobPersistenceException {
         return (Boolean) executeInLock(
@@ -1653,7 +1653,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      *          The <code>Calendar</code> to be stored.
      * @param replaceExisting
      *          If <code>true</code>, any <code>Calendar</code> existing
-     *          in the <code>JobStore</code> with the same name & group
+     *          in the <code>JobStore</code> with the same name and group
      *          should be over-written.
      * @throws ObjectAlreadyExistsException
      *           if a <code>Calendar</code> with the same name already

@@ -28,8 +28,7 @@ import org.quartz.spi.TriggerFiredBundle;
 /**
  * <p>
  * Responsible for creating the instances of <code>{@link org.quartz.ee.jta.JTAJobRunShell}</code>
- * to be used within the <class>{@link org.quartz.core.QuartzScheduler}
- * </code> instance.
+ * to be used within the <code>{@link org.quartz.core.QuartzScheduler}</code> instance.
  * </p>
  * 
  * <p>
@@ -86,9 +85,8 @@ public class JTAJobRunShellFactory implements JobRunShellFactory {
 
     /**
      * <p>
-     * Called by the <class>{@link org.quartz.core.QuartzSchedulerThread}
-     * </code> to obtain instances of <code>
-     * {@link org.quartz.core.JobRunShell}</code>.
+     * Called by the {@link org.quartz.core.QuartzSchedulerThread}
+     * to obtain instances of <code> {@link org.quartz.core.JobRunShell}</code>.
      * </p>
      */
     public JobRunShell createJobRunShell(TriggerFiredBundle bundle)

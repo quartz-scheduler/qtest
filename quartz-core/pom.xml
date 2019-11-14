@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.quartz-scheduler</groupId>
     <artifactId>quartz-parent</artifactId>
-    <version>2.3.2-SNAPSHOT</version>
+    <version>${revision}</version>
   </parent>
 
   <groupId>org.quartz-scheduler.internal</groupId>
@@ -13,7 +13,7 @@
   <name>quartz-core</name>
 
   <properties>
-	<derby-version>10.8.2.2</derby-version>
+    <derby-version>10.8.2.2</derby-version>
   </properties>
 
   <dependencies>
@@ -35,6 +35,12 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb-runtime.version}</version>
+      <scope>runtime</scope>
+    </dependency>
 
     <!-- provided scope -->
     <dependency>
@@ -46,39 +52,33 @@
 
     <!-- test dependencies -->
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${slf4j.version}</version>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
-      <scope>test</scope>
-    </dependency>    
-    <dependency>
       <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>1.2</version>
+      <artifactId>hamcrest</artifactId>
+      <version>2.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
+      <version>1.10.19</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit-dep</artifactId>
-      <version>4.8.2</version>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>    
     <dependency>
-      <groupId>asm</groupId>
+      <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
-      <version>3.2</version>
+      <version>7.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -88,16 +88,16 @@
       <scope>test</scope>
     </dependency>
 	<dependency>
-		<groupId>org.apache.derby</groupId>
-		<artifactId>derbynet</artifactId>
-		<version>${derby-version}</version>
-		<scope>test</scope>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbynet</artifactId>
+      <version>${derby-version}</version>
+      <scope>test</scope>
 	</dependency>
 	<dependency>
-		<groupId>org.apache.derby</groupId>
-		<artifactId>derbyclient</artifactId>
-		<version>${derby-version}</version>
-		<scope>test</scope>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbyclient</artifactId>
+      <version>${derby-version}</version>
+      <scope>test</scope>
 	</dependency>
 
   </dependencies>
@@ -114,7 +114,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>rmic-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.3</version>
         <executions>
           <execution>
             <id>rmic-process-classes</id>
@@ -126,14 +126,22 @@
             </configuration>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.glassfish.corba</groupId>
+            <artifactId>rmic</artifactId>
+            <version>4.2.1</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.10</version>
+        <version>3.0.0-M3</version>
         <configuration>
-          <forkMode>always</forkMode>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
           <systemProperties>  
             <property>
               <name>buildDirectory</name>
@@ -147,37 +155,12 @@
           </systemProperties>
         </configuration>      
       </plugin>
-    </plugins>
 
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>rmic-maven-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>rmic</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
   
   <profiles>
@@ -186,6 +169,25 @@
       <properties>
         <skipDeploy>true</skipDeploy>
       </properties>
+    </profile>
+    <profile>
+      <id>testVM</id>
+      <activation>
+        <property>
+          <name>testVM</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <jvm>${testVM}</jvm>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>   
 

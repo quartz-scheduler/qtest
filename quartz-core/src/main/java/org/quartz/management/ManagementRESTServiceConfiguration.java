@@ -67,10 +67,9 @@ public class ManagementRESTServiceConfiguration {
     /**
      * Returns the security service location required for trusted identity assertion to the embedded REST management
      * service.  This feature is only available with an enterprise license.
-     * <p/>
+     * <br>
      * If this value is set, then this service will require secure dialog with the TMS or other 3rd party REST client
      * implementations. The service furnished by the enterprise version of the TMC is located is provided at /api/assertIdentity.
-     *
      *
      * @return a string representing the URL of the security service.
      */
@@ -81,7 +80,7 @@ public class ManagementRESTServiceConfiguration {
     /**
      * Sets the security service location required for trusted identity assertion to the embedded REST management
      * service.  This feature is only available with an enterprise license.
-     * <p/>
+     * <br>
      * If this value is set, then this service will require secure dialog with the TMS or other 3rd party REST client
      * implementations. The service furnished by the enterprise version of the TMC is located is provided at /api/assertIdentity.
      *

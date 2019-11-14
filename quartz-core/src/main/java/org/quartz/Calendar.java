@@ -62,6 +62,8 @@ public interface Calendar extends java.io.Serializable, java.lang.Cloneable {
      * <p>
      * Set a new base calendar or remove the existing one.
      * </p>
+     *
+     * @param baseCalendar the base <code>Calendar</code>
      */
     void setBaseCalendar(Calendar baseCalendar);
 
@@ -69,6 +71,8 @@ public interface Calendar extends java.io.Serializable, java.lang.Cloneable {
      * <p>
      * Get the base calendar. Will be null, if not set.
      * </p>
+     *
+     * @return the base <code>Calendar</code>
      */
     Calendar getBaseCalendar();
 
@@ -77,6 +81,9 @@ public interface Calendar extends java.io.Serializable, java.lang.Cloneable {
      * Determine whether the given time (in milliseconds) is 'included' by the
      * Calendar.
      * </p>
+     *
+     * @param timeStamp the timestamp to test
+     * @return <code>true</code> if the timestamp is included by this <code>Calendar</code>
      */
     boolean isTimeIncluded(long timeStamp);
 
@@ -85,6 +92,9 @@ public interface Calendar extends java.io.Serializable, java.lang.Cloneable {
      * Determine the next time (in milliseconds) that is 'included' by the
      * Calendar after the given time.
      * </p>
+     *
+     * @param timeStamp the starting timestamp
+     * @return the next timestamp
      */
     long getNextIncludedTime(long timeStamp);
 
@@ -104,6 +114,8 @@ public interface Calendar extends java.io.Serializable, java.lang.Cloneable {
      * useful for remembering/displaying the purpose of the calendar, though
      * the description has no meaning to Quartz.
      * </p>
+     *
+     * @param description this <code>Calendar</code>'s descriptive text
      */
     void setDescription(String description);
     

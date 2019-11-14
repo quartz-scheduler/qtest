@@ -200,16 +200,28 @@ public interface Scheduler {
 
     /**
      * Returns the name of the <code>Scheduler</code>.
+     *
+     * @return this scheduler's name
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     String getSchedulerName() throws SchedulerException;
 
     /**
      * Returns the instance Id of the <code>Scheduler</code>.
+     *
+     * @return this scheduler's instance id
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     String getSchedulerInstanceId() throws SchedulerException;
 
     /**
      * Returns the <code>SchedulerContext</code> of the <code>Scheduler</code>.
+     *
+     * @return this scheduler's context
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     SchedulerContext getContext() throws SchedulerException;
 
@@ -246,6 +258,7 @@ public interface Scheduler {
      * have initializers that create the scheduler immediately, before the
      * resources needed by the executing jobs have been fully initialized.
      *
+     * @param seconds the number of seconds to wait before starting the scheduler
      * @throws SchedulerException
      *           if <code>shutdown()</code> has been called, or there is an
      *           error within the <code>Scheduler</code>.
@@ -265,7 +278,11 @@ public interface Scheduler {
      * if the <code>Scheduler</code> is currently in standby mode or has been 
      * since shutdown.
      * </p>
-     * 
+     *
+     * @return is the scheduler started
+     * @throws SchedulerException
+     *           if there is an error within the <code>Scheduler</code>.
+     *
      * @see #start()
      * @see #isShutdown()
      * @see #isInStandbyMode()
@@ -286,7 +303,10 @@ public interface Scheduler {
      * <p>
      * The scheduler is not destroyed, and can be re-started at any time.
      * </p>
-     * 
+     *
+     * @throws SchedulerException
+     *           if there is an error within the <code>Scheduler</code>.
+     *
      * @see #start()
      * @see #pauseAll()
      */
@@ -294,7 +314,11 @@ public interface Scheduler {
 
     /**
      * Reports whether the <code>Scheduler</code> is in stand-by mode.
-     * 
+     *
+     * @return is the scheduler standing by
+     * @throws SchedulerException
+     *           if there is an error within the <code>Scheduler</code>.
+     *
      * @see #standby()
      * @see #start()
      */
@@ -308,7 +332,10 @@ public interface Scheduler {
      * <p>
      * The scheduler cannot be re-started.
      * </p>
-     * 
+     *
+     * @throws SchedulerException
+     *           if there is an error shutting down the <code>Scheduler</code>.
+     *
      * @see #shutdown(boolean)
      */
     void shutdown() throws SchedulerException;
@@ -324,7 +351,8 @@ public interface Scheduler {
      * @param waitForJobsToComplete
      *          if <code>true</code> the scheduler will not allow this method
      *          to return until all currently executing jobs have completed.
-     * 
+     * @throws SchedulerException
+     *           if there is an error shutting down the <code>Scheduler</code>.
      * @see #shutdown
      */
     void shutdown(boolean waitForJobsToComplete)
@@ -332,6 +360,10 @@ public interface Scheduler {
 
     /**
      * Reports whether the <code>Scheduler</code> has been shutdown.
+     *
+     * @return is the scheduler shutdown
+     * @throws SchedulerException
+     *           if there is an error accessing the <code>Scheduler</code>.
      */
     boolean isShutdown() throws SchedulerException;
 
@@ -343,6 +375,10 @@ public interface Scheduler {
      * Note that the data returned is an 'instantaneous' snap-shot, and that as
      * soon as it's returned, the meta data values may be different.
      * </p>
+     *
+     * @return is the scheduler's meta data
+     * @throws SchedulerException
+     *           if there is an error accessing the <code>Scheduler</code>.
      */
     SchedulerMetaData getMetaData() throws SchedulerException;
 
@@ -362,7 +398,10 @@ public interface Scheduler {
      * Also please read the doc associated with <code>JobExecutionContext</code>-
      * especially if you're using RMI.
      * </p>
-     * 
+     *
+     * @return the execution contexts of all executing jobs
+     * @throws SchedulerException
+     *           if there is an error accessing the <code>Scheduler</code>.
      * @see JobExecutionContext
      */
     List<JobExecutionContext> getCurrentlyExecutingJobs() throws SchedulerException;
@@ -376,11 +415,13 @@ public interface Scheduler {
      * produce <code>Job</code> instances via some special mechanism, such as to
      * give the opportunity for dependency injection.
      * </p>
-     * 
+     *
+     * @param factory the scheduler's job creation factory
+     * @throws SchedulerException
+     *           if there is an error accessing the <code>Scheduler</code>.
      * @see org.quartz.spi.JobFactory
      */
     void setJobFactory(JobFactory factory) throws SchedulerException;
-    
     
     /**
      * Get a reference to the scheduler's <code>ListenerManager</code>,
@@ -410,7 +451,10 @@ public interface Scheduler {
      * If the given Trigger does not reference any <code>Job</code>, then it
      * will be set to reference the Job passed with it into this method.
      * </p>
-     * 
+     *
+     * @param jobDetail the details for the job to schedule
+     * @param trigger the trigger to fire the job
+     * @return the time the job is scheduled to execute
      * @throws SchedulerException
      *           if the Job or Trigger cannot be added to the Scheduler, or
      *           there is an internal Scheduler error.
@@ -421,7 +465,9 @@ public interface Scheduler {
     /**
      * Schedule the given <code>{@link org.quartz.Trigger}</code> with the
      * <code>Job</code> identified by the <code>Trigger</code>'s settings.
-     * 
+     *
+     * @param trigger the trigger and associated job to schedule
+     * @return the time the job is scheduled to be executed
      * @throws SchedulerException
      *           if the indicated Job does not exist, or the Trigger cannot be
      *           added to the Scheduler, or there is an internal Scheduler
@@ -435,7 +481,9 @@ public interface Scheduler {
      * <p>If any of the given jobs or triggers already exist (or more
      * specifically, if the keys are not unique) and the replace 
      * parameter is not set to true then an exception will be thrown.</p>
-     * 
+     *
+     * @param triggersAndJobs the set of jobs to schedule
+     * @param replace if jobs that are already scheduled should be replaced or not
      * @throws ObjectAlreadyExistsException if the job/trigger keys
      * are not unique and the replace flag is not set to true. 
      */
@@ -447,7 +495,10 @@ public interface Scheduler {
      * <p>If any of the given job or triggers already exist (or more
      * specifically, if the keys are not unique) and the replace 
      * parameter is not set to true then an exception will be thrown.</p>
-     * 
+     *
+     * @param jobDetail the details for the job to schedule
+     * @param triggersForJob the set of triggers to associate with the associated job
+     * @param replace if previously scheduled jobs should be replaced or not
      * @throws ObjectAlreadyExistsException if the job/trigger keys
      * are not unique and the replace flag is not set to true. 
      */
@@ -455,9 +506,13 @@ public interface Scheduler {
     
     /**
      * Remove the indicated <code>{@link Trigger}</code> from the scheduler.
-     * 
+     *
      * <p>If the related job does not have any other triggers, and the job is
      * not durable, then the job will also be deleted.</p>
+     *
+     * @param triggerKey the trigger to be removed
+     * @return if the trigger was removed or not
+     * @throws SchedulerException if there was an internal scheduler error
      */
     boolean unscheduleJob(TriggerKey triggerKey)
         throws SchedulerException;
@@ -472,7 +527,11 @@ public interface Scheduler {
      * invoking <code>unscheduleJob(TriggerKey triggerKey)</code> several
      * times, it may have the adverse affect of holding data locks for a
      * single long duration of time (rather than lots of small durations
-     * of time).</p> 
+     * of time).</p>
+     *
+     * @param triggerKeys the list of triggers to remove from the scheduler
+     * @return if all the triggers were removed
+     * @throws SchedulerException if there was an internal scheduler error
      */
     boolean unscheduleJobs(List<TriggerKey> triggerKeys)
         throws SchedulerException;
@@ -480,7 +539,7 @@ public interface Scheduler {
     /**
      * Remove (delete) the <code>{@link org.quartz.Trigger}</code> with the
      * given key, and store the new given one - which must be associated
-     * with the same job (the new trigger must have the job name & group specified) 
+     * with the same job (the new trigger must have the job name &amp; group specified)
      * - however, the new trigger need not have the same name as the old trigger.
      * 
      * @param triggerKey identity of the trigger to replace
@@ -488,9 +547,10 @@ public interface Scheduler {
      *          The new <code>Trigger</code> to be stored.
      * 
      * @return <code>null</code> if a <code>Trigger</code> with the given
-     *         name & group was not found and removed from the store (and the 
+     *         name &amp; group was not found and removed from the store (and the
      *         new trigger is therefore not stored), otherwise
      *         the first fire time of the newly scheduled trigger is returned.
+     * @throws SchedulerException if there was an internal scheduler error
      */
     Date rescheduleJob(TriggerKey triggerKey, Trigger newTrigger) 
         throws SchedulerException;
@@ -508,6 +568,8 @@ public interface Scheduler {
      *
      * @see #addJob(JobDetail, boolean, boolean)
      *
+     * @param jobDetail the details of the job to schedule
+     * @param replace if a previously scheduled named job should be replaced or not
      * @throws SchedulerException
      *           if there is an internal Scheduler error, or if the Job is not
      *           durable, or a Job with the same name already exists, and
@@ -529,6 +591,9 @@ public interface Scheduler {
      * once there are no remaining associated triggers).
      * </p>
      *
+     * @param jobDetail the details of the job to schedule
+     * @param replace if a previously scheduled named job should be replaced or not
+     * @param storeNonDurableWhileAwaitingScheduling should the non-durable job be temporarily stored
      * @throws SchedulerException
      *           if there is an internal Scheduler error, or if the Job is not
      *           durable, or a Job with the same name already exists, and
@@ -540,7 +605,8 @@ public interface Scheduler {
     /**
      * Delete the identified <code>Job</code> from the Scheduler - and any
      * associated <code>Trigger</code>s.
-     * 
+     *
+     * @param jobKey a reference to the job to be deleted
      * @return true if the Job was found and deleted.
      * @throws SchedulerException
      *           if there is an internal Scheduler error.
@@ -557,9 +623,10 @@ public interface Scheduler {
      * times, it may have the adverse affect of holding data locks for a
      * single long duration of time (rather than lots of small durations
      * of time).</p>
-     *  
-     * @return true if all of the Jobs were found and deleted, false if 
-     * one or more were not deleted.
+     *
+     * @param jobKeys a list of references to the jobs to be deleted
+     * @return true if all of the Jobs were found and deleted, false if
+     *           one or more were not deleted.
      * @throws SchedulerException
      *           if there is an internal Scheduler error.
      */
@@ -569,6 +636,10 @@ public interface Scheduler {
     /**
      * Trigger the identified <code>{@link org.quartz.JobDetail}</code>
      * (execute it now).
+     *
+     * @param jobKey a reference to the job to be triggered
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error.
      */
     void triggerJob(JobKey jobKey)
         throws SchedulerException;
@@ -576,9 +647,12 @@ public interface Scheduler {
     /**
      * Trigger the identified <code>{@link org.quartz.JobDetail}</code>
      * (execute it now).
-     * 
-     * @param data the (possibly <code>null</code>) JobDataMap to be 
-     * associated with the trigger that fires the job immediately. 
+     *
+     * @param jobKey a reference to the job to be triggered
+     * @param data the (possibly <code>null</code>) JobDataMap to be
+     *           associated with the trigger that fires the job immediately.
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error.
      */
     void triggerJob(JobKey jobKey, JobDataMap data)
         throws SchedulerException;
@@ -586,7 +660,11 @@ public interface Scheduler {
     /**
      * Pause the <code>{@link org.quartz.JobDetail}</code> with the given
      * key - by pausing all of its current <code>Trigger</code>s.
-     * 
+     *
+     * @param jobKey a reference to the job to be paused
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error.
+     *
      * @see #resumeJob(JobKey)
      */
     void pauseJob(JobKey jobKey)
@@ -616,14 +694,20 @@ public interface Scheduler {
      * in that group, it will become paused.</p>
      *
      * @param matcher The matcher to evaluate against know groups
-     * @throws SchedulerException On error
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error.
+     *
      * @see #resumeJobs(org.quartz.impl.matchers.GroupMatcher)
      */
     void pauseJobs(GroupMatcher<JobKey> matcher) throws SchedulerException;
 
     /**
      * Pause the <code>{@link Trigger}</code> with the given key.
-     * 
+     *
+     * @param triggerKey a reference to the trigger to be paused
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error.
+     *
      * @see #resumeTrigger(TriggerKey)
      */
     void pauseTrigger(TriggerKey triggerKey)
@@ -653,6 +737,8 @@ public interface Scheduler {
      * 
      * @param matcher The matcher to evaluate against know groups
      * @throws SchedulerException
+     *           if there is an internal Scheduler error.
+     *
      * @see #resumeTriggers(org.quartz.impl.matchers.GroupMatcher)
      */
     void pauseTriggers(GroupMatcher<TriggerKey> matcher) throws SchedulerException;
@@ -666,7 +752,11 @@ public interface Scheduler {
      * or more fire-times, then the <code>Trigger</code>'s misfire
      * instruction will be applied.
      * </p>
-     * 
+     *
+     * @param jobKey a reference to the job to be resumed
+     * @throws SchedulerException
+     *           if the associated job was not paused or there is an internal Scheduler error.
+     *
      * @see #pauseJob(JobKey)
      */
     void resumeJob(JobKey jobKey)
@@ -683,7 +773,9 @@ public interface Scheduler {
      * </p>
      * 
      * @param matcher The matcher to evaluate against known paused groups
-     * @throws SchedulerException On error
+     * @throws SchedulerException
+     *           if one or more of the associated jobs was not paused or there is an internal Scheduler error.
+     *
      * @see #pauseJobs(GroupMatcher)
      */
     void resumeJobs(GroupMatcher<JobKey> matcher) throws SchedulerException;
@@ -696,7 +788,11 @@ public interface Scheduler {
      * If the <code>Trigger</code> missed one or more fire-times, then the
      * <code>Trigger</code>'s misfire instruction will be applied.
      * </p>
-     * 
+     *
+     * @param triggerKey a reference to the trigger to resume
+     * @throws SchedulerException
+     *           if he associated job was not paused or there is an internal Scheduler error.
+     *
      * @see #pauseTrigger(TriggerKey)
      */
     void resumeTrigger(TriggerKey triggerKey)
@@ -711,7 +807,9 @@ public interface Scheduler {
      * </p>
      * 
      * @param matcher The matcher to evaluate against know paused groups
-     * @throws SchedulerException On error
+     * @throws SchedulerException
+     *           if one or more of the associated jobs was not paused or there is an internal Scheduler error.
+     *
      * @see #pauseTriggers(org.quartz.impl.matchers.GroupMatcher)
      */
     void resumeTriggers(GroupMatcher<TriggerKey> matcher) throws SchedulerException;
@@ -726,7 +824,10 @@ public interface Scheduler {
      * When <code>resumeAll()</code> is called (to un-pause), trigger misfire
      * instructions WILL be applied.
      * </p>
-     * 
+     *
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
+     *
      * @see #resumeAll()
      * @see #pauseTriggers(org.quartz.impl.matchers.GroupMatcher)
      * @see #standby()
@@ -741,7 +842,10 @@ public interface Scheduler {
      * If any <code>Trigger</code> missed one or more fire-times, then the
      * <code>Trigger</code>'s misfire instruction will be applied.
      * </p>
-     * 
+     *
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
+     *
      * @see #pauseAll()
      */
     void resumeAll() throws SchedulerException;
@@ -749,15 +853,21 @@ public interface Scheduler {
     /**
      * Get the names of all known <code>{@link org.quartz.JobDetail}</code>
      * groups.
+     *
+     * @return the list of all registered job group names
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     List<String> getJobGroupNames() throws SchedulerException;
 
     /**
      * Get the keys of all the <code>{@link org.quartz.JobDetail}s</code>
      * in the matching groups.
+     *
      * @param matcher Matcher to evaluate against known groups
      * @return Set of all keys matching
-     * @throws SchedulerException On error
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     Set<JobKey> getJobKeys(GroupMatcher<JobKey> matcher) throws SchedulerException;
 
@@ -769,13 +879,21 @@ public interface Scheduler {
      * triggers.  If you wish to modify a trigger, you must re-store the
      * trigger afterward (e.g. see {@link #rescheduleJob(TriggerKey, Trigger)}).
      * </p>
-     * 
+     *
+     * @param jobKey a reference to the job whose associated triggers are to be returned
+     * @return a list of the triggers associated with the registered job
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     List<? extends Trigger> getTriggersOfJob(JobKey jobKey)
         throws SchedulerException;
 
     /**
      * Get the names of all known <code>{@link Trigger}</code> groups.
+     *
+     * @return a list of all the known registered trigger group names
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     List<String> getTriggerGroupNames() throws SchedulerException;
 
@@ -784,12 +902,17 @@ public interface Scheduler {
      * group.
      * @param matcher Matcher to evaluate against known groups
      * @return List of all keys matching
-     * @throws SchedulerException On error
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     Set<TriggerKey> getTriggerKeys(GroupMatcher<TriggerKey> matcher) throws SchedulerException;
 
     /**
      * Get the names of all <code>{@link Trigger}</code> groups that are paused.
+     *
+     * @return the set of all paused trigger group names
+     * @throws SchedulerException
+     *           there is an internal Scheduler error.
      */
     Set<String> getPausedTriggerGroups() throws SchedulerException;
     
@@ -801,7 +924,11 @@ public interface Scheduler {
      * JobDetail.  If you wish to modify the JobDetail, you must re-store the
      * JobDetail afterward (e.g. see {@link #addJob(JobDetail, boolean)}).
      * </p>
-     * 
+     *
+     * @param jobKey a reference to the job whose details are to be returned
+     * @return the details of the referenced job
+     * @throws SchedulerException
+     *           there is no such registered job or there is an internal Scheduler error.
      */
     JobDetail getJobDetail(JobKey jobKey)
         throws SchedulerException;
@@ -813,13 +940,23 @@ public interface Scheduler {
      * trigger.  If you wish to modify the trigger, you must re-store the
      * trigger afterward (e.g. see {@link #rescheduleJob(TriggerKey, Trigger)}).
      * </p>
+     *
+     * @param triggerKey a reference to the trigger to be returned
+     * @return the referenced trigger
+     * @throws SchedulerException
+     *           there is no such registered trigger or there is an internal Scheduler error.
      */
     Trigger getTrigger(TriggerKey triggerKey)
         throws SchedulerException;
 
     /**
      * Get the current state of the identified <code>{@link Trigger}</code>.
-     * 
+     *
+     * @param triggerKey a reference to the trigger whose state is to be returned
+     * @return the state of the referenced trigger
+     * @throws SchedulerException
+     *           there is no such registered trigger or there is an internal Scheduler error.
+     *
      * @see Trigger.TriggerState
      */
     TriggerState getTriggerState(TriggerKey triggerKey)
@@ -837,10 +974,15 @@ public interface Scheduler {
      * be fired state, unless the trigger's group has been paused, in which
      * case it will go into the PAUSED state.</p>
      *
+     * @param triggerKey a reference to the trigger to be reset
+     * @throws SchedulerException
+     *           there is no such registered trigger or there is an internal Scheduler error.
+     *
      * @see Trigger.TriggerState
      */
     void resetTriggerFromErrorState(TriggerKey triggerKey)
         throws SchedulerException;
+
     /**
      * Add (register) the given <code>Calendar</code> to the Scheduler.
      * 
@@ -848,7 +990,9 @@ public interface Scheduler {
      * referenced the already existing calendar so that they are 'correct'
      * based on the new trigger. 
      * 
-     *  
+     * @param calName the name to be associated with the calendar to add
+     * @param calendar the calendar instance to add
+     * @param replace should an existing named calendar be replaced or not
      * @throws SchedulerException
      *           if there is an internal Scheduler error, or a Calendar with
      *           the same name already exists, and <code>replace</code> is
@@ -865,7 +1009,8 @@ public interface Scheduler {
      * <code>Trigger</code>s pointing to non-existent calendars, then a
      * <code>SchedulerException</code> will be thrown.
      * </p>
-     * 
+     *
+     * @param calName the name of the calendar to be removed
      * @return true if the Calendar was found and deleted.
      * @throws SchedulerException
      *           if there is an internal Scheduler error, or one or more 
@@ -875,11 +1020,20 @@ public interface Scheduler {
 
     /**
      * Get the <code>{@link Calendar}</code> instance with the given name.
+     *
+     * @param calName the name of the calendar to be returned
+     * @return the named calendar
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error, or there is no such named calendar
      */
     Calendar getCalendar(String calName) throws SchedulerException;
 
     /**
      * Get the names of all registered <code>{@link Calendar}s</code>.
+     *
+     * @return ths list of all calendar names
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     List<String> getCalendarNames() throws SchedulerException;
 
@@ -902,12 +1056,14 @@ public interface Scheduler {
      * instances of the identified InterruptableJob currently executing in this 
      * Scheduler instance, not across the entire cluster.
      * </p>
-     * 
+     *
+     * @param jobKey a reference to the job to be interrupted
      * @return true if at least one instance of the identified job was found
      * and interrupted.
      * @throws UnableToInterruptJobException if the job does not implement
      * <code>InterruptableJob</code>, or there is an exception while 
      * interrupting the job.
+     *
      * @see InterruptableJob#interrupt()
      * @see #getCurrentlyExecutingJobs()
      * @see #interrupt(String)
@@ -931,6 +1087,7 @@ public interface Scheduler {
      * @throws UnableToInterruptJobException if the job does not implement
      * <code>InterruptableJob</code>, or there is an exception while 
      * interrupting the job.
+     *
      * @see InterruptableJob#interrupt()
      * @see #getCurrentlyExecutingJobs()
      * @see JobExecutionContext#getFireInstanceId()
@@ -944,7 +1101,8 @@ public interface Scheduler {
      * 
      * @param jobKey the identifier to check for
      * @return true if a Job exists with the given identifier
-     * @throws SchedulerException 
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     boolean checkExists(JobKey jobKey) throws SchedulerException; 
    
@@ -954,17 +1112,17 @@ public interface Scheduler {
      * 
      * @param triggerKey the identifier to check for
      * @return true if a Trigger exists with the given identifier
-     * @throws SchedulerException 
+     * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     boolean checkExists(TriggerKey triggerKey) throws SchedulerException;
     
     /**
      * Clears (deletes!) all scheduling data - all {@link Job}s, {@link Trigger}s
      * {@link Calendar}s.
-     * 
+     *
      * @throws SchedulerException
+     *           if there is an internal Scheduler error
      */
     void clear() throws SchedulerException;
-
-
 }

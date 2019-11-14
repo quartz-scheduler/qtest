@@ -48,7 +48,7 @@ import org.quartz.spi.MutableTrigger;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *
  * @see DailyTimeIntervalScheduleBuilder
  * @see CronScheduleBuilder
@@ -297,7 +297,10 @@ public class CalendarIntervalScheduleBuilder extends ScheduleBuilder<CalendarInt
      * you wish for the trigger to never fire at the "wrong" hour, then
      * you should set the property skipDayIfHourDoesNotExist.
      * </p>
-     * 
+     *
+     * @param preserveHourOfDay <code>true</code> to preserve the hour of the day across daylight savings
+     * @return this builder instance
+     *
      * @see #skipDayIfHourDoesNotExist(boolean)
      * @see #inTimeZone(TimeZone)
      * @see TriggerBuilder#startAt(java.util.Date)
@@ -324,7 +327,10 @@ public class CalendarIntervalScheduleBuilder extends ScheduleBuilder<CalendarInt
      * the interval is 2 days, then a span of 4 days between firings will 
      * occur).
      * </p>
-     * 
+     *
+     * @param skipDay <code>true</code> to skip a missing hour
+     * @return this builder instance
+     *
      * @see #preserveHourOfDayAcrossDaylightSavings(boolean)
      */
     public CalendarIntervalScheduleBuilder skipDayIfHourDoesNotExist(boolean skipDay) {

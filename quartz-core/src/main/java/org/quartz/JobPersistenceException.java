@@ -40,6 +40,8 @@ public class JobPersistenceException extends SchedulerException {
      * <p>
      * Create a <code>JobPersistenceException</code> with the given message.
      * </p>
+     *
+     * @param msg a textual description of the persistence mechanism failure
      */
     public JobPersistenceException(String msg) {
         super(msg);
@@ -51,6 +53,9 @@ public class JobPersistenceException extends SchedulerException {
      * Create a <code>JobPersistenceException</code> with the given message
      * and cause.
      * </p>
+     *
+     * @param msg a textual description of the persistence mechanism failure
+     * @param cause the cause of the persistence mechanism failure
      */
     public JobPersistenceException(String msg, Throwable cause) {
         super(msg, cause);

@@ -112,6 +112,7 @@ public class C3p0PoolingConnectionProvider implements PoolingConnectionProvider 
      *
      * <p>
      * The properties passed should contain:
+     *
      * <UL>
      * <LI>{@link #DB_DRIVER}- The database driver class name
      * <LI>{@link #DB_URL}- The database URL
@@ -121,7 +122,6 @@ public class C3p0PoolingConnectionProvider implements PoolingConnectionProvider 
      * optional
      * <LI>{@link #DB_VALIDATION_QUERY}- The sql validation query, optional
      * </UL>
-     * </p>
      *
      * @param config
      *            configuration properties

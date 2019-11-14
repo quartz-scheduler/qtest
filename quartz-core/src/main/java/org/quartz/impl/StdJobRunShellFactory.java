@@ -25,9 +25,8 @@ import org.quartz.spi.TriggerFiredBundle;
 
 /**
  * <p>
- * Responsible for creating the instances of <code>{@link org.quartz.core.JobRunShell}</code>
- * to be used within the <class>{@link org.quartz.core.QuartzScheduler}
- * </code> instance.
+ * Responsible for creating the instances of {@link org.quartz.core.JobRunShell}
+ * to be used within the {@link org.quartz.core.QuartzScheduler} instance.
  * </p>
  * 
  * @author James House
@@ -64,9 +63,8 @@ public class StdJobRunShellFactory implements JobRunShellFactory {
 
     /**
      * <p>
-     * Called by the <class>{@link org.quartz.core.QuartzSchedulerThread}
-     * </code> to obtain instances of <code>
-     * {@link org.quartz.core.JobRunShell}</code>.
+     * Called by the {@link org.quartz.core.QuartzSchedulerThread}
+     * to obtain instances of {@link org.quartz.core.JobRunShell}.
      * </p>
      */
     public JobRunShell createJobRunShell(TriggerFiredBundle bndle) throws SchedulerException {

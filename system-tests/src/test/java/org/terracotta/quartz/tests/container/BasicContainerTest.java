@@ -12,11 +12,10 @@
  */
 package org.terracotta.quartz.tests.container;
 
+import ch.qos.logback.core.Layout;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.LoggerFactory;
-import org.slf4j.impl.Log4jLoggerFactory;
 import org.terracotta.quartz.TerracottaJobStore;
 import org.terracotta.toolkit.ToolkitFactory;
 
@@ -67,8 +66,7 @@ public class BasicContainerTest extends AbstractOneServerDeploymentTest {
       builder.addDirectoryOrJARContainingClass(StdSchedulerFactory.class); // core quartz
       builder.addDirectoryOrJARContainingClass(TerracottaJobStore.class); // quartz-terracotta
       builder.addDirectoryOrJARContainingClass(LoggerFactory.class); // sl4j-api
-      builder.addDirectoryOrJARContainingClass(Log4jLoggerFactory.class); // sl4j-log4j12
-      builder.addDirectoryOrJARContainingClass(Logger.class); // log4j
+       builder.addDirectoryOrJARContainingClass(Layout.class); // logback
 
       builder.addFileAsResource(createConfigFile(), "WEB-INF/classes/");
 

@@ -54,7 +54,7 @@ import org.quartz.utils.Key;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *  
  * @see JobBuilder
  * @see ScheduleBuilder

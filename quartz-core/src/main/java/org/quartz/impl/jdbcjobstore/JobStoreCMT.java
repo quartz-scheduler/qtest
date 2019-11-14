@@ -216,7 +216,7 @@ public class JobStoreCMT extends JobStoreSupport {
      * "TRIGGER_ACCESS".  If null, then no lock is acquired, but the
      * txCallback is still executed in a transaction.
      * 
-     * @see JobStoreSupport#executeInNonManagedTXLock(String, TransactionCallback)
+     * @see JobStoreSupport#executeInNonManagedTXLock(String, TransactionCallback, TransactionValidator)
      * @see JobStoreTX#executeInLock(String, TransactionCallback)
      * @see JobStoreSupport#getNonManagedTXConnection()
      * @see JobStoreSupport#getConnection()

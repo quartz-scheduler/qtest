@@ -37,113 +37,102 @@ import java.util.TimeZone;
  * </p>
  * 
  * <p>
- * Here are some full examples: <br><table cellspacing="8">
+ * Here are some full examples:
+ * </p>
+ *
+ * <table cellspacing="8" summary="">
  * <tr>
- * <th align="left">Expression</th>
- * <th align="left">&nbsp;</th>
- * <th align="left">Meaning</th>
+ *   <th align="left">Expression</th>
+ *   <th align="left">&nbsp;</th>
+ *   <th align="left">Meaning</th>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 0 12 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 12pm (noon) every day</code></td>
+ *   <td align="left"><code>"0 0 12 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 12pm (noon) every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * *"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am every day</code></td>
+ *   <td align="left"><code>"0 15 10 ? * *"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am every day</code></td>
+ *   <td align="left"><code>"0 15 10 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 * * ? *"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am every day</code></td>
+ *   <td align="left"><code>"0 15 10 * * ? *"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 * * ? 2005"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am every day during the year 2005</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 * * ? 2005"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am every day during the year 2005</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 * 14 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire every minute starting at 2pm and ending at 2:59pm, every day</code>
- * </td>
+ *   <td align="left"><code>"0 * 14 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire every minute starting at 2pm and ending at 2:59pm, every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 0/5 14 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day</code>
- * </td>
+ *   <td align="left"><code>"0 0/5 14 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 0/5 14,18 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day</code>
- * </td>
+ *   <td align="left"><code>"0 0/5 14,18 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 0-5 14 * * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire every minute starting at 2pm and ending at 2:05pm, every day</code>
- * </td>
+ *   <td align="left"><code>"0 0-5 14 * * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire every minute starting at 2pm and ending at 2:05pm, every day</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 10,44 14 ? 3 WED"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.</code>
- * </td>
+ *   <td align="left"><code>"0 10,44 14 ? 3 WED"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * MON-FRI"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 ? * MON-FRI"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 15 * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on the 15th day of every month</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 15 * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on the 15th day of every month</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 L * ?"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on the last day of every month</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 L * ?"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on the last day of every month</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * 6L"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on the last Friday of every month</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 ? * 6L"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on the last Friday of every month</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * 6L"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on the last Friday of every month</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 ? * 6L"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on the last Friday of every month</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * 6L 2002-2005"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on every last Friday of every month during the years 2002, 2003, 2004 and 2005</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 ? * 6L 2002-2005"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on every last Friday of every month during the years 2002, 2003, 2004 and 2005</code></td>
  * </tr>
  * <tr>
- * <td align="left"><code>"0 15 10 ? * 6#3"</code></td>
- * <td align="left">&nbsp;</th>
- * <td align="left"><code>Fire at 10:15am on the third Friday of every month</code>
- * </td>
+ *   <td align="left"><code>"0 15 10 ? * 6#3"</code></td>
+ *   <td align="left">&nbsp;</td>
+ *   <td align="left"><code>Fire at 10:15am on the third Friday of every month</code></td>
  * </tr>
  * </table>
- * </p>
- * 
+ *
  * <p>
  * Pay attention to the effects of '?' and '*' in the day-of-week and
  * day-of-month fields!
@@ -151,6 +140,7 @@ import java.util.TimeZone;
  * 
  * <p>
  * <b>NOTES:</b>
+ * </p>
  * <ul>
  * <li>Support for specifying both a day-of-week and a day-of-month value is
  * not complete (you'll need to use the '?' character in on of these fields).
@@ -159,8 +149,7 @@ import java.util.TimeZone;
  * "daylight savings" can cause a skip or a repeat depending on whether the
  * time moves back or jumps forward.</li>
  * </ul>
- * </p>
- * 
+ *
  * @see CronScheduleBuilder
  * @see TriggerBuilder
  * 
@@ -198,6 +187,8 @@ public interface CronTrigger extends Trigger {
      * Returns the time zone for which the <code>cronExpression</code> of
      * this <code>CronTrigger</code> will be resolved.
      * </p>
+     *
+     * @return this trigger's time zone
      */
     public TimeZone getTimeZone();
 

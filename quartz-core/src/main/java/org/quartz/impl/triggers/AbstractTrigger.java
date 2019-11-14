@@ -503,7 +503,6 @@ public abstract class AbstractTrigger<T extends Trigger> implements OperableTrig
      * @return the first time at which the <code>Trigger</code> will be fired
      *         by the scheduler, which is also the same value <code>getNextFireTime()</code>
      *         will return (until after the first firing of the <code>Trigger</code>).
-     *         </p>
      */
     public abstract Date computeFirstFireTime(Calendar calendar);
 

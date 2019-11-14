@@ -110,6 +110,8 @@ public class DirtyFlagMap<K,V> implements Map<K,V>, Cloneable, java.io.Serializa
      * <p>
      * Determine whether the <code>Map</code> is flagged dirty.
      * </p>
+     *
+     * @return is the map dirty
      */
     public boolean isDirty() {
         return dirty;
@@ -119,6 +121,8 @@ public class DirtyFlagMap<K,V> implements Map<K,V>, Cloneable, java.io.Serializa
      * <p>
      * Get a direct handle to the underlying Map.
      * </p>
+     *
+     * @return the underlying map
      */
     public Map<K,V> getWrappedMap() {
         return map;

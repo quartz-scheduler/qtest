@@ -494,7 +494,7 @@ public class QuartzSchedulerResources {
     /**
      * Get the name under which the QuartzScheduler should be registered with 
      * the local MBeanServer.  If unset, defaults to the value calculated by 
-     * <code>generateJMXObjectName<code>.
+     * <code>generateJMXObjectName</code>.
      * 
      * @see #generateJMXObjectName(String, String)
      */
@@ -505,7 +505,7 @@ public class QuartzSchedulerResources {
     /**
      * Set the name under which the QuartzScheduler should be registered with 
      * the local MBeanServer.  If unset, defaults to the value calculated by 
-     * <code>generateJMXObjectName<code>.
+     * <code>generateJMXObjectName</code>.
      * 
      * @see #generateJMXObjectName(String, String)
      */

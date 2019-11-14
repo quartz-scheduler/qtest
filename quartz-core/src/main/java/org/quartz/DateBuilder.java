@@ -48,7 +48,7 @@ import java.util.TimeZone;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *  
  * @see TriggerBuilder
  * @see JobBuilder 
@@ -174,6 +174,8 @@ public class DateBuilder {
 
     /**
      * Create a DateBuilder, with initial settings for the current date and time in the system default timezone.
+     *
+     * @return the new builder
      */
     public static DateBuilder newDate() {
         return new DateBuilder();
@@ -181,6 +183,9 @@ public class DateBuilder {
 
     /**
      * Create a DateBuilder, with initial settings for the current date and time in the given timezone.
+     *
+     * @param tz the timezone for the new builder
+     * @return the new builder
      */
     public static DateBuilder newDateInTimezone(TimeZone tz) {
         return new DateBuilder(tz);
@@ -188,6 +193,9 @@ public class DateBuilder {
 
     /**
      * Create a DateBuilder, with initial settings for the current date and time in the given locale.
+     *
+     * @param lc the locale for the new builder
+     * @return the new builder
      */
     public static DateBuilder newDateInLocale(Locale lc) {
         return new DateBuilder(lc);
@@ -195,13 +203,19 @@ public class DateBuilder {
 
     /**
      * Create a DateBuilder, with initial settings for the current date and time in the given timezone and locale.
+     *
+     * @param tz the timezone for the new builder
+     * @param lc the locale for the new builder
+     * @return the new builder
      */
     public static DateBuilder newDateInTimeZoneAndLocale(TimeZone tz, Locale lc) {
         return new DateBuilder(tz, lc);
     }
 
     /**
-     * Build the Date defined by this builder instance. 
+     * Build the Date defined by this builder instance.
+     *
+     * @return the date defined by this builder
      */
     public Date build() {
         Calendar cal;
@@ -228,6 +242,9 @@ public class DateBuilder {
     
     /**
      * Set the hour (0-23) for the Date that will be built by this builder.
+     *
+     * @param atHour the hour of the day for this builder
+     * @return this builder instance
      */
     public DateBuilder atHourOfDay(int atHour) {
         validateHour(atHour);
@@ -238,6 +255,9 @@ public class DateBuilder {
 
     /**
      * Set the minute (0-59) for the Date that will be built by this builder.
+     *
+     * @param atMinute the minute of the hour for this builder
+     * @return this builder instance
      */
     public DateBuilder atMinute(int atMinute) {
         validateMinute(atMinute);
@@ -248,6 +268,9 @@ public class DateBuilder {
 
     /**
      * Set the second (0-59) for the Date that will be built by this builder, and truncate the milliseconds to 000.
+     *
+     * @param atSecond the second of the minute for this date builder
+     * @return this builder instance
      */
     public DateBuilder atSecond(int atSecond) {
         validateSecond(atSecond);
@@ -269,6 +292,9 @@ public class DateBuilder {
     
     /**
      * Set the day of month (1-31) for the Date that will be built by this builder.
+     *
+     * @param onDay the day of the month for this builder
+     * @return this builder instance
      */
     public DateBuilder onDay(int onDay) {
         validateDayOfMonth(onDay);
@@ -279,6 +305,9 @@ public class DateBuilder {
 
     /**
      * Set the month (1-12) for the Date that will be built by this builder.
+     *
+     * @param inMonth the month of the year for this date builder
+     * @return this builder instance
      */
     public DateBuilder inMonth(int inMonth) {
         validateMonth(inMonth);
@@ -298,6 +327,9 @@ public class DateBuilder {
 
     /**
      * Set the year for the Date that will be built by this builder.
+     *
+     * @param inYear the year for this date builder
+     * @return this builder instance
      */
     public DateBuilder inYear(int inYear) {
         validateYear(inYear);
@@ -308,6 +340,9 @@ public class DateBuilder {
 
     /**
      * Set the TimeZone for the Date that will be built by this builder (if "null", system default will be used)
+     *
+     * @param timezone the timezone for this date builder
+     * @return this builder instance
      */
     public DateBuilder inTimeZone(TimeZone timezone) {
         this.tz = timezone;
@@ -316,6 +351,9 @@ public class DateBuilder {
 
     /**
      * Set the Locale for the Date that will be built by this builder (if "null", system default will be used)
+     *
+     * @param locale the locale for this date builder
+     * @return this builder instance
      */
     public DateBuilder inLocale(Locale locale) {
         this.lc = locale;
@@ -764,74 +802,76 @@ public class DateBuilder {
      * </p>
      * 
      * <p>
-     * More examples: <table>
+     * More examples:
+     *
+     * <table summary="">
      * <tr>
-     * <th>Input Time</th>
-     * <th>Minute-Base</th>
-     * <th>Result Time</th>
-     * </tr>
-     * <tr>
-     * <td>11:16:41</td>
-     * <td>20</td>
-     * <td>11:20:00</td>
+     *   <th>Input Time</th>
+     *   <th>Minute-Base</th>
+     *   <th>Result Time</th>
      * </tr>
      * <tr>
-     * <td>11:36:41</td>
-     * <td>20</td>
-     * <td>11:40:00</td>
+     *   <td>11:16:41</td>
+     *   <td>20</td>
+     *   <td>11:20:00</td>
      * </tr>
      * <tr>
-     * <td>11:46:41</td>
-     * <td>20</td>
-     * <td>12:00:00</td>
+     *   <td>11:36:41</td>
+     *   <td>20</td>
+     *   <td>11:40:00</td>
      * </tr>
      * <tr>
-     * <td>11:26:41</td>
-     * <td>30</td>
-     * <td>11:30:00</td>
+     *   <td>11:46:41</td>
+     *   <td>20</td>
+     *   <td>12:00:00</td>
      * </tr>
      * <tr>
-     * <td>11:36:41</td>
-     * <td>30</td>
-     * <td>12:00:00</td>
+     *   <td>11:26:41</td>
+     *   <td>30</td>
+     *   <td>11:30:00</td>
      * </tr>
-     * <td>11:16:41</td>
-     * <td>17</td>
-     * <td>11:17:00</td>
+     * <tr>
+     *   <td>11:36:41</td>
+     *   <td>30</td>
+     *   <td>12:00:00</td>
      * </tr>
+     * <tr>
+     *   <td>11:16:41</td>
+     *   <td>17</td>
+     *   <td>11:17:00</td>
      * </tr>
-     * <td>11:17:41</td>
-     * <td>17</td>
-     * <td>11:34:00</td>
+     * <tr>
+     *   <td>11:17:41</td>
+     *   <td>17</td>
+     *   <td>11:34:00</td>
      * </tr>
+     * <tr>
+     *   <td>11:52:41</td>
+     *   <td>17</td>
+     *   <td>12:00:00</td>
      * </tr>
-     * <td>11:52:41</td>
-     * <td>17</td>
-     * <td>12:00:00</td>
+     * <tr>
+     *   <td>11:52:41</td>
+     *   <td>5</td>
+     *   <td>11:55:00</td>
      * </tr>
+     * <tr>
+     *   <td>11:57:41</td>
+     *   <td>5</td>
+     *   <td>12:00:00</td>
      * </tr>
-     * <td>11:52:41</td>
-     * <td>5</td>
-     * <td>11:55:00</td>
+     * <tr>
+     *   <td>11:17:41</td>
+     *   <td>0</td>
+     *   <td>12:00:00</td>
      * </tr>
-     * </tr>
-     * <td>11:57:41</td>
-     * <td>5</td>
-     * <td>12:00:00</td>
-     * </tr>
-     * </tr>
-     * <td>11:17:41</td>
-     * <td>0</td>
-     * <td>12:00:00</td>
-     * </tr>
-     * </tr>
-     * <td>11:17:41</td>
-     * <td>1</td>
-     * <td>11:08:00</td>
+     * <tr>
+     *   <td>11:17:41</td>
+     *   <td>1</td>
+     *   <td>11:08:00</td>
      * </tr>
      * </table>
-     * </p>
-     * 
+     *
      * @param date
      *          the Date to round, if <code>null</code> the current time will
      *          be used
@@ -895,7 +935,7 @@ public class DateBuilder {
      * <p>
      * The rules for calculating the second are the same as those for
      * calculating the minute in the method 
-     * <code>getNextGivenMinuteDate(..)<code>.
+     * <code>getNextGivenMinuteDate(..)</code>.
      * </p>
      *
      * @param date the Date to round, if <code>null</code> the current time will
@@ -948,9 +988,9 @@ public class DateBuilder {
     }
 
     /**
-     * Translate a date & time from a users time zone to the another
+     * Translate a date and time from a users time zone to the another
      * (probably server) time zone to assist in creating a simple trigger with 
-     * the right date & time.
+     * the right date and time.
      * 
      * @param date the date to translate
      * @param src the original time-zone

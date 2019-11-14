@@ -50,7 +50,7 @@ import org.quartz.utils.Key;
  *             .build();
  *         
  *         scheduler.scheduleJob(job, trigger);
- * <pre>
+ * </pre>
  *  
  * @see TriggerBuilder
  * @see DateBuilder 
@@ -81,7 +81,8 @@ public class JobBuilder {
     /**
      * Create a JobBuilder with which to define a <code>JobDetail</code>,
      * and set the class name of the <code>Job</code> to be executed.
-     * 
+     *
+     * @param jobClass the class of the job the builder will create
      * @return a new JobBuilder
      */
     public static JobBuilder newJob(Class <? extends Job> jobClass) {
@@ -261,7 +262,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>String</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -272,7 +275,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>Integer</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -283,7 +288,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>Long</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -294,7 +301,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>Float</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -305,7 +314,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>Double</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -316,7 +327,9 @@ public class JobBuilder {
     
     /**
      * Add the given key-value pair to the JobDetail's {@link JobDataMap}.
-     * 
+     *
+     * @param dataKey the string key for the job's data map mapping that will be returned by the builder
+     * @param value the <code>Boolean</code> value for the job's data map mapping that will be returned by the builder
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -328,7 +341,8 @@ public class JobBuilder {
     /**
      * Add all the data from the given {@link JobDataMap} to the
      * {@code JobDetail}'s {@code JobDataMap}.
-     * 
+     *
+     * @param newJobDataMap the mappings to add to the builder's existing mappings
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap()
      */
@@ -340,7 +354,8 @@ public class JobBuilder {
     /**
      * Replace the {@code JobDetail}'s {@link JobDataMap} with the
      * given {@code JobDataMap}.
-     * 
+     *
+     * @param newJobDataMap the mappings to replace the builder's existing mappings
      * @return the updated JobBuilder
      * @see JobDetail#getJobDataMap() 
      */

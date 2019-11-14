@@ -35,31 +35,32 @@ import org.quartz.JobExecutionException;
 
 /**
  * Generic JMX invoker Job.  It supports any number or type of parameters
- * to the JMX bean.<p>
+ * to the JMX bean.<br>
  * 
- * The required parameters are as follows (case doesn't matter):<p>
+ * The required parameters are as follows (case doesn't matter):<br>
  * <dl>
- * <dt><strong>JMX_OBJECTNAME</strong>
+ * <dt><strong>JMX_OBJECTNAME</strong></dt>
  * <dd>This is the fully qualifed name of the object (ie in JBoss to lookup
- * the log4j jmx bean you would specify "jboss.system:type=Log4jService,service=Logging"
- * <dt><strong>JMX_METHOD</strong>
+ * the log4j jmx bean you would specify "jboss.system:type=Log4jService,service=Logging"</dd>
+ * <dt><strong>JMX_METHOD</strong></dt>
  * <dd>This is the method to invoke on the specified JMX Bean. (ie in JBoss to
- * change the log level you would specify "setLoggerLevel"
- * <dt><strong>JMX_PARAMDEFS</strong>
+ * change the log level you would specify "setLoggerLevel"</dd>
+ * <dt><strong>JMX_PARAMDEFS</strong></dt>
  * <dd>This is a definition of the parameters to be passed to the specified method
  * and their corresponding java types.  Each parameter definition is comma seperated
- * and has the following parts: <type>:<name>.  Type is the java type for the parameter.  
- * The following types are supported:<p>
- * <b>i</b> - is for int<p>
- * <b>l</b> - is for long<p>
- * <b>f</b> - is for float<p>
- * <b>d</b> - is for double<p>
- * <b>s</b> - is for String<p>
- * <b>b</b> - is for boolean<p>
+ * and has the following parts: &lt;type&gt;:&lt;name&gt;. Type is the java type for the parameter.  
+ * The following types are supported:<br>
+ * <b>i</b> - is for int<br>
+ * <b>l</b> - is for long<br>
+ * <b>f</b> - is for float<br>
+ * <b>d</b> - is for double<br>
+ * <b>s</b> - is for String<br>
+ * <b>b</b> - is for boolean<br>
  * For ilfdb use lower for native type and upper for object wrapper. The name portion
  * of the definition is the name of the parameter holding the string value. (ie
  * s:fname,s:lname would require 2 parameters of the name fname and lname and
- * would be passed in that order to the method.
+ * would be passed in that order to the method.</dd>
+ * </dl>
  * 
  * @author James Nelson (jmn@provident-solutions.com) -- Provident Solutions LLC
  * 

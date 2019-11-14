@@ -34,7 +34,7 @@ import org.quartz.JobExecutionException;
  * 
  * <pre>
  *             JobDetail job = new JobDetail("dumbJob", null, org.quartz.jobs.NativeJob.class);
- *             job.getJobDataMap().put(org.quartz.jobs.NativeJob.PROP_COMMAND, "echo \"hi\" >> foobar.txt");
+ *             job.getJobDataMap().put(org.quartz.jobs.NativeJob.PROP_COMMAND, "echo \"hi\" &gt;&gt; foobar.txt");
  *             Trigger trigger = TriggerUtils.makeSecondlyTrigger(5);
  *             trigger.setName("dumbTrigger");
  *             sched.scheduleJob(job, trigger);

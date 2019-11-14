@@ -110,7 +110,7 @@ public class SimpleThreadPool implements ThreadPool {
      * 
      * @param threadCount
      *          the number of worker <code>Threads</code> in the pool, must
-     *          be > 0.
+     *          be &gt; 0.
      * @param threadPriority
      *          the thread priority for the worker threads.
      * 
@@ -353,7 +353,7 @@ public class SimpleThreadPool implements ThreadPool {
                     while(handoffPending) {
                         try {
                             nextRunnableLock.wait(100);
-                        } catch(InterruptedException _) {
+                        } catch(InterruptedException ie) {
                             interrupted = true;
                         }
                     }
@@ -369,7 +369,7 @@ public class SimpleThreadPool implements ThreadPool {
                             // note: with waiting infinite time the
                             // application may appear to 'hang'.
                             nextRunnableLock.wait(2000);
-                        } catch (InterruptedException _) {
+                        } catch (InterruptedException ie) {
                             interrupted = true;
                         }
                     }
@@ -380,7 +380,7 @@ public class SimpleThreadPool implements ThreadPool {
                         try {
                             wt.join();
                             workerThreads.remove();
-                        } catch (InterruptedException _) {
+                        } catch (InterruptedException ie) {
                             interrupted = true;
                         }
                     }

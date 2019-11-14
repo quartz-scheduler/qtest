@@ -69,7 +69,8 @@ public interface Job {
      * <code>{@link TriggerListener}s</code> that are watching the job's 
      * execution.
      * </p>
-     * 
+     *
+     * @param context the job execution context with which to fire the job
      * @throws JobExecutionException
      *           if there is an exception while executing the job.
      */

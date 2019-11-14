@@ -15,10 +15,13 @@
  */
 package org.quartz.osgi.tests;
 
+import static org.ops4j.pax.exam.CoreOptions.bootDelegationPackages;
+import static org.ops4j.pax.exam.CoreOptions.cleanCaches;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.CoreOptions.wrappedBundle;
+import static org.terracotta.test.OsgiUtil.commonOptions;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +39,6 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
-import org.terracotta.test.OsgiUtil;
 
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
@@ -52,13 +54,12 @@ public class SimpleOsgiQuartzTest implements JobListener {
 
 	@Configuration
 	public Option[] config() {
-		return options(mavenBundle("org.quartz-scheduler", "quartz")
-				.versionAsInProject(), wrappedBundle(maven("c3p0", "c3p0")
-				.versionAsInProject()),
-        mavenBundle("org.slf4j", "slf4j-api").versionAsInProject(),
-        mavenBundle("org.slf4j", "slf4j-log4j12").versionAsInProject().noStart(),
-        mavenBundle("log4j", "log4j").versionAsInProject().noStart(),        
-        OsgiUtil.commonOptions());
+		return options(bootDelegationPackages("sun.*,jdk.*"),
+				mavenBundle("org.quartz-scheduler", "quartz").versionAsInProject(),
+				wrappedBundle(maven("com.mchange", "c3p0").versionAsInProject()).noStart(),
+				wrappedBundle(maven("com.zaxxer", "HikariCP").versionAsInProject()).noStart(),
+				cleanCaches(true),
+				commonOptions());
 	}
 
 	// note this part of code run in osgi container

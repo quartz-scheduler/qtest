@@ -686,7 +686,7 @@ public interface DriverDelegate {
 
     /**
      * <p>
-     * Select a trigger' status (state & next fire time).
+     * Select a trigger' status (state and next fire time).
      * </p>
      * 
      * @param conn
@@ -1130,7 +1130,7 @@ public interface DriverDelegate {
      * Clear (delete!) all scheduling data - all {@link Job}s, {@link Trigger}s
      * {@link Calendar}s.
      * 
-     * @throws JobPersistenceException
+     * @throws SQLException
      */
     void clearData(Connection conn)
         throws SQLException;

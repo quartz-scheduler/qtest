@@ -43,6 +43,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * is scheduled.
      * </p>
+     *
+     * @param trigger the trigger associated with the scheduled job
      */
     void jobScheduled(Trigger trigger);
 
@@ -51,7 +53,9 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * is unscheduled.
      * </p>
-     * 
+     *
+     * @param triggerKey a reference to the trigger associated with the unscheduled job
+     *
      * @see SchedulerListener#schedulingDataCleared()
      */
     void jobUnscheduled(TriggerKey triggerKey);
@@ -61,6 +65,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link Trigger}</code>
      * has reached the condition in which it will never fire again.
      * </p>
+     *
+     * @param trigger the trigger that was finalized
      */
     void triggerFinalized(Trigger trigger);
 
@@ -69,6 +75,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link Trigger}</code>
      * has been paused.
      * </p>
+     *
+     * @param triggerKey a reference to the trigger that was paused
      */
     void triggerPaused(TriggerKey triggerKey);
 
@@ -89,6 +97,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link Trigger}</code>
      * has been un-paused.
      * </p>
+     *
+     * @param triggerKey a reference to the trigger that was resumed
      */
     void triggerResumed(TriggerKey triggerKey);
 
@@ -97,6 +107,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a 
      * group of <code>{@link Trigger}s</code> has been un-paused.
      * </p>
+     *
+     * @param triggerGroup the name of the trigger group that was resumed, or null if all were resumed
      */
     void triggersResumed(String triggerGroup);
 
@@ -105,6 +117,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * has been added.
      * </p>
+     *
+     * @param jobDetail the details of the job that was added
      */
     void jobAdded(JobDetail jobDetail);
     
@@ -113,6 +127,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * has been deleted.
      * </p>
+     *
+     * @param jobKey a reference to the job that was deleted
      */
     void jobDeleted(JobKey jobKey);
     
@@ -121,6 +137,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * has been paused.
      * </p>
+     *
+     * @param jobKey a reference to the job that was paused
      */
     void jobPaused(JobKey jobKey);
 
@@ -139,6 +157,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a <code>{@link org.quartz.JobDetail}</code>
      * has been un-paused.
      * </p>
+     *
+     * @param jobKey a reference to the job that was resumed
      */
     void jobResumed(JobKey jobKey);
 
@@ -147,6 +167,8 @@ public interface SchedulerListener {
      * Called by the <code>{@link Scheduler}</code> when a 
      * group of <code>{@link org.quartz.JobDetail}s</code> has been un-paused.
      * </p>
+     *
+     * @param jobGroup the name of the job group that was resumed, or null if all were resumed
      */
     void jobsResumed(String jobGroup);
 
@@ -163,6 +185,9 @@ public interface SchedulerListener {
      * can be used to determine more specific information about the type of
      * error that was encountered.
      * </p>
+     *
+     * @param msg a textual description of the scheduler error
+     * @param cause the underlying cause of the scheduler error
      */
     void schedulerError(String msg, SchedulerException cause);
 

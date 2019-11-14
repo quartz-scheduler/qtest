@@ -30,7 +30,7 @@ import org.quartz.utils.ClassUtils;
 /**
  * <p>
  * Responsible for creating the instances of a {@link JobRunShell}
- * to be used within the <class>{@link org.quartz.core.QuartzScheduler}
+ * to be used within the <code>{@link org.quartz.core.QuartzScheduler}
  * </code> instance.  It will create a standard {@link JobRunShell}
  * unless the job class has the {@link ExecuteInJTATransaction}
  * annotation in which case it will create a {@link JTAJobRunShell}.
@@ -90,9 +90,8 @@ public class JTAAnnotationAwareJobRunShellFactory implements JobRunShellFactory 
 
     /**
      * <p>
-     * Called by the <class>{@link org.quartz.core.QuartzSchedulerThread}
-     * </code> to obtain instances of <code>
-     * {@link org.quartz.core.JobRunShell}</code>.
+     * Called by the {@link org.quartz.core.QuartzSchedulerThread}
+     * to obtain instances of {@link org.quartz.core.JobRunShell}.
      * </p>
      */
     public JobRunShell createJobRunShell(TriggerFiredBundle bundle)

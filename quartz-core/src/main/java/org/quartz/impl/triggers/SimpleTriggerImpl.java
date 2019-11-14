@@ -368,7 +368,7 @@ public class SimpleTriggerImpl extends AbstractTrigger<SimpleTrigger> implements
      * 
      * @see #REPEAT_INDEFINITELY
      * @exception IllegalArgumentException
-     *              if repeatCount is < 0
+     *              if repeatCount is &lt; 0
      */
     public void setRepeatCount(int repeatCount) {
         if (repeatCount < 0 && repeatCount != REPEAT_INDEFINITELY) {
@@ -394,7 +394,7 @@ public class SimpleTriggerImpl extends AbstractTrigger<SimpleTrigger> implements
      * </p>
      * 
      * @exception IllegalArgumentException
-     *              if repeatInterval is <= 0
+     *              if repeatInterval is &lt;= 0
      */
     public void setRepeatInterval(long repeatInterval) {
         if (repeatInterval < 0) {
@@ -447,7 +447,8 @@ public class SimpleTriggerImpl extends AbstractTrigger<SimpleTrigger> implements
      * 
      * <p>
      * If the misfire instruction is set to MISFIRE_INSTRUCTION_SMART_POLICY,
-     * then the following scheme will be used: <br>
+     * then the following scheme will be used:
+     *
      * <ul>
      * <li>If the Repeat Count is <code>0</code>, then the instruction will
      * be interpreted as <code>MISFIRE_INSTRUCTION_FIRE_NOW</code>.</li>
@@ -461,7 +462,6 @@ public class SimpleTriggerImpl extends AbstractTrigger<SimpleTrigger> implements
      * will be interpreted as <code>MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_EXISTING_REPEAT_COUNT</code>.
      * </li>
      * </ul>
-     * </p>
      */
     @Override
     public void updateAfterMisfire(Calendar cal) {
@@ -648,7 +648,6 @@ public class SimpleTriggerImpl extends AbstractTrigger<SimpleTrigger> implements
      * @return the first time at which the <code>Trigger</code> will be fired
      *         by the scheduler, which is also the same value <code>getNextFireTime()</code>
      *         will return (until after the first firing of the <code>Trigger</code>).
-     *         </p>
      */
     @Override
     public Date computeFirstFireTime(Calendar calendar) {

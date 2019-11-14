@@ -42,7 +42,7 @@ import org.quartz.SchedulerException;
  * If you need direct access your plugin, you can have it explicitly put a 
  * reference to itself in the <code>Scheduler</code>'s 
  * <code>SchedulerContext</code> as part of its
- * <code>{@link #initialize(String, Scheduler)}</code> method.
+ * <code>{@link #initialize(String, Scheduler, ClassLoadHelper)}</code> method.
  * </p>
  * 
  * @author James House
