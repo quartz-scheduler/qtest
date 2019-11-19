@@ -1,0 +1,630 @@
+databaseChangeLog:
+  - property:
+      name: table_prefix
+      value: mediation_quartz_
+  - property:
+      name: blob_type
+      value: BYTEA
+      dbms: postgresql
+  - property:
+      name: blob_type
+      value: BLOB
+  - changeSet:
+      id: quartz-init
+      author: quartz
+      changes:
+        - createTable:
+            tableName: ${table_prefix}LOCKS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LOCK_NAME
+                  type: VARCHAR(40)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: ${table_prefix}LOCKS
+            columnNames: SCHED_NAME, LOCK_NAME
+        - createTable:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ENTRY_ID
+                  type: VARCHAR(95)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: INSTANCE_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: FIRED_TIME
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: SCHED_TIME
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PRIORITY
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STATE
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_NAME
+                  type: VARCHAR(200)
+              - column:
+                  name: JOB_GROUP
+                  type: VARCHAR(200)
+              - column:
+                  name: IS_NONCONCURRENT
+                  type: BOOLEAN
+              - column:
+                  name: REQUESTS_RECOVERY
+                  type: BOOLEAN
+        - addPrimaryKey:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columnNames: SCHED_NAME, ENTRY_ID
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: INSTANCE_NAME
+              - column:
+                  name: REQUESTS_RECOVERY
+            indexName: IDX_${table_prefix}FT_INST_JOB_REQ_RCVRY
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: JOB_NAME
+              - column:
+                  name: JOB_GROUP
+            indexName: IDX_${table_prefix}FT_J_G
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: JOB_GROUP
+            indexName: IDX_${table_prefix}FT_JG
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_NAME
+              - column:
+                  name: TRIGGER_GROUP
+            indexName: IDX_${table_prefix}FT_T_G
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_GROUP
+            indexName: IDX_${table_prefix}FT_TG
+        - createIndex:
+            tableName: ${table_prefix}FIRED_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: INSTANCE_NAME
+            indexName: IDX_${table_prefix}FT_TRIG_INST_NAME
+        - createTable:
+            tableName: ${table_prefix}CALENDARS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CALENDAR_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CALENDAR
+                  type: ${blob_type}
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: ${table_prefix}CALENDARS
+            columnNames: SCHED_NAME, CALENDAR_NAME
+        - createTable:
+            tableName: ${table_prefix}PAUSED_TRIGGER_GRPS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: ${table_prefix}PAUSED_TRIGGER_GRPS
+            columnNames: SCHED_NAME, TRIGGER_GROUP
+        - createTable:
+            tableName: ${table_prefix}SCHEDULER_STATE
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: INSTANCE_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LAST_CHECKIN_TIME
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CHECKIN_INTERVAL
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: ${table_prefix}SCHEDULER_STATE
+            columnNames: SCHED_NAME, INSTANCE_NAME
+        - createTable:
+            tableName: ${table_prefix}JOB_DETAILS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(250)
+              - column:
+                  name: JOB_CLASS_NAME
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IS_DURABLE
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IS_NONCONCURRENT
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IS_UPDATE_DATA
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REQUESTS_RECOVERY
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_DATA
+                  type: ${blob_type}
+        - addPrimaryKey:
+            tableName: ${table_prefix}JOB_DETAILS
+            columnNames: SCHED_NAME, JOB_NAME, JOB_GROUP
+        - createIndex:
+            tableName: ${table_prefix}JOB_DETAILS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: JOB_GROUP
+            indexName: IDX_${table_prefix}J_GRP
+        - createIndex:
+            tableName: ${table_prefix}JOB_DETAILS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: REQUESTS_RECOVERY
+            indexName: IDX_${table_prefix}J_REQ_RECOVERY
+        - createTable:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: JOB_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(250)
+              - column:
+                  name: NEXT_FIRE_TIME
+                  type: BIGINT
+              - column:
+                  name: PREV_FIRE_TIME
+                  type: BIGINT
+              - column:
+                  name: PRIORITY
+                  type: INTEGER
+              - column:
+                  name: TRIGGER_STATE
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_TYPE
+                  type: VARCHAR(8)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: START_TIME
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: END_TIME
+                  type: INTEGER
+              - column:
+                  name: CALENDAR_NAME
+                  type: VARCHAR(200)
+              - column:
+                  name: MISFIRE_INSTR
+                  type: smallint
+              - column:
+                  name: JOB_DATA
+                  type: ${blob_type}
+        - addPrimaryKey:
+            tableName: ${table_prefix}TRIGGERS
+            columnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: CALENDAR_NAME
+            indexName: IDX_${table_prefix}T_C
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_GROUP
+            indexName: IDX_${table_prefix}T_G
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: JOB_GROUP
+            indexName: IDX_${table_prefix}T_JG
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_GROUP
+              - column:
+                  name: TRIGGER_STATE
+            indexName: IDX_${table_prefix}T_N_G_STATE
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_NAME
+              - column:
+                  name: TRIGGER_GROUP
+              - column:
+                  name: TRIGGER_STATE
+            indexName: IDX_${table_prefix}T_N_STATE
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: NEXT_FIRE_TIME
+            indexName: IDX_${table_prefix}T_NEXT_FIRE_TIME
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: MISFIRE_INSTR
+              - column:
+                  name: NEXT_FIRE_TIME
+            indexName: IDX_${table_prefix}T_NFT_MISFIRE
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_STATE
+              - column:
+                  name: NEXT_FIRE_TIME
+            indexName: IDX_${table_prefix}T_NFT_ST
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: MISFIRE_INSTR
+              - column:
+                  name: NEXT_FIRE_TIME
+              - column:
+                  name: TRIGGER_STATE
+            indexName: IDX_${table_prefix}T_NFT_ST_MISFIRE
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: MISFIRE_INSTR
+              - column:
+                  name: NEXT_FIRE_TIME
+              - column:
+                  name: TRIGGER_GROUP
+              - column:
+                  name: TRIGGER_STATE
+            indexName: IDX_${table_prefix}T_NFT_ST_MISFIRE_GRP
+        - createIndex:
+            tableName: ${table_prefix}TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+              - column:
+                  name: TRIGGER_STATE
+            indexName: IDX_${table_prefix}T_STATE
+        - createTable:
+            tableName: ${table_prefix}${blob_type}_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ${blob_type}_DATA
+                  type: ${blob_type}
+        - addPrimaryKey:
+            tableName: ${table_prefix}${blob_type}_TRIGGERS
+            columnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - createTable:
+            tableName: ${table_prefix}SIMPROP_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STR_PROP_1
+                  type: VARCHAR(512)
+              - column:
+                  name: STR_PROP_2
+                  type: VARCHAR(512)
+              - column:
+                  name: STR_PROP_3
+                  type: VARCHAR(512)
+              - column:
+                  name: INT_PROP_1
+                  type: INTEGER
+              - column:
+                  name: INT_PROP_2
+                  type: INTEGER
+              - column:
+                  name: LONG_PROP_1
+                  type: BIGINT
+              - column:
+                  name: LONG_PROP_2
+                  type: BIGINT
+              - column:
+                  name: DEC_PROP_1
+                  type: NUMERIC(13,4)
+              - column:
+                  name: DEC_PROP_2
+                  type: NUMERIC(13,4)
+              - column:
+                  name: BOOL_PROP_1
+                  type: BOOLEAN
+              - column:
+                  name: BOOL_PROP_2
+                  type: BOOLEAN
+        - addPrimaryKey:
+            tableName: ${table_prefix}SIMPROP_TRIGGERS
+            columnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - createTable:
+            tableName: ${table_prefix}CRON_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CRON_EXPRESSION
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TIME_ZONE_ID
+                  type: VARCHAR(80)
+        - addPrimaryKey:
+            tableName: ${table_prefix}CRON_TRIGGERS
+            columnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - createTable:
+            tableName: ${table_prefix}SIMPLE_TRIGGERS
+            columns:
+              - column:
+                  name: SCHED_NAME
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_NAME
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TRIGGER_GROUP
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REPEAT_COUNT
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REPEAT_INTERVAL
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TIMES_TRIGGERED
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: ${table_prefix}SIMPLE_TRIGGERS
+            columnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - addForeignKeyConstraint:
+            baseTableName: ${table_prefix}TRIGGERS
+            constraintName: ${table_prefix}TRIGGERS_SCHED_NAME_FKEY
+            baseColumnNames: SCHED_NAME, JOB_NAME, JOB_GROUP
+            referencedTableName: ${table_prefix}JOB_DETAILS
+            referencedColumnNames: SCHED_NAME, JOB_NAME, JOB_GROUP
+        - addForeignKeyConstraint:
+            baseTableName: ${table_prefix}SIMPLE_TRIGGERS
+            constraintName: ${table_prefix}SIMPLE_TRIGGERS_SCHED_NAME_FKEY
+            baseColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+            referencedTableName: ${table_prefix}TRIGGERS
+            referencedColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - addForeignKeyConstraint:
+            baseTableName: ${table_prefix}CRON_TRIGGERS
+            constraintName: ${table_prefix}CRON_TRIGGERS_SCHED_NAME_FKEY
+            baseColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+            referencedTableName: ${table_prefix}TRIGGERS
+            referencedColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - addForeignKeyConstraint:
+            baseTableName: ${table_prefix}SIMPROP_TRIGGERS
+            constraintName: ${table_prefix}SIMPROP_TRIGGERS_SCHED_NAME_FKEY
+            baseColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+            referencedTableName: ${table_prefix}TRIGGERS
+            referencedColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+        - addForeignKeyConstraint:
+            baseTableName: ${table_prefix}${blob_type}_TRIGGERS
+            constraintName: ${table_prefix}${blob_type}_TRIGGERS_SCHED_NAME_FKEY
+            baseColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
+            referencedTableName: ${table_prefix}TRIGGERS
+            referencedColumnNames: SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP
