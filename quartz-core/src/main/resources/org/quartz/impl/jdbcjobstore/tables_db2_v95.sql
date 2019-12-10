@@ -16,10 +16,10 @@ job_name varchar(80) not null,
 job_group varchar(80) not null,
 description varchar(120),
 job_class_name varchar(128) not null,
-is_durable integer not null,
-is_nonconcurrent integer not null,
-is_update_data integer not null,
-requests_recovery integer not null,
+is_durable varchar(1) not null,
+is_nonconcurrent varchar(1) not null,
+is_update_data varchar(1) not null,
+requests_recovery varchar(1) not null,
 job_data blob(2000),
 primary key (sched_name,job_name,job_group)
 );
@@ -115,8 +115,8 @@ priority integer not null,
 state varchar(16) not null,
 job_name varchar(80),
 job_group varchar(80),
-is_nonconcurrent integer,
-requests_recovery integer,
+is_nonconcurrent varchar(1),
+requests_recovery varchar(1),
 primary key (sched_name,entry_id)
 );
 
