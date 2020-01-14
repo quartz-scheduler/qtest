@@ -76,7 +76,7 @@ BadJob1 is a simple job that simply creates an artificial exception (divide by z
         	JobExecutionException e2 =
         		new JobExecutionException(e);
         	// this job will refire immediately
-        	e2.refireImmediately();
+        	e2.setRefireImmediately(true);
         	throw e2;
         }
 </code></pre>
