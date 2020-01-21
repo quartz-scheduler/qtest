@@ -226,7 +226,7 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
 
         signaler = new SchedulerSignalerImpl(this, this.schedThread);
         
-        getLog().info("Quartz Scheduler v." + getVersion() + " created.");
+        getLog().info("Quartz Scheduler v" + getVersion() + " created.");
     }
 
     public void initialize() throws SchedulerException {
