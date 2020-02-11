@@ -393,12 +393,12 @@
         <snapshotRepository>
           <id>quartz-snapshots</id>
           <name>Quartz snapshots at Sonatype Nexus</name>
-          <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
           <id>quartz-staging</id>
           <name>Quartz release staging at Sonatype Nexus</name>
-          <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
       </distributionManagement>
     </profile>
@@ -446,22 +446,22 @@
   <repositories>
     <repository>
       <id>terracotta-snapshots</id>
-      <url>http://www.terracotta.org/download/reflector/snapshots</url>
+      <url>https://www.terracotta.org/download/reflector/snapshots</url>
     </repository>  
     <repository>
       <id>terracotta-releases</id>
-      <url>http://www.terracotta.org/download/reflector/releases</url>   
+      <url>https://www.terracotta.org/download/reflector/releases</url>   
     </repository>   
   </repositories>
 
   <pluginRepositories>
     <pluginRepository>
       <id>terracotta-snapshots</id>
-      <url>http://www.terracotta.org/download/reflector/snapshots</url>
+      <url>https://www.terracotta.org/download/reflector/snapshots</url>
     </pluginRepository>
     <pluginRepository>
       <id>terracotta-releases</id>
-      <url>http://www.terracotta.org/download/reflector/releases</url>
+      <url>https://www.terracotta.org/download/reflector/releases</url>
     </pluginRepository>    
   </pluginRepositories>
 </project>
