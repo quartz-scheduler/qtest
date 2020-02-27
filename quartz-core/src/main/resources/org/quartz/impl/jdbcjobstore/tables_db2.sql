@@ -10,9 +10,6 @@
 # If you're using DB2 6.x you'll want to set this property to
 # org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.DB2v6Delegate
 #
-# Note that the blob column size (e.g. blob(2000)) dictates the amount of data that can be stored in 
-# that blob - i.e. limits the amount of data you can put into your JobDataMap 
-#
 
 
 create table qrtz_job_details (
@@ -25,7 +22,7 @@ create table qrtz_job_details (
   is_nonconcurrent varchar(1) not null,
   is_update_data varchar(1) not null,
   requests_recovery varchar(1) not null,
-  job_data blob(2000),
+  job_data blob,
     primary key (sched_name,job_name,job_group)
 )
 
@@ -45,7 +42,7 @@ create table qrtz_triggers(
   end_time bigint,
   calendar_name varchar(80),
   misfire_instr smallint,
-  job_data blob(2000),
+  job_data blob,
     primary key (sched_name,trigger_name,trigger_group),
     foreign key (sched_name,job_name,job_group) references qrtz_job_details(sched_name,job_name,job_group)
 )
@@ -96,7 +93,7 @@ create table qrtz_blob_triggers(
   sched_name varchar(120) not null,
   trigger_name varchar(80) not null,
   trigger_group varchar(80) not null,
-  blob_data blob(2000) null,
+  blob_data blob null,
     primary key (sched_name,trigger_name,trigger_group),
     foreign key (sched_name,trigger_name,trigger_group) references qrtz_triggers(sched_name,trigger_name,trigger_group)
 )
@@ -104,7 +101,7 @@ create table qrtz_blob_triggers(
 create table qrtz_calendars(
   sched_name varchar(120) not null,
   calendar_name varchar(80) not null,
-  calendar blob(2000) not null,
+  calendar blob not null,
     primary key (sched_name,calendar_name)
 )
 
