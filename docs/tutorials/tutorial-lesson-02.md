@@ -24,7 +24,7 @@ The key interfaces of the Quartz API are:
 
 
 A **Scheduler**'s life-cycle is bounded by it's creation, via a **SchedulerFactory** and
-a call to its *shutdown()* method.  Once created the Scheduler interface can be used add, remove, and list
+a call to its *shutdown()* method.  Once created the Scheduler interface can be used to add, remove, and list
 Jobs and Triggers, and perform other scheduling-related operations (such as pausing a trigger).  However, the
 Scheduler will not actually act on any triggers (execute jobs) until it has been started with the *start()*
 method, as shown in <a href="tutorial-lesson-01.html" title="Go to Lesson 1">Lesson 1</a>.       
