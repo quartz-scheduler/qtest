@@ -30,7 +30,7 @@ Here we give an overview of each example program:
   </thead>
   <tbody>
     <tr>
-    <td>Example 1 - <a href="Example1.html">First Quartz Program</a></td>
+    <td>Example 1 - <a href="Example1.md">First Quartz Program</a></td>
     <td> Think of this as a "Hello World" for Quartz </td>
     </tr>
     <tr>
@@ -38,19 +38,19 @@ Here we give an overview of each example program:
     <td> Shows a dozen different ways of using Simple Triggers to schedule your jobs </td>
     </tr>
     <tr>
-    <td> Example 3 - <a href="Example3.html">Cron Triggers</a> </td>
+    <td> Example 3 - <a href="Example3.md">Cron Triggers</a> </td>
     <td> Shows how Cron Triggers can be used to schedule your job </td>
     </tr>
     <tr>
-    <td> Example 4 - <a href="Example4.html">Job State and Parameters</a></td>
+    <td> Example 4 - <a href="Example4.md">Job State and Parameters</a></td>
     <td> Demonstrates how parameters can be passed into jobs and how jobs maintain state </td>
     </tr>
     <tr>
-    <td> Example 5 - <a href="Example5.html">Handling Job Misfires</a> </td>
+    <td> Example 5 - <a href="Example5.md">Handling Job Misfires</a> </td>
     <td> Sometimes job will not execute when they are supposed to.  See how to handle these Misfires </td>
     </tr>
     <tr>
-    <td> Example 6 - <a href="Example6.html">Dealing with Job Exceptions</a> </td>
+    <td> Example 6 - <a href="Example6.md">Dealing with Job Exceptions</a> </td>
     <td> No job is perfect.  See how you can let the scheduler know how to deal with exceptions that are thrown by your job </td>
     </tr>
     <tr>
@@ -82,7 +82,7 @@ Here we give an overview of each example program:
     <td> Demonstrates how Quartz can be used in a clustered environment and how Quartz can use the database to persist scheduling information </td>
     </tr>
     <tr>
-    <td> Example 14 - <a href="Example14.html">Trigger Priorities</a> </td>
+    <td> Example 14 - <a href="Example14.md">Trigger Priorities</a> </td>
     <td> Demonstrates how Trigger priorities can be used to manage firing order for Triggers with the same fire time </td>
     </tr>
     <tr>
