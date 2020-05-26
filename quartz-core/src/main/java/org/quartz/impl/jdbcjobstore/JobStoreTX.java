@@ -23,6 +23,7 @@ import org.quartz.JobPersistenceException;
 import org.quartz.SchedulerConfigException;
 import org.quartz.spi.ClassLoadHelper;
 import org.quartz.spi.SchedulerSignaler;
+import org.quartz.spi.SerializationHelper;
 
 /**
  * <p>
@@ -52,9 +53,9 @@ public class JobStoreTX extends JobStoreSupport {
 
     @Override
     public void initialize(ClassLoadHelper classLoadHelper,
-            SchedulerSignaler schedSignaler) throws SchedulerConfigException {
+            SchedulerSignaler schedSignaler, SerializationHelper serializationHelper) throws SchedulerConfigException {
 
-        super.initialize(classLoadHelper, schedSignaler);
+        super.initialize(classLoadHelper, schedSignaler, serializationHelper);
 
         getLog().info("JobStoreTX initialized.");
     }

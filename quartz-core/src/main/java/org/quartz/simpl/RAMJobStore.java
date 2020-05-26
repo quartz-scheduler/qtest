@@ -58,6 +58,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.quartz.impl.matchers.EverythingMatcher.allTriggers;
+import org.quartz.spi.SerializationHelper;
 
 /**
  * <p>
@@ -148,7 +149,7 @@ public class RAMJobStore implements JobStore {
      * used, in order to give the it a chance to initialize.
      * </p>
      */
-    public void initialize(ClassLoadHelper loadHelper, SchedulerSignaler schedSignaler) {
+    public void initialize(ClassLoadHelper loadHelper, SchedulerSignaler schedSignaler, SerializationHelper serializationHelper) {
 
         this.signaler = schedSignaler;
 

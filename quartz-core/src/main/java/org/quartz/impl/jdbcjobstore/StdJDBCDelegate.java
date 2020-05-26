@@ -26,8 +26,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.NotSerializableException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -63,6 +61,7 @@ import org.quartz.impl.matchers.StringMatcher;
 import org.quartz.impl.triggers.SimpleTriggerImpl;
 import org.quartz.spi.ClassLoadHelper;
 import org.quartz.spi.OperableTrigger;
+import org.quartz.spi.SerializationHelper;
 import org.slf4j.Logger;
 
 /**
@@ -97,6 +96,8 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
     protected boolean useProperties;
     
     protected ClassLoadHelper classLoadHelper;
+    
+    protected SerializationHelper serializationHelper;
 
     protected List<TriggerPersistenceDelegate> triggerPersistenceDelegates = new LinkedList<TriggerPersistenceDelegate>();
 
@@ -129,7 +130,8 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
      * @param initString of the format: settingName=settingValue|otherSettingName=otherSettingValue|...
      * @throws NoSuchDelegateException 
      */
-    public void initialize(Logger logger, String tablePrefix, String schedName, String instanceId, ClassLoadHelper classLoadHelper, boolean useProperties, String initString) throws NoSuchDelegateException {
+    public void initialize(Logger logger, String tablePrefix, String schedName, String instanceId, ClassLoadHelper classLoadHelper, 
+            boolean useProperties, String initString, SerializationHelper serializationHelper) throws NoSuchDelegateException {
 
         this.logger = logger;
         this.tablePrefix = tablePrefix;
@@ -137,6 +139,7 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
         this.instanceId = instanceId;
         this.useProperties = useProperties;
         this.classLoadHelper = classLoadHelper;
+        this.serializationHelper = serializationHelper;
         addDefaultTriggerPersistenceDelegates();
 
         if(initString == null)
@@ -1123,9 +1126,7 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
         try {
             // update the blob
             os = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(os);
-            oos.writeObject(trigger);
-            oos.close();
+            serializationHelper.outputTrigger(trigger, os);
 
             byte[] buf = os.toByteArray();
             ByteArrayInputStream is = new ByteArrayInputStream(buf);
@@ -1252,10 +1253,8 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
         try {
             // update the blob
             os = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(os);
-            oos.writeObject(trigger);
-            oos.close();
-
+            serializationHelper.outputTrigger(trigger, os);
+            
             byte[] buf = os.toByteArray();
             ByteArrayInputStream is = new ByteArrayInputStream(buf);
 
@@ -3052,9 +3051,7 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
         throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         if (null != obj) {
-            ObjectOutputStream out = new ObjectOutputStream(baos);
-            out.writeObject(obj);
-            out.flush();
+            serializationHelper.outputObject(obj, baos);
         }
         return baos;
     }
@@ -3196,12 +3193,7 @@ public class StdJDBCDelegate implements DriverDelegate, StdJDBCConstants {
                     && ((ByteArrayInputStream) binaryInput).available() == 0 ) {
                     //do nothing
                 } else {
-                    ObjectInputStream in = new ObjectInputStream(binaryInput);
-                    try {
-                        obj = in.readObject();
-                    } finally {
-                        in.close();
-                    }
+                    obj = serializationHelper.readObject(binaryInput);
                 }
             }
 

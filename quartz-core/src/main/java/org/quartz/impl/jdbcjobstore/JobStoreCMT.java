@@ -25,6 +25,7 @@ import org.quartz.JobPersistenceException;
 import org.quartz.SchedulerConfigException;
 import org.quartz.spi.ClassLoadHelper;
 import org.quartz.spi.SchedulerSignaler;
+import org.quartz.spi.SerializationHelper;
 import org.quartz.utils.DBConnectionManager;
 
 /**
@@ -123,7 +124,7 @@ public class JobStoreCMT extends JobStoreSupport {
 
     @Override
     public void initialize(ClassLoadHelper loadHelper,
-            SchedulerSignaler signaler) throws SchedulerConfigException {
+            SchedulerSignaler signaler, SerializationHelper serializationHelper) throws SchedulerConfigException {
 
         if (nonManagedTxDsName == null) {
             throw new SchedulerConfigException(
@@ -140,7 +141,7 @@ public class JobStoreCMT extends JobStoreSupport {
             setUseDBLocks(true);
         }
 
-        super.initialize(loadHelper, signaler);
+        super.initialize(loadHelper, signaler, serializationHelper);
 
         getLog().info("JobStoreCMT initialized.");
     }

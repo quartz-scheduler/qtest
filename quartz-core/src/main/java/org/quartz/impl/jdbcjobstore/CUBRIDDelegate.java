@@ -59,12 +59,7 @@ public class CUBRIDDelegate extends StdJDBCDelegate {
         if (bytes != null && bytes.length != 0) {
             binaryInput = new ByteArrayInputStream(bytes);
 
-            ObjectInputStream in = new ObjectInputStream(binaryInput);
-            try {
-                obj = in.readObject();
-            } finally {
-                in.close();
-            }
+            obj = serializationHelper.readObject(binaryInput);
         }
 
         return obj;

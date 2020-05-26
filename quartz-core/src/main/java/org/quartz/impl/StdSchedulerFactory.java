@@ -68,6 +68,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Properties;
+import org.quartz.spi.SerializationHelper;
 
 /**
  * <p>
@@ -181,6 +182,8 @@ public class StdSchedulerFactory implements SchedulerFactory {
     public static final String PROP_SCHED_SCHEDULER_THREADS_INHERIT_CONTEXT_CLASS_LOADER_OF_INITIALIZING_THREAD = "org.quartz.scheduler.threadsInheritContextClassLoaderOfInitializer";
 
     public static final String PROP_SCHED_CLASS_LOAD_HELPER_CLASS = "org.quartz.scheduler.classLoadHelper.class";
+    
+    public static final String PROP_SCHED_SERIALIZATION_HELPER_CLASS = "org.quartz.scheduler.serializationHelper.class";
 
     public static final String PROP_SCHED_JOB_FACTORY_CLASS = "org.quartz.scheduler.jobFactory.class";
 
@@ -627,6 +630,7 @@ public class StdSchedulerFactory implements SchedulerFactory {
         long idleWaitTime = -1;
         long dbFailureRetry = 15000L; // 15 secs
         String classLoadHelperClass;
+        String serializationHelperClass;
         String jobFactoryClass;
         ThreadExecutor threadExecutor;
 
@@ -666,6 +670,11 @@ public class StdSchedulerFactory implements SchedulerFactory {
         classLoadHelperClass = cfg.getStringProperty(
                 PROP_SCHED_CLASS_LOAD_HELPER_CLASS,
                 "org.quartz.simpl.CascadingClassLoadHelper");
+        
+        serializationHelperClass = cfg.getStringProperty(
+                PROP_SCHED_SERIALIZATION_HELPER_CLASS, 
+                "org.quartz.simpl.ObjectStreamSerializationImpl");
+        
         wrapJobInTx = cfg.getBooleanProperty(PROP_SCHED_WRAP_JOB_IN_USER_TX,
                 wrapJobInTx);
 
@@ -751,6 +760,18 @@ public class StdSchedulerFactory implements SchedulerFactory {
         }
         loadHelper.initialize();
 
+        // Create serialization helper class
+        SerializationHelper serializationHelper = null;
+        try {
+            serializationHelper = (SerializationHelper) loadClass(serializationHelperClass)
+                    .newInstance();
+        } catch (Exception e) {
+            throw new SchedulerConfigException(
+                    "Unable to instantiate serialization helper class: "
+                            + e.getMessage(), e);
+        }
+        serializationHelper.initialize();
+        
         // If Proxying to remote JMX scheduler, short-circuit here...
         // ~~~~~~~~~~~~~~~~~~
         if (jmxProxy) {
@@ -1365,7 +1386,7 @@ public class StdSchedulerFactory implements SchedulerFactory {
             js.setInstanceId(schedInstId);
             js.setInstanceName(schedName);
             js.setThreadPoolSize(tp.getPoolSize());
-            js.initialize(loadHelper, qs.getSchedulerSignaler());
+            js.initialize(loadHelper, qs.getSchedulerSignaler(), serializationHelper);
 
             jrsf.initialize(scheduler);
             

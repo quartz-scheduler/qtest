@@ -29,11 +29,13 @@ import org.quartz.core.JobRunShellFactory;
 import org.quartz.core.QuartzScheduler;
 import org.quartz.core.QuartzSchedulerResources;
 import org.quartz.simpl.CascadingClassLoadHelper;
+import org.quartz.simpl.ObjectStreamSerializationImpl;
 import org.quartz.simpl.RAMJobStore;
 import org.quartz.simpl.SimpleThreadPool;
 import org.quartz.spi.ClassLoadHelper;
 import org.quartz.spi.JobStore;
 import org.quartz.spi.SchedulerPlugin;
+import org.quartz.spi.SerializationHelper;
 import org.quartz.spi.ThreadExecutor;
 import org.quartz.spi.ThreadPool;
 import org.slf4j.Logger;
@@ -496,9 +498,12 @@ public class DirectSchedulerFactory implements SchedulerFactory {
         ClassLoadHelper cch = new CascadingClassLoadHelper();
         cch.initialize();
 
+        SerializationHelper sh = new ObjectStreamSerializationImpl();
+        sh.initialize();
+
         SchedulerDetailsSetter.setDetails(jobStore, schedulerName, schedulerInstanceId);
 
-        jobStore.initialize(cch, qs.getSchedulerSignaler());
+        jobStore.initialize(cch, qs.getSchedulerSignaler(), sh);
 
         Scheduler scheduler = new StdScheduler(qs);
 

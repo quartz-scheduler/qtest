@@ -39,12 +39,14 @@ import org.quartz.JobDataMap;
 import org.quartz.simpl.SimpleClassLoadHelper;
 
 import junit.framework.TestCase;
+import org.quartz.simpl.ObjectStreamSerializationImpl;
 
 public class StdJDBCDelegateTest extends TestCase {
 
     public void testSerializeJobData() throws IOException, NoSuchDelegateException {
         StdJDBCDelegate delegate = new StdJDBCDelegate();
-        delegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), false, "");
+        delegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), 
+                false, "", new ObjectStreamSerializationImpl());
         
         JobDataMap jdm = new JobDataMap();
         delegate.serializeJobData(jdm).close();
@@ -68,7 +70,8 @@ public class StdJDBCDelegateTest extends TestCase {
 
     public void testSelectBlobTriggerWithNoBlobContent() throws JobPersistenceException, SQLException, IOException, ClassNotFoundException {
         StdJDBCDelegate jdbcDelegate = new StdJDBCDelegate();
-        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), false, "");
+        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), 
+                false, "", new ObjectStreamSerializationImpl());
 
         Connection conn = mock(Connection.class);
         PreparedStatement preparedStatement = mock(PreparedStatement.class);
@@ -92,7 +95,8 @@ public class StdJDBCDelegateTest extends TestCase {
         when(persistenceDelegate.loadExtendedTriggerProperties(any(Connection.class), any(TriggerKey.class))).thenThrow(exception);
 
         StdJDBCDelegate jdbcDelegate = new TestStdJDBCDelegate(persistenceDelegate);
-        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), false, "");
+        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), 
+                false, "", new ObjectStreamSerializationImpl());
 
         Connection conn = mock(Connection.class);
         PreparedStatement preparedStatement = mock(PreparedStatement.class);
@@ -120,7 +124,8 @@ public class StdJDBCDelegateTest extends TestCase {
         when(persistenceDelegate.loadExtendedTriggerProperties(any(Connection.class), any(TriggerKey.class))).thenThrow(new IllegalStateException());
 
         StdJDBCDelegate jdbcDelegate = new TestStdJDBCDelegate(persistenceDelegate);
-        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), false, "");
+        jdbcDelegate.initialize(LoggerFactory.getLogger(getClass()), "QRTZ_", "TESTSCHED", "INSTANCE", new SimpleClassLoadHelper(), 
+                false, "", new ObjectStreamSerializationImpl());
 
         Connection conn = mock(Connection.class);
         PreparedStatement preparedStatement = mock(PreparedStatement.class);

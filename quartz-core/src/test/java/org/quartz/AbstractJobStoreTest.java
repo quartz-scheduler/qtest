@@ -34,6 +34,7 @@ import org.quartz.spi.*;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import org.quartz.simpl.ObjectStreamSerializationImpl;
 
 /**
  * Unit test for JobStores.  These tests were submitted by Johannes Zillmann
@@ -50,8 +51,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
         this.fSignaler = new SampleSignaler();
         ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
         loadHelper.initialize();
+        SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
+        
         this.fJobStore = createJobStore("AbstractJobStoreTest");
-        this.fJobStore.initialize(loadHelper, this.fSignaler);
+        this.fJobStore.initialize(loadHelper, this.fSignaler, serializationHelper);
         this.fJobStore.schedulerStarted();
 
         this.fJobDetail = new JobDetailImpl("job1", "jobGroup1", MyJob.class);
@@ -310,9 +314,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
         SchedulerSignaler schedSignaler = new SampleSignaler();
         ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
         loadHelper.initialize();
-
+        SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
+        
         JobStore store = createJobStore("testStoreAndRetrieveJobs");
-        store.initialize(loadHelper, schedSignaler);
+        store.initialize(loadHelper, schedSignaler, serializationHelper);
 		
 		// Store jobs.
 		for (int i=0; i < 10; i++) {
@@ -336,9 +342,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
         SchedulerSignaler schedSignaler = new SampleSignaler();
         ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
         loadHelper.initialize();
-
+        SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
+        
         JobStore store = createJobStore("testStoreAndRetriveTriggers");
-        store.initialize(loadHelper, schedSignaler);
+        store.initialize(loadHelper, schedSignaler, serializationHelper);
 		
 		// Store jobs and triggers.
 		for (int i=0; i < 10; i++) {
@@ -369,9 +377,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
         SchedulerSignaler schedSignaler = new SampleSignaler();
         ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
         loadHelper.initialize();
+        SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
 
         JobStore store = createJobStore("testMatchers");
-        store.initialize(loadHelper, schedSignaler);
+        store.initialize(loadHelper, schedSignaler, serializationHelper);
 
         JobDetail job = JobBuilder.newJob(MyJob.class).withIdentity("job1", "aaabbbccc").build();
         store.storeJob(job, true);
@@ -451,9 +461,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
 		SchedulerSignaler schedSignaler = new SampleSignaler();
 		ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
 		loadHelper.initialize();
-		
+		SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
+        
         JobStore store = createJobStore("testAcquireTriggers");
-		store.initialize(loadHelper, schedSignaler);
+		store.initialize(loadHelper, schedSignaler, serializationHelper);
 		
 		// Setup: Store jobs and triggers.
 		long MIN = 60 * 1000L;
@@ -490,9 +502,11 @@ public abstract class AbstractJobStoreTest extends TestCase {
 		SchedulerSignaler schedSignaler = new SampleSignaler();
 		ClassLoadHelper loadHelper = new CascadingClassLoadHelper();
 		loadHelper.initialize();
-		
+		SerializationHelper serializationHelper = new ObjectStreamSerializationImpl();
+        serializationHelper.initialize();
+        
         JobStore store = createJobStore("testAcquireTriggersInBatch");
-		store.initialize(loadHelper, schedSignaler);
+		store.initialize(loadHelper, schedSignaler, serializationHelper);
 		
 		// Setup: Store jobs and triggers.
 		long MIN = 60 * 1000L;

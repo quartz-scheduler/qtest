@@ -55,6 +55,7 @@ import org.quartz.spi.ClassLoadHelper;
 import org.quartz.spi.JobStore;
 import org.quartz.spi.OperableTrigger;
 import org.quartz.spi.SchedulerSignaler;
+import org.quartz.spi.SerializationHelper;
 import org.quartz.spi.ThreadExecutor;
 import org.quartz.spi.TriggerFiredBundle;
 import org.quartz.spi.TriggerFiredResult;
@@ -134,6 +135,8 @@ public abstract class JobStoreSupport implements JobStore, Constants {
     private MisfireHandler misfireHandler = null;
 
     private ClassLoadHelper classLoadHelper;
+    
+    private SerializationHelper serializationHelper;
 
     private SchedulerSignaler schedSignaler;
 
@@ -555,6 +558,10 @@ public abstract class JobStoreSupport implements JobStore, Constants {
         return classLoadHelper;
     }
 
+    protected SerializationHelper getSerializationHelper() {
+        return serializationHelper;
+    }
+
     /**
      * Get whether the threads spawned by this JobStore should be
      * marked as daemon.  Possible threads include the <code>MisfireHandler</code> 
@@ -637,7 +644,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      * </p>
      */
     public void initialize(ClassLoadHelper loadHelper,
-            SchedulerSignaler signaler) throws SchedulerConfigException {
+            SchedulerSignaler signaler, SerializationHelper serializationHelper) throws SchedulerConfigException {
 
         if (dsName == null) { 
             throw new SchedulerConfigException("DataSource name not set."); 
@@ -678,6 +685,7 @@ public abstract class JobStoreSupport implements JobStore, Constants {
             }
         }
 
+        this.serializationHelper = serializationHelper;
     }
    
     /**
@@ -3212,7 +3220,8 @@ public abstract class JobStoreSupport implements JobStore, Constants {
 
                     delegate = delegateClass.newInstance();
                     
-                    delegate.initialize(getLog(), tablePrefix, instanceName, instanceId, getClassLoadHelper(), canUseProperties(), getDriverDelegateInitString());
+                    delegate.initialize(getLog(), tablePrefix, instanceName, instanceId, getClassLoadHelper(), 
+                            canUseProperties(), getDriverDelegateInitString(), getSerializationHelper());
                     
                 } catch (InstantiationException e) {
                     throw new NoSuchDelegateException("Couldn't create delegate: "

@@ -71,12 +71,7 @@ public class SybaseDelegate extends StdJDBCDelegate {
 
         Object obj = null;
 
-        ObjectInputStream in = new ObjectInputStream(binaryInput);
-        try {
-            obj = in.readObject();
-        } finally {
-            in.close();
-        }
+        obj = serializationHelper.readObject(binaryInput);
 
         return obj;
     }
