@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.quartz-scheduler</groupId>
     <artifactId>quartz-parent</artifactId>
-    <version>1.8.7-SNAPSHOT</version>
+    <version>1.8.7-atlassian-1-SNAPSHOT</version>
   </parent>
 
   <artifactId>quartz-jboss</artifactId>

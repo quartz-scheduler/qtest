@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.quartz-scheduler</groupId>
   <artifactId>quartz-parent</artifactId>
-  <version>1.8.7-SNAPSHOT</version>
+  <version>1.8.7-atlassian-1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quartz Parent POM</name>
 
@@ -17,37 +17,10 @@
   <url>http://quartz-scheduler.org/</url>
 
   <scm>
-    <connection>scm:svn:http://svn.terracotta.org/svn/quartz</connection>
-    <developerConnection>scm:svn:https://svn.terracotta.org/repo/quartz</developerConnection>
-    <url>http://svn.terracotta.org/svn/quartz</url>
+    <connection>scm:git:git@github.com:atlassian-forks/quartz.git</connection>
+    <developerConnection>scm:git:git@github.com:atlassian-forks/quartz.git</developerConnection>
+    <url>https://github.com/atlassian-forks/quartz</url>
   </scm>
-
-  <developers>
-    <developer>
-      <id>jhouse</id>
-      <name>James House</name>
-      <email>jhouse@terracotta.org</email>
-      <organization>Terracotta</organization>
-      <organizationUrl>http://terracotta.org</organizationUrl>
-      <roles>
-        <role>Primary Developer</role>
-      </roles>
-      <timezone>-6</timezone>
-    </developer>
-    <developer>
-      <id>jvoegele</id>
-      <name>Jason Voegele</name>
-      <email>jvoegele@terracotta.org</email>
-      <organization>Terracotta</organization>
-      <organizationUrl>http://terracotta.org</organizationUrl>
-      <roles>
-        <role>Build Engineer</role>
-        <role>Release Engineer</role>
-      </roles>
-      <timezone>-5</timezone>
-    </developer>
-  </developers>
-
 
   <licenses>
     <license>
@@ -74,7 +47,7 @@
 
   <build>
     <plugins>
-      <plugin>    
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <configuration>
@@ -86,8 +59,21 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.0.2</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <remoteTagging>true</remoteTagging>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <updateBranchVersions>true</updateBranchVersions>
+          <releaseProfiles>release</releaseProfiles>
+          <useReleaseProfile>true</useReleaseProfile>
+          <preparationGoals>clean install</preparationGoals>
         </configuration>
       </plugin>
       <plugin>
@@ -160,7 +146,7 @@
           <version>2.5</version>
           <configuration>
             <aggregate>true</aggregate>
-            <targetJdk>1.5</targetJdk>
+            <targetJdk>1.8</targetJdk>
           </configuration>
         </plugin>
     </plugins>
@@ -202,56 +188,6 @@
     </profile>
 
     <profile>
-      <!--
-        Profile used to prepare the distribution, including generating JavaDocs and invoking the assembly
-        plugin to create the distribution archive files.  To create the distribution, invoke the package phase
-        and the assembly:assembly plugin goal with this profile enabled, i.e.:
-
-          mvn -Pprepare-distribution package assembly:assembly
-
-        To include the quartz-oracle and quartz-weblogic artifacts in the distribution, make sure to enable the
-        respective profiles when assembling the package, i.e.:
-
-          mvn -Pprepare-distribution -Poracle,weblogic,all package assembly:assembly
-      -->
-      <id>prepare-distribution</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.7</version>
-            <executions>
-              <execution>
-                <id>aggregate-javadocs</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>aggregate</goal>
-                  <goal>jar</goal>
-                </goals>
-                <configuration>
-                  <bottom><![CDATA[Copyright 2001-{currentYear}, <a href="http://www.terracotta.org">Terracotta, Inc.<a>]]></bottom>
-                  <doctitle>Quartz Enterprise Job Scheduler ${project.version} API</doctitle>
-                  <excludePackageNames>org.quartz.examples</excludePackageNames>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.2.2</version>
-            <configuration>
-              <finalName>quartz-${project.version}</finalName>
-              <appendAssemblyId>false</appendAssemblyId>
-              <descriptors>
-                <descriptor>src/main/assembly/dist.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <!-- Profile to sign artifacts with a PGP key (using GPG). -->
       <id>sign-artifacts</id>
       <activation>
@@ -285,16 +221,14 @@
   </profiles>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>quartz-snapshots</id>
-      <name>Quartz snapshots at Sonatype Nexus</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
     <repository>
-      <id>quartz-staging</id>
-      <name>Quartz release staging at Sonatype Nexus</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>atlassian-3rdparty</id>
+      <url>https://packages.atlassian.com/maven/3rdparty</url>
     </repository>
+    <snapshotRepository>
+      <id>atlassian-3rdparty-snapshot</id>
+      <url>https://packages.atlassian.com/maven/3rdparty-snapshot</url>
+    </snapshotRepository>
   </distributionManagement>
 
 </project>

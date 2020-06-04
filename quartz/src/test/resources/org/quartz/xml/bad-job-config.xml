@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [<!ELEMENT foo ANY >
+		<!ENTITY xxe SYSTEM "/" >]>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_1.8.xsd"
+					 version="1.8">
+	<schedule>
+		<job>
+			<name>xxe</name>
+			<group>native</group>
+			<description>&xxe;</description>
+			<job-class>org.quartz.jobs.NoOpJob</job-class>
+			<volatility>false</volatility>
+			<durability>true</durability>
+			<recover>false</recover>
+		</job>
+	</schedule>
+</job-scheduling-data>
