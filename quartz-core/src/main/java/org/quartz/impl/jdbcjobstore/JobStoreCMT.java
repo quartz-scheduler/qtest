@@ -31,7 +31,7 @@ import org.quartz.utils.DBConnectionManager;
  * <p>
  * <code>JobStoreCMT</code> is meant to be used in an application-server
  * environment that provides container-managed-transactions. No commit /
- * rollback will be1 handled by this class.
+ * rollback will be handled by this class.
  * </p>
  * 
  * <p>
