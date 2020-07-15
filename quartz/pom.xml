@@ -208,7 +208,11 @@
             org.jboss.naming;resolution:=optional,
             org.jboss.system;resolution:=optional,
             commonj.work;resolution:=optional,
-            org.quartz.jobs;resolution:=optional,*</Import-Package>
+            org.quartz.jobs;resolution:=optional,
+            com.mchange.v2.c3p0;resolution:=optional,
+            com.zaxxer.hikari:=optional,
+            *
+            </Import-Package>
             <Export-Package>org.quartz.*</Export-Package>
             <Private-Package>org.terracotta.quartz.*</Private-Package>
             <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
