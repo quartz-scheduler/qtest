@@ -66,7 +66,7 @@ import static org.quartz.impl.matchers.EverythingMatcher.allTriggers;
  * </p>
  * 
  * <p>
- * As you should know, the ramification of this is that access is extrememly
+ * As you should know, the ramification of this is that access is extremely
  * fast, but the data is completely volatile - therefore this <code>JobStore</code>
  * should not be used if true persistence between program shutdowns is
  * required.
