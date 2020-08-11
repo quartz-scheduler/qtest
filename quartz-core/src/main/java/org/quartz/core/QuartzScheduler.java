@@ -1407,7 +1407,7 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
 
         resources.getJobStore().resumeAll();
         notifySchedulerThread(0L);
-        notifySchedulerListenersResumedTrigger(null);
+        notifySchedulerListenersResumedTriggers(null);
     }
 
     /**
