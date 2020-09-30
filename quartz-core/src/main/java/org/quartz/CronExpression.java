@@ -78,7 +78,7 @@ import java.util.TreeSet;
  * <tr>
  * <td align="left"><code>Month</code></td>
  * <td align="left">&nbsp;</th>
- * <td align="left"><code>0-11 or JAN-DEC</code></td>
+ * <td align="left"><code>1-12 or JAN-DEC</code></td>
  * <td align="left">&nbsp;</th>
  * <td align="left"><code>, - * /</code></td>
  * </tr>
@@ -119,7 +119,7 @@ import java.util.TreeSet;
  * the value to start with. Essentially, for each field in the expression, there
  * is a set of numbers that can be turned on or off. For seconds and minutes, 
  * the numbers range from 0 to 59. For hours 0 to 23, for days of the month 0 to
- * 31, and for months 0 to 11 (JAN to DEC). The &quot;/&quot; character simply helps you turn
+ * 31, and for months 1 to 12 (JAN to DEC). The &quot;/&quot; character simply helps you turn
  * on every &quot;nth&quot; value in the given set. Thus &quot;7/6&quot; in the
  * month field only turns on month &quot;7&quot;, it does NOT mean every 6th 
  * month, please note that subtlety.  
@@ -215,18 +215,18 @@ public final class CronExpression implements Serializable, Cloneable {
     protected static final Map<String, Integer> monthMap = new HashMap<String, Integer>(20);
     protected static final Map<String, Integer> dayMap = new HashMap<String, Integer>(60);
     static {
-        monthMap.put("JAN", 0);
-        monthMap.put("FEB", 1);
-        monthMap.put("MAR", 2);
-        monthMap.put("APR", 3);
-        monthMap.put("MAY", 4);
-        monthMap.put("JUN", 5);
-        monthMap.put("JUL", 6);
-        monthMap.put("AUG", 7);
-        monthMap.put("SEP", 8);
-        monthMap.put("OCT", 9);
-        monthMap.put("NOV", 10);
-        monthMap.put("DEC", 11);
+        monthMap.put("JAN", 1);
+        monthMap.put("FEB", 2);
+        monthMap.put("MAR", 3);
+        monthMap.put("APR", 4);
+        monthMap.put("MAY", 5);
+        monthMap.put("JUN", 6);
+        monthMap.put("JUL", 7);
+        monthMap.put("AUG", 8);
+        monthMap.put("SEP", 9);
+        monthMap.put("OCT", 10);
+        monthMap.put("NOV", 11);
+        monthMap.put("DEC", 12);
 
         dayMap.put("SUN", 1);
         dayMap.put("MON", 2);
@@ -534,7 +534,7 @@ public final class CronExpression implements Serializable, Cloneable {
             int sval = -1;
             int eval = -1;
             if (type == MONTH) {
-                sval = getMonthNumber(sub) + 1;
+                sval = getMonthNumber(sub);
                 if (sval <= 0) {
                     throw new ParseException("Invalid Month value: '" + sub + "'", i);
                 }
@@ -543,7 +543,7 @@ public final class CronExpression implements Serializable, Cloneable {
                     if (c == '-') {
                         i += 4;
                         sub = s.substring(i, i + 3);
-                        eval = getMonthNumber(sub) + 1;
+                        eval = getMonthNumber(sub);
                         if (eval <= 0) {
                             throw new ParseException("Invalid Month value: '" + sub + "'", i);
                         }
