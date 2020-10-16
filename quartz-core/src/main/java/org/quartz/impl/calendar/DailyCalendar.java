@@ -477,10 +477,10 @@ public class DailyCalendar extends BaseCalendar {
             getTimeRangeEndingTimeInMillis(timeInMillis);
         if (!invertTimeRange) {
             return 
-                ((timeInMillis > startOfDayInMillis && 
+                ((timeInMillis >= startOfDayInMillis &&
                     timeInMillis < timeRangeStartingTimeInMillis) ||
                 (timeInMillis > timeRangeEndingTimeInMillis && 
-                    timeInMillis < endOfDayInMillis));
+                    timeInMillis <= endOfDayInMillis));
         } else {
             return ((timeInMillis >= timeRangeStartingTimeInMillis) &&
                     (timeInMillis <= timeRangeEndingTimeInMillis));
