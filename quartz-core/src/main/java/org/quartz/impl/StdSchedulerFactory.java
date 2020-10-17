@@ -210,6 +210,8 @@ public class StdSchedulerFactory implements SchedulerFactory {
 
     public static final String PROP_JOB_STORE_USE_PROP = "org.quartz.jobStore.useProperties";
 
+    public static final String PROP_JOB_STORE_IS_CONSUMER = "org.quartz.jobStore.isConsumer";
+
     public static final String PROP_DATASOURCE_PREFIX = "org.quartz.dataSource";
 
     public static final String PROP_CONNECTION_PROVIDER_CLASS = "connectionProvider.class";
@@ -1239,6 +1241,10 @@ public class StdSchedulerFactory implements SchedulerFactory {
             } else {
                 jrsf = new JTAAnnotationAwareJobRunShellFactory();
             }
+
+            if (js.isClustered() && !cfg.getBooleanProperty(PROP_JOB_STORE_IS_CONSUMER,true)) {
+                throw new IllegalArgumentException("Couldn't have no consumers in non-clustered mode");
+            }
     
             if (autoId) {
                 try {
@@ -1330,7 +1336,7 @@ public class StdSchedulerFactory implements SchedulerFactory {
                 rsrcs.addSchedulerPlugin(plugins[i]);
             }
     
-            qs = new QuartzScheduler(rsrcs, idleWaitTime, dbFailureRetry);
+            qs = new QuartzScheduler(rsrcs, idleWaitTime, dbFailureRetry,cfg.getBooleanProperty(PROP_JOB_STORE_IS_CONSUMER,true));
             qsInited = true;
     
             // Create Scheduler ref...

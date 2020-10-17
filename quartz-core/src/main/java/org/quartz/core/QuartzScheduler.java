@@ -205,14 +205,14 @@ public class QuartzScheduler implements RemotableQuartzScheduler {
      * 
      * @see QuartzSchedulerResources
      */
-    public QuartzScheduler(QuartzSchedulerResources resources, long idleWaitTime, @Deprecated long dbRetryInterval)
+    public QuartzScheduler(QuartzSchedulerResources resources, long idleWaitTime, @Deprecated long dbRetryInterval,boolean isConsumer)
         throws SchedulerException {
         this.resources = resources;
         if (resources.getJobStore() instanceof JobListener) {
             addInternalJobListener((JobListener)resources.getJobStore());
         }
 
-        this.schedThread = new QuartzSchedulerThread(this, resources);
+        this.schedThread = new QuartzSchedulerThread(this, resources,isConsumer);
         ThreadExecutor schedThreadExecutor = resources.getThreadExecutor();
         schedThreadExecutor.execute(this.schedThread);
         if (idleWaitTime > 0) {

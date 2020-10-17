@@ -119,6 +119,8 @@ public abstract class JobStoreSupport implements JobStore, Constants {
 
     private boolean isClustered = false;
 
+    private boolean isConsumer = true;
+
     private boolean useDBLocks = false;
     
     private boolean lockOnInsert = true;
@@ -300,6 +302,24 @@ public abstract class JobStoreSupport implements JobStore, Constants {
      */
     public boolean isClustered() {
         return isClustered;
+    }
+
+    /**
+     * <p>
+     * Get whether this instance is a consumer.
+     * </p>
+     */
+    public boolean isConsumer() {
+        return isConsumer;
+    }
+
+    /**
+     * <p>
+     * Set whether this instance is a consumer.
+     * </p>
+     */
+    public void setConsumer(boolean consumer) {
+        isConsumer = consumer;
     }
 
     /**

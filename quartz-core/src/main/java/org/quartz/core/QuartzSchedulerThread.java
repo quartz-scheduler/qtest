@@ -79,6 +79,7 @@ public class QuartzSchedulerThread extends Thread {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    private boolean isConsumer=true;
     /*
      * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      *
@@ -94,8 +95,8 @@ public class QuartzSchedulerThread extends Thread {
      * with normal priority.
      * </p>
      */
-    QuartzSchedulerThread(QuartzScheduler qs, QuartzSchedulerResources qsRsrcs) {
-        this(qs, qsRsrcs, qsRsrcs.getMakeSchedulerThreadDaemon(), Thread.NORM_PRIORITY);
+    QuartzSchedulerThread(QuartzScheduler qs, QuartzSchedulerResources qsRsrcs, boolean isConsumer) {
+        this(qs, qsRsrcs, qsRsrcs.getMakeSchedulerThreadDaemon(), Thread.NORM_PRIORITY, isConsumer);
     }
 
     /**
@@ -105,7 +106,7 @@ public class QuartzSchedulerThread extends Thread {
      * attributes.
      * </p>
      */
-    QuartzSchedulerThread(QuartzScheduler qs, QuartzSchedulerResources qsRsrcs, boolean setDaemon, int threadPrio) {
+    QuartzSchedulerThread(QuartzScheduler qs, QuartzSchedulerResources qsRsrcs, boolean setDaemon, int threadPrio, boolean isConsumer) {
         super(qs.getSchedulerThreadGroup(), qsRsrcs.getThreadName());
         this.qs = qs;
         this.qsRsrcs = qsRsrcs;
@@ -122,6 +123,7 @@ public class QuartzSchedulerThread extends Thread {
         // so processing doesn't start yet...
         paused = true;
         halted = new AtomicBoolean(false);
+        this.isConsumer=isConsumer;
     }
 
     /*

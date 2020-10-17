@@ -491,7 +491,7 @@ public class DirectSchedulerFactory implements SchedulerFactory {
             }
         }
 
-        QuartzScheduler qs = new QuartzScheduler(qrs, idleWaitTime, dbFailureRetryInterval);
+        QuartzScheduler qs = new QuartzScheduler(qrs, idleWaitTime, dbFailureRetryInterval,true);
 
         ClassLoadHelper cch = new CascadingClassLoadHelper();
         cch.initialize();
