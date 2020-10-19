@@ -835,8 +835,8 @@ Example of Using a Custom `StdRowLockSemaphore` Implementation
 
 ----
 org.quartz.jobStore.lockHandler.class = org.quartz.impl.jdbcjobstore.StdRowLockSemaphore
-org.quartz.jobStore.lockHandler.maxRetry = 7     # Default is 3
-org.quartz.jobStore.lockHandler.maxRetry = 3000  # Default is 1000 millis
+org.quartz.jobStore.lockHandler.maxRetry = 7        # Default is 3
+org.quartz.jobStore.lockHandler.retryPeriod = 3000  # Default is 1000 millis
 ----
 
 `org.quartz.jobStore.driverDelegateInitString`
