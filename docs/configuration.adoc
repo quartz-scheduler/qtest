@@ -568,7 +568,7 @@ registry is created, it will be bound to port number in the given 'org.quartz.sc
 
 `org.quartz.scheduler.rmi.serverPort`
 
-The port on which the the Quartz Scheduler service will bind and listen for connections. By default, the RMI service
+The port on which the Quartz Scheduler service will bind and listen for connections. By default, the RMI service
 will 'randomly' select a port as the scheduler is bound to the RMI Registry.
 
 
@@ -621,7 +621,7 @@ RAMJobStore can be tuned with the following properties:
 
 `org.quartz.jobStore.misfireThreshold`
 
-The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
+The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
 
 
 == Configuration of JDBC-JobStoreTX (store jobs and triggers in a database via JDBC)
@@ -791,7 +791,7 @@ The "use properties" flag instructs JDBCJobStore that all values in JobDataMaps 
 
 `org.quartz.jobStore.misfireThreshold`
 
-The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
+The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
 
 `org.quartz.jobStore.isClustered`
 
@@ -1043,7 +1043,7 @@ The "use properties" flag instructs JDBCJobStore that all values in JobDataMaps 
 
 `org.quartz.jobStore.misfireThreshold`
 
-The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
+The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
 
 `org.quartz.jobStore.isClustered`
 
@@ -1506,4 +1506,4 @@ The host and port identifying the location of the Terracotta server to connect t
 
 `org.quartz.jobStore.misfireThreshold`
 
-The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
+The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don't make an entry of this property in your configuration) is 60000 (60 seconds).
