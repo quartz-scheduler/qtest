@@ -41,7 +41,7 @@ import org.quartz.spi.OperableTrigger;
 public class DailyTimeIntervalTriggerPersistenceDelegate extends SimplePropertiesTriggerPersistenceDelegateSupport {
 
     public boolean canHandleTriggerType(OperableTrigger trigger) {
-        return ((trigger instanceof DailyTimeIntervalTrigger) && !((DailyTimeIntervalTriggerImpl)trigger).hasAdditionalProperties());
+        return ((trigger instanceof DailyTimeIntervalTriggerImpl) && !((DailyTimeIntervalTriggerImpl)trigger).hasAdditionalProperties());
     }
 
     public String getHandledTriggerTypeDiscriminator() {
