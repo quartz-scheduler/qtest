@@ -77,14 +77,13 @@ public class DailyTimeIntervalTriggerImplTest extends TestCase {
     Assert.assertEquals(dateOf(23, 0, 0, 4, 1, 2011), fireTimes.get(47));
   }
   
-  public void testValidateTimeOfDayOrder() throws Exception {
+  public void testValidateTimeOfDayOrder() {
     DailyTimeIntervalTriggerImpl trigger = new DailyTimeIntervalTriggerImpl();
     trigger.setStartTimeOfDay(new TimeOfDay(12, 0, 0));
-    trigger.setEndTimeOfDay(new TimeOfDay(8, 0, 0));
     try {
-      trigger.validate();
+      trigger.setEndTimeOfDay(new TimeOfDay(8, 0, 0));
       fail("Trigger should be invalidate when time of day is not in order.");
-    } catch (SchedulerException e) {
+    } catch (IllegalArgumentException e) {
       // expected.
     }
   }

@@ -919,7 +919,7 @@ public class DailyTimeIntervalTriggerImpl extends AbstractTrigger<DailyTimeInter
             throw new IllegalArgumentException("End time of day cannot be null");
 
         TimeOfDay sTime = getStartTimeOfDay();
-        if (sTime != null && endTimeOfDay.before(endTimeOfDay)) {
+        if (sTime != null && endTimeOfDay.before(sTime)) {
             throw new IllegalArgumentException(
                     "End time of day cannot be before start time of day");
         }
