@@ -7,30 +7,30 @@ Before starting the tutorial, you may first want to review the <<../quick-start-
 
 == Choose a Lesson:
 
-link:tutorial-lesson-01.html[Lesson 1: Using Quartz]
+link:tutorial-lesson-01.md[Lesson 1: Using Quartz]
 
-link:tutorial-lesson-02.html[Lesson 2: The Quartz API, and Introduction to Jobs And Triggers]
+link:tutorial-lesson-02.md[Lesson 2: The Quartz API, and Introduction to Jobs And Triggers]
 
-link:tutorial-lesson-03.html[Lesson 3: More About Jobs &amp; JobDetails]
+link:tutorial-lesson-03.md[Lesson 3: More About Jobs &amp; JobDetails]
 
-link:tutorial-lesson-04.html[Lesson 4: More About Triggers]
+link:tutorial-lesson-04.md[Lesson 4: More About Triggers]
 
-link:tutorial-lesson-05.html[Lesson 5: SimpleTriggers]
+link:tutorial-lesson-05.md[Lesson 5: SimpleTriggers]
 
-link:tutorial-lesson-06.html[Lesson 6: CronTriggers]
+link:tutorial-lesson-06.md[Lesson 6: CronTriggers]
 
-link:tutorial-lesson-07.html[Lesson 7: TriggerListeners &amp; JobListeners]
+link:tutorial-lesson-07.md[Lesson 7: TriggerListeners &amp; JobListeners]
 
-link:tutorial-lesson-08.html[Lesson 8: SchedulerListeners]
+link:tutorial-lesson-08.md[Lesson 8: SchedulerListeners]
 
-link:tutorial-lesson-09.html[Lesson 9: JobStores]
+link:tutorial-lesson-09.md[Lesson 9: JobStores]
 
-link:tutorial-lesson-10.html[Lesson 10: Configuration, Resource Usage and SchedulerFactory]
+link:tutorial-lesson-10.md[Lesson 10: Configuration, Resource Usage and SchedulerFactory]
 
-link:tutorial-lesson-11.html[Lesson 11: Advanced (Enterprise) Features]
+link:tutorial-lesson-11.md[Lesson 11: Advanced (Enterprise) Features]
 
-link:tutorial-lesson-12.html[Lesson 12: Miscellaneous Features]
+link:tutorial-lesson-12.md[Lesson 12: Miscellaneous Features]
 
 == Choose a Special Topic:
 
-link:crontrigger.html[CronTrigger Tutorial]
+link:crontrigger.md[CronTrigger Tutorial]

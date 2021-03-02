@@ -5,13 +5,13 @@ active_sub_menu_id: site_mnu_docs_examples
 ---
 <div class="secNavPanel">
           <a href=".">Contents</a> |
-          <a href="Example3.html">Next&nbsp;&rsaquo;</a>
+          <a href="Example3.md">Next&nbsp;&rsaquo;</a>
 </div>
 
 ## [Example 1 - Your First Quartz Program](#Example1-Overview)
 This example is designed to demonstrate how to get up and running with Quartz.   This example will fire off a simple job that says "Hello World".
 
-The program will perform the following actions:
+The program will perform the following actions: 
 
 
 + Start up the Quartz Scheduler
@@ -44,7 +44,7 @@ The code in this example is made up of the following classes:
 </thead>
 <tbody>
 <tr>
-<td> SimpleExample </td>
+<td> SimpleExample </td> 
 <td> The main program</td>
 </tr>
 <tr>

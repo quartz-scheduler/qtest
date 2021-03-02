@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-02.html" title="Go to Lesson 2">&lsaquo;&nbsp;Lesson 2</a> |
-          <a href="tutorial-lesson-04.html" title="Go to Lesson 4">Lesson 4&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-02.md" title="Go to Lesson 2">&lsaquo;&nbsp;Lesson 2</a> |
+          <a href="tutorial-lesson-04.md" title="Go to Lesson 4">Lesson 4&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 3: More About Jobs and Job Details

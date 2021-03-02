@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-09.html" title="Go to Lesson 9">&lsaquo;&nbsp;Lesson 9</a> |
-          <a href="tutorial-lesson-11.html" title="Go to Lesson 11">Lesson 11&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-09.md" title="Go to Lesson 9">&lsaquo;&nbsp;Lesson 9</a> |
+          <a href="tutorial-lesson-11.md" title="Go to Lesson 11">Lesson 11&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 10: Configuration, Resource Usage and SchedulerFactory

@@ -5,7 +5,7 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-02.html" title="Go to Lesson 2">Lesson 2&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-02.md" title="Go to Lesson 2">Lesson 2&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 1: Using Quartz

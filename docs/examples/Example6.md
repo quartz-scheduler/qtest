@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_examples
 ---
 <div class="secNavPanel">
           <a href=".">Contents</a> |
-	  <a href="Example5.html">&lsaquo;&nbsp;Prev</a> |
-          <a href="Example14.html">Next&nbsp;&rsaquo;</a>
+	  <a href="Example5.md">&lsaquo;&nbsp;Prev</a> |
+          <a href="Example14.md">Next&nbsp;&rsaquo;</a>
 </div>
 
 ## Example 6 - Dealing with Job Exceptions

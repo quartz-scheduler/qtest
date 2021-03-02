@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-05.html" title="Go to Lesson 5">&lsaquo;&nbsp;Lesson 5</a> |
-          <a href="tutorial-lesson-07.html" title="Go to Lesson 7">Lesson 7&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-05.md" title="Go to Lesson 5">&lsaquo;&nbsp;Lesson 5</a> |
+          <a href="tutorial-lesson-07.md" title="Go to Lesson 7">Lesson 7&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 6: CronTrigger

@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_examples
 ---
 <div class="secNavPanel">
           <a href=".">Contents</a> |
-	  <a href="Example1.html">&lsaquo;&nbsp;Prev</a> |
-          <a href="Example4.html">Next&nbsp;&rsaquo;</a>
+	  <a href="Example1.md">&lsaquo;&nbsp;Prev</a> |
+          <a href="Example4.md">Next&nbsp;&rsaquo;</a>
 </div>
 
 ## Example 3 - Cron-based Triggers

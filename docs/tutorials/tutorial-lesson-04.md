@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-03.html" title="Go to Lesson 3">&lsaquo;&nbsp;Lesson 3</a> |
-          <a href="tutorial-lesson-05.html" title="Go to Lesson 5">Lesson 5&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-03.md" title="Go to Lesson 3">&lsaquo;&nbsp;Lesson 3</a> |
+          <a href="tutorial-lesson-05.md" title="Go to Lesson 5">Lesson 5&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 4: More About Triggers
@@ -15,8 +15,8 @@ Like jobs, triggers are quite easy to work with, but do contain a variety of cus
 need to be aware of and understand before you can make full use of Quartz. Also, as noted earlier, there are different
 types of triggers that you can select from to meet different scheduling needs.
 
-You will learn about the two most common types of triggers in <a href="tutorial-lesson-05.html"
-    title="Tutorial Lesson 5">Lesson 5: Simple Triggers</a> and <a href="tutorial-lesson-06.html" title="Tutorial Lesson 6">Lesson 6: Cron Triggers</a>.
+You will learn about the two most common types of triggers in <a href="tutorial-lesson-05.md"
+    title="Tutorial Lesson 5">Lesson 5: Simple Triggers</a> and <a href="tutorial-lesson-06.md" title="Tutorial Lesson 6">Lesson 6: Cron Triggers</a>.
 
 ### [Common Trigger Attributes](#TutorialLesson4-CommonAttrs)
 

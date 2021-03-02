@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-10.html" title="Go to Lesson 10">&lsaquo;&nbsp;Lesson 10</a> |
-          <a href="tutorial-lesson-12.html" title="Go to Lesson 12">Lesson 12&nbsp;&rsaquo;</a>
+          <a href="tutorial-lesson-10.md" title="Go to Lesson 10">&lsaquo;&nbsp;Lesson 10</a> |
+          <a href="tutorial-lesson-12.md" title="Go to Lesson 12">Lesson 12&nbsp;&rsaquo;</a>
 </div>
 
 ## Lesson 11: Advanced (Enterprise) Features
@@ -41,7 +41,7 @@ same node that just was just active for non-busy (e.g. one or two triggers) sche
 
 #### Clustering With TerracottaJobStore
 Simply configure the scheduler to use TerracottaJobStore (covered in
-<a href="tutorial-lesson-09.html" title="Tutorial Lesson 9">Lesson 9: JobStores</a>), and your scheduler will be all
+<a href="tutorial-lesson-09.md" title="Tutorial Lesson 9">Lesson 9: JobStores</a>), and your scheduler will be all
 set for clustering.
 
 You may also want to consider implications of how you setup your Terracotta server, particularly configuration
@@ -56,7 +56,7 @@ More information about this JobStore and Terracotta can be found at
 
 ### [JTA Transactions](#TutorialLesson11-JTATransactions)
 
-As explained in <a href="tutorial-lesson-09.html" title="Tutorial Lesson 9">Lesson 9: JobStores</a>, JobStoreCMT
+As explained in <a href="tutorial-lesson-09.md" title="Tutorial Lesson 9">Lesson 9: JobStores</a>, JobStoreCMT
 allows Quartz scheduling operations to be performed within larger JTA transactions.
 
 Jobs can also execute within a JTA transaction (UserTransaction) by setting the

@@ -5,8 +5,8 @@ active_sub_menu_id: site_mnu_docs_tutorials
 ---
 <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="tutorial-lesson-01.html" title="Go to Lesson 2">&lsaquo;&nbsp;Lesson 1</a> |
-          <a href="tutorial-lesson-03.html" title="Go to Lesson 2">Lesson 3&nbsp;&rsaquo;</a> |
+          <a href="tutorial-lesson-01.md" title="Go to Lesson 1">&lsaquo;&nbsp;Lesson 1</a> |
+          <a href="tutorial-lesson-03.md" title="Go to Lesson 3">Lesson 3&nbsp;&rsaquo;</a> |
 </div>
 
 ## Lesson 2: The Quartz API, Jobs And Triggers
@@ -135,5 +135,5 @@ compound of the name and group.
 
 
 You now have a general idea about what Jobs and Triggers are, you can learn more about them in <a
-    href="tutorial-lesson-03.html" title="Tutorial Lesson 3">Lesson 3: More About Jobs &amp; JobDetails</a> and <a
-    href="tutorial-lesson-04.html" title="Tutorial Lesson 4">Lesson 4: More About Triggers</a>.
+    href="tutorial-lesson-03.md" title="Tutorial Lesson 3">Lesson 3: More About Jobs &amp; JobDetails</a> and <a
+    href="tutorial-lesson-04.md" title="Tutorial Lesson 4">Lesson 4: More About Triggers</a>.
