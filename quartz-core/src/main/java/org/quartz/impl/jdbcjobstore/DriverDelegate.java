@@ -937,7 +937,7 @@ public interface DriverDelegate {
      * @param noLaterThan
      *          highest value of <code>getNextFireTime()</code> of the triggers (exclusive)
      * @param noEarlierThan 
-     *          highest value of <code>getNextFireTime()</code> of the triggers (inclusive)
+     *          lowest value of <code>getNextFireTime()</code> of the triggers (inclusive)
      *          
      * @return A (never null, possibly empty) list of the identifiers (Key objects) of the next triggers to be fired.
      * 
