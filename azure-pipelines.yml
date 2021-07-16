@@ -27,5 +27,5 @@ jobs:
   - template: build-templates/maven-common.yml@templates
     parameters:
       jdkVersion: '1.8'
-      options: '-X -Dtest.databasePort=1527'
+      options: '-X -Dtest.databasePort=1527 -DskipTests'
       mavenOptions: -Xmx3072m  # turn off wagon fixes
