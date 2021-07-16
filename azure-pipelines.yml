@@ -28,4 +28,4 @@ jobs:
     parameters:
       jdkVersion: '1.8'
       options: '-X -Dtest.databasePort=1527'
-      mavenOptions: -Xmx3072m -Dmaven.wagon.http.pool=false -Dhttp.keepAlive=false  
+      mavenOptions: -Xmx3072m -Dmaven.wagon.http.pool=false -Dhttp.keepAlive=false -Dmaven.wagon.rto=30000
