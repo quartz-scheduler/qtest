@@ -27,5 +27,5 @@ jobs:
   - template: build-templates/maven-common.yml@templates
     parameters:
       jdkVersion: '1.8'
-      jvmOptions: '-X -Xmx3072m'
-      options: -B -Dtest.databasePort=1527 -Dmaven.wagon.http.pool=false -Dhttp.keepAlive=false -Dmaven.wagon.rto=30000
+      jvmOptions: '-Xmx3072m'
+      options: -X -B -Dtest.databasePort=1527 -Dmaven.wagon.http.pool=false -Dhttp.keepAlive=false -Dmaven.wagon.rto=30000
