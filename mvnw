@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -203,6 +203,10 @@ fi
 export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
 echo $MAVEN_PROJECTBASEDIR
 MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
+
+echo full command line: 
+echo $@
+env # test
 
 # For Cygwin, switch paths to Windows format before running java
 if $cygwin; then
